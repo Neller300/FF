@@ -28,13 +28,13 @@ public class GUITilbud extends Application {
             root.setPadding(new Insets(20));
             root.setHgap(15);
             root.setVgap(15);
-            root.setPrefSize(Window.WIDTH, Window.HEIGHT);
-            root.setMaxSize(Window.WIDTH, Window.HEIGHT);
-            root.setMinSize(Window.WIDTH, Window.HEIGHT);
-            root.setPrefSize(Window.WIDTH, Window.HEIGHT);
+//            root.setPrefSize(Window.WIDTH, Window.HEIGHT);
+//            root.setMaxSize(Window.WIDTH, Window.HEIGHT);
+//            root.setMinSize(Window.WIDTH, Window.HEIGHT);
+//            root.setPrefSize(Window.WIDTH, Window.HEIGHT);
         //    root.setGridLinesVisible(true);
             
-            // styre hver kolones størrelse
+            // styre hver kolones størrelse i procent
             ColumnConstraints column = new ColumnConstraints();
             column.setPercentWidth(10);
             root.getColumnConstraints().add(column);
@@ -89,7 +89,7 @@ public class GUITilbud extends Application {
             forsteYde.setEditable(false);
             forsteYde.setMouseTransparent(true);
             
-            Label laanLaengde = new Label("Laengde på laan");
+            Label laanLaengde = new Label("Laengde paa laan");
             TextField laengdeLaan = new TextField();
             
             Label LaaneInf = new Label("Laane information");
