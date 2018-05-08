@@ -28,10 +28,6 @@ public class GUITilbud extends Application {
             root.setPadding(new Insets(20));
             root.setHgap(15);
             root.setVgap(15);
-//            root.setPrefSize(Window.WIDTH, Window.HEIGHT);
-//            root.setMaxSize(Window.WIDTH, Window.HEIGHT);
-//            root.setMinSize(Window.WIDTH, Window.HEIGHT);
-//            root.setPrefSize(Window.WIDTH, Window.HEIGHT);
         //    root.setGridLinesVisible(true);
             
             // styre hver kolones størrelse i procent
