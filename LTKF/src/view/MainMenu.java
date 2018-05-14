@@ -17,7 +17,8 @@ import javafx.stage.Stage;
  
 public class MainMenu extends Application {
 	
-	Scene scene, tilbudscene, laaneformularscene;
+	//Scene scene, tilbudscene, laaneformularscene;
+	Scene laaneformularscene;
 
     
     @Override
@@ -25,43 +26,43 @@ public class MainMenu extends Application {
         primaryStage.setTitle("Ferrari");
     
         	//lave et grid 
-        	GridPane gridp = new GridPane();
-        	gridp.setPadding(new Insets(20));
-            gridp.setHgap(15);
-            gridp.setVgap(15);
+        	GridPane grid1 = new GridPane();
+        	grid1.setPadding(new Insets(20));
+            grid1.setHgap(15);
+            grid1.setVgap(15);
             //gridp.setGridLinesVisible(true);
             
-            ColumnConstraints column = new ColumnConstraints();
-            column.setPercentWidth(20);
-            gridp.getColumnConstraints().add(column);
+            ColumnConstraints column1 = new ColumnConstraints();
+            column1.setPercentWidth(20);
+            grid1.getColumnConstraints().add(column1);
             
-            column = new ColumnConstraints();
-            column.setPercentWidth(60);
-            gridp.getColumnConstraints().add(column);
+            column1 = new ColumnConstraints();
+            column1.setPercentWidth(60);
+            grid1.getColumnConstraints().add(column1);
             
-            column = new ColumnConstraints();
-            column.setPercentWidth(20);
-            gridp.getColumnConstraints().add(column);
+            column1 = new ColumnConstraints();
+            column1.setPercentWidth(20);
+            grid1.getColumnConstraints().add(column1);
             
             RowConstraints row = new RowConstraints();
             row.setPercentHeight(20);
-            gridp.getRowConstraints().add(row);
+            grid1.getRowConstraints().add(row);
             
             row = new RowConstraints();
             row.setPercentHeight(20);
-            gridp.getRowConstraints().add(row);
+            grid1.getRowConstraints().add(row);
             
             row = new RowConstraints();
             row.setPercentHeight(20);
-            gridp.getRowConstraints().add(row);
+            grid1.getRowConstraints().add(row);
             
             row = new RowConstraints();
             row.setPercentHeight(20);
-            gridp.getRowConstraints().add(row);
+            grid1.getRowConstraints().add(row);
             
             row = new RowConstraints();
             row.setPercentHeight(20);
-            gridp.getRowConstraints().add(row);
+            grid1.getRowConstraints().add(row);
             
             Button opretlaan = new Button("Opret laaneformular");
             opretlaan.setStyle("-fx-font: 30 arial;");
@@ -78,15 +79,15 @@ public class MainMenu extends Application {
             Button godkendtilbud = new Button("Godkend laanetilbud");
             godkendtilbud.setStyle("-fx-font: 30 arial;");
             
-            gridp.add(opretlaan, 1, 0);
+            grid1.add(opretlaan, 1, 0);
             
-            gridp.add(redigerlaan, 1, 1);
+            grid1.add(redigerlaan, 1, 1);
             
-            gridp.add(lavtilbud, 1, 2);
+            grid1.add(lavtilbud, 1, 2);
             
-            gridp.add(redigertilbud, 1, 3);
+            grid1.add(redigertilbud, 1, 3);
             
-            gridp.add(godkendtilbud, 1, 4);
+            grid1.add(godkendtilbud, 1, 4);
             
             //ændre knappens max height og width value. og derefter fylder knappen ud i den grid den er i
             opretlaan.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
@@ -109,26 +110,352 @@ public class MainMenu extends Application {
             GridPane.setFillWidth(godkendtilbud, true);
             GridPane.setFillHeight(godkendtilbud, true);
             
+            Scene mainmenuscene = new Scene(grid1, 3000, 3000);
+            primaryStage.setScene(mainmenuscene);
+            primaryStage.show();
+            
+            
+            
+            
+            //Tilbuds scene
+          //lave et grid 
+        	GridPane grid2 = new GridPane();
+            grid2.setPadding(new Insets(20));
+            grid2.setHgap(15);
+            grid2.setVgap(15);
+        //    root.setGridLinesVisible(true);
+            
+            // styre hver kolones størrelse i procent
+            ColumnConstraints column2 = new ColumnConstraints();
+            column2.setPercentWidth(10);
+            grid2.getColumnConstraints().add(column2);
+
+            column2 = new ColumnConstraints();
+            column2.setPercentWidth(40);
+            grid2.getColumnConstraints().add(column2);
+            
+            column2 = new ColumnConstraints();
+            column2.setPercentWidth(10);
+            grid2.getColumnConstraints().add(column2);
+            
+            column2 = new ColumnConstraints();
+            column2.setPercentWidth(40);
+            grid2.getColumnConstraints().add(column2);
+            
+
+            //lave sine label, buttons, text
+            Label labelTitle = new Label("Udarbejd tilbud");
+            // Put on cell (0,0), span 2 column, 1 row.
+            grid2.add(labelTitle, 0, 0, 2, 1);
+      
+            Label cpr2 = new Label("CPR-nummer:");
+            TextField cprinput2 = new TextField();
+          //  cprinput.setMaxWidth(200);
+            
+            Label RKI2 = new Label("Info fra RKI:");
+            TextArea RKIINFO2 = new TextArea();
+            RKIINFO2.setEditable(false);
+            RKIINFO2.setMouseTransparent(true);
+         // 	RKIINFO.setPrefRowCount();
+            
+            Label bil2 = new Label("Bil");
+            
+            //combobox
+            final ComboBox<String> biltype2 = new ComboBox<String>();
+            biltype2.getItems().addAll(
+                "Ferrari F50",
+                "Ferrari California",
+                "Ferrari 599",
+                "Ferrari F50 spider"
+            );
+            biltype2.setPromptText("Vaelg bil");
+            
+            Button hentRente2 = new Button("Rente");
+            TextField renten2 = new TextField ();
+            renten2.setEditable(false);
+            renten2.setMouseTransparent(true);
+            
+            Label ydelse2 = new Label("Foerste ydelse");
+            TextField forsteYde2 = new TextField();
+            forsteYde2.setEditable(false);
+            forsteYde2.setMouseTransparent(true);
+            
+            Label laanLaengde2 = new Label("Laengde paa laan");
+            TextField laengdeLaan2 = new TextField();
+            
+            Label LaaneInfo2 = new Label("Laane information");
+            TextArea LaanINFO2 = new TextArea();
+            LaanINFO2.setEditable(false);
+            LaanINFO2.setMouseTransparent(true);
+            
+            Label saelger2 = new Label("Saelger:");
+            TextField vaelgsaelger2 = new TextField();
+            
+            Button back = new Button("Tilbage");
+
+            
+          //  biltype.getSelectionModel().selectedItemProperty().addListener( (v, oldvalue, newvalue )-> opdateryde);
+            
+            //Sætte text,buttons, label i et grid
+            //cells row, colomn, row, colom
+            GridPane.setHalignment(cpr2, HPos.LEFT);
+            grid2.add(cpr2, 0, 1);
+      
+            GridPane.setHalignment(cprinput2, HPos.LEFT);
+            grid2.add(cprinput2, 0, 2);
+            
+            GridPane.setHalignment(RKI2, HPos.LEFT);
+            
+            grid2.add(RKI2, 0, 3);
+            
+            grid2.add(RKIINFO2, 0, 4, 2, 8);
+            
+            grid2.add(bil2, 2, 1);
+            
+            grid2.add(biltype2, 2, 2);
+            
+            grid2.add(hentRente2, 2, 3);
+            
+            grid2.add(renten2, 2, 4);
+            
+            grid2.add(ydelse2, 3, 1);
+            
+            grid2.add(forsteYde2, 3, 2);
+            
+            grid2.add(laanLaengde2, 3, 3);
+            
+            grid2.add(laengdeLaan2, 3, 4);
+            
+            grid2.add(LaaneInfo2, 2, 5);
+            
+            grid2.add(LaanINFO2,2 ,6, 2,6 );
+            
+            grid2.add(saelger2, 0, 12);
+            
+            grid2.add(vaelgsaelger2, 0, 13);
+            
+            grid2.add(back, 0, 14);
+            
+            
+            
+            //sætter maks 10 tegn
+            cprinput2.setOnKeyTyped(event ->{
+                int maxCharacters = 10;
+                if(cprinput2.getText().length() > maxCharacters) event.consume();
+            });
+            
+            //Kun tal
+            cprinput2.textProperty().addListener((observable, oldValue, newValue) -> {
+                if(!newValue.matches("[0-9]*")){
+                    cprinput2.setText(oldValue);
+                }
+            });
+
+            Scene tilbudscene = new Scene(grid2, 3000, 3000);
+            
             //lave event handlers der åbner den ønskede nye scene
-//            opretlaan.setOnAction(new EventHandler<ActionEvent>() {
-//                @Override
-//                public void handle(ActionEvent event) {
-//                	primaryStage.hide();
-//                	new stage = 
+            lavtilbud.setOnAction(new EventHandler<ActionEvent>() {
+               @Override
+               public void handle(ActionEvent event) {
+                	primaryStage.setScene(tilbudscene); 
                 	
                 
-//            }
-//    });
+            }
+    });
             
-            opretlaan.setOnAction(e -> primaryStage.setScene(laaneformularscene));
+            
+            
+            
+            
+            
+            
+            //Laaneformular scene
+          //lave et grid 
+        	GridPane grid3 = new GridPane();
+            grid3.setPadding(new Insets(20));
+            grid3.setHgap(15);
+            grid3.setVgap(15);
+        //    gridp.setGridLinesVisible(true);
+            
+            // styre hver kolones størrelse i procent
+            ColumnConstraints column3 = new ColumnConstraints();
+            column3.setPercentWidth(30);
+            grid3.getColumnConstraints().add(column3);
+
+            column3 = new ColumnConstraints();
+            column3.setPercentWidth(10);
+            grid3.getColumnConstraints().add(column3);
+            
+            column3 = new ColumnConstraints();
+            column3.setPercentWidth(30);
+            grid3.getColumnConstraints().add(column3);
+            
+            column3 = new ColumnConstraints();
+            column3.setPercentWidth(30);
+            grid3.getColumnConstraints().add(column3);
+
+            
+            
+            
+            Label cpr3 = new Label("CPR-nummer");
+            TextField cprtext3 = new TextField();
+            
+            Label navn3 = new Label("Navn");
+            TextField navntext3 = new TextField();
+            
+            Label efternavn3 = new Label("Efternavn");
+            TextField efternavntext3 = new TextField();
+            
+            Label adresse3 = new Label("Adresse");
+            TextField adressetext3 = new TextField();
+            
+            Label by3 = new Label("By");
+            TextField bytext3 = new TextField();
+            
+            Label postnummer3 = new Label("Postnummer");
+            TextField postnummertext3 = new TextField();
+            
+            Label email3 = new Label("E-mail");
+            TextField emailtext3 = new TextField();
+            
+            Label tlf3 = new Label("Tlf:");
+            TextField tlftext3 = new TextField();
+            
+            Label saelger3 = new Label("Saelger");
+            TextField saelgertext3 = new TextField();
+            
+            Label bil3 = new Label("Bil");
+            
+            //combobox
+            final ComboBox<String> biltype3 = new ComboBox<String>();
+            biltype3.getItems().addAll(
+                "Ferrari F50",
+                "Ferrari California",
+                "Ferrari 599",
+                "Ferrari F50 spider"
+            );
+            biltype3.setPromptText("Vaelg bil");
+            
+            Label udbetaling3 = new Label("Udbetaling");
+            TextField udbetalingtext3 = new TextField();
+            
+            Label pris3 = new Label("Pris");
+            TextField pristext3 = new TextField();
+            
+            Label laengdelaan3 = new Label("Laengde paa laan");
+            TextField laengdelaantext3 = new TextField();
+            
+            Label kommentar3 = new Label("Kommentar");
+            TextArea kommentartext3 = new TextArea();
+            
+            Button opret3 = new Button("Opret");
+            
+            Button cancel3 = new Button("Cancel");
+            
+          //cells row, colomn, row, colom
+            grid3.add(tlf3, 0, 0);
+            
+            grid3.add(tlftext3, 0, 1);
+            
+            grid3.add(navn3, 0, 2);
+            
+            grid3.add(navntext3, 0, 3);
+            
+            grid3.add(efternavn3, 0,4);
+            
+            grid3.add(efternavntext3, 0, 5);
+            
+            grid3.add(adresse3, 0, 6);
+            
+            grid3.add(adressetext3, 0, 7);
+            
+            grid3.add(by3, 0, 8);
+            
+            grid3.add(bytext3, 0, 9);
+            
+            grid3.add(postnummer3, 0, 10);
+            
+            grid3.add(postnummertext3, 0, 11);
+            
+            grid3.add(email3, 0, 12);
+            
+            grid3.add(emailtext3, 0, 13);
+            
+            grid3.add(cpr3, 0, 14);
+            
+            grid3.add(cprtext3, 0, 15);
+            
+            grid3.add(saelger3, 0, 16);
+            
+            grid3.add(saelgertext3, 0, 17);
+            
+            grid3.add(bil3, 2, 0);
+            
+            grid3.add(biltype3, 2, 1);
+            
+            grid3.add(udbetaling3, 3, 0);
+            
+            grid3.add(udbetalingtext3, 3, 1);
+            
+            grid3.add(pris3, 2, 2);
+            
+            grid3.add(pristext3, 2, 3);
+            
+            grid3.add(laengdelaan3, 3, 2);
+            
+            grid3.add(laengdelaantext3, 3, 3);
+            
+            grid3.add(kommentar3, 2, 4);
+            
+            grid3.add(kommentartext3, 2, 6, 3,6);
+            
+            grid3.add(opret3, 2, 12);
+            
+            grid3.add(cancel3, 3, 12);
+            
+            grid3.add(back, 0, 18);
+            
+            //sætter maks 10 tegn i CPR
+            cprtext3.setOnKeyTyped(event ->{
+                int maxCharacters = 10;
+                if(cprtext3.getText().length() > maxCharacters) event.consume();
+            });
+            
+            //Kun tal i CPR
+            cprtext3.textProperty().addListener((observable, oldValue, newValue) -> {
+                if(!newValue.matches("[0-9]*")){
+                    cprtext3.setText(oldValue);
+                }
+            });
+            
+            //Kun tal i tlf
+            tlftext3.textProperty().addListener((observable, oldValue, newValue) -> {
+                if(!newValue.matches("[0-9]*")){
+                    tlftext3.setText(oldValue);
+                }
+            });
+            
+            //Kun tal i postnummer
+           postnummertext3.textProperty().addListener((observable, oldValue, newValue) -> {
+                if(!newValue.matches("[0-9]*")){
+                    postnummertext3.setText(oldValue);
+                }
+            });
+           
+           //sætter maks 4 tegn i CPR
+           postnummertext3.setOnKeyTyped(event ->{
+               int maxCharacters = 4;
+               if(postnummertext3.getText().length() > maxCharacters) event.consume();
+           });
+            
+            
+            Scene laaneformularscene = new Scene(grid3, 3000, 3000);
             
             //ændre icon
             Image anotherImage = new Image("file:LTKF/src/download.jpg");
 			primaryStage.getIcons().add(anotherImage);
             
-            Scene scene = new Scene(gridp, 3000, 3000);
-            primaryStage.setScene(scene);
-            primaryStage.show();
+
         
         
         Screen screen = Screen.getPrimary();
@@ -139,346 +466,32 @@ public class MainMenu extends Application {
         primaryStage.setWidth(bounds.getWidth());
         primaryStage.setHeight(bounds.getHeight());
         
+        //lave event handlers der åbner den ønskede nye scene
+        opretlaan.setOnAction(new EventHandler<ActionEvent>() {
+           @Override
+           public void handle(ActionEvent event) {
+            	primaryStage.setScene(laaneformularscene); 
+            	
+            
+        }
+});
+        
+        
+        
+        
+        
+        //lave event handlers der går tilbage til main menu
+        back.setOnAction(new EventHandler<ActionEvent>() {
+           @Override
+           public void handle(ActionEvent event) {
+            	primaryStage.setScene(mainmenuscene); 
+            	
+            
+        }
+});
     }
     
-    public void tilbudstage(Stage tilbudStage) {
-    
-        	//lave et grid 
-        	GridPane root = new GridPane();
-            root.setPadding(new Insets(20));
-            root.setHgap(15);
-            root.setVgap(15);
-        //    root.setGridLinesVisible(true);
-            
-            // styre hver kolones størrelse i procent
-            ColumnConstraints column = new ColumnConstraints();
-            column.setPercentWidth(10);
-            root.getColumnConstraints().add(column);
 
-            column = new ColumnConstraints();
-            column.setPercentWidth(40);
-            root.getColumnConstraints().add(column);
-            
-            column = new ColumnConstraints();
-            column.setPercentWidth(10);
-            root.getColumnConstraints().add(column);
-            
-            column = new ColumnConstraints();
-            column.setPercentWidth(40);
-            root.getColumnConstraints().add(column);
-            
-
-            //lave sine label, buttons, text
-            Label labelTitle = new Label("Udarbejd tilbud");
-            // Put on cell (0,0), span 2 column, 1 row.
-            root.add(labelTitle, 0, 0, 2, 1);
-      
-            Label cpr = new Label("CPR-nummer:");
-            TextField cprinput = new TextField();
-          //  cprinput.setMaxWidth(200);
-            
-            Label RKI = new Label("Info fra RKI:");
-            TextArea RKIINFO = new TextArea();
-            RKIINFO.setEditable(false);
-            RKIINFO.setMouseTransparent(true);
-         // 	RKIINFO.setPrefRowCount();
-            
-            Label bil = new Label("Bil");
-            
-            //combobox
-            final ComboBox<String> biltype = new ComboBox<String>();
-            biltype.getItems().addAll(
-                "Ferrari F50",
-                "Ferrari California",
-                "Ferrari 599",
-                "Ferrari F50 spider"
-            );
-            biltype.setPromptText("Vaelg bil");
-            
-            Button hentRente = new Button("Rente");
-            TextField renten = new TextField ();
-            renten.setEditable(false);
-            renten.setMouseTransparent(true);
-            
-            Label ydelse = new Label("Foerste ydelse");
-            TextField forsteYde = new TextField();
-            forsteYde.setEditable(false);
-            forsteYde.setMouseTransparent(true);
-            
-            Label laanLaengde = new Label("Laengde paa laan");
-            TextField laengdeLaan = new TextField();
-            
-            Label LaaneInf = new Label("Laane information");
-            TextArea LaanINFO = new TextArea();
-            LaanINFO.setEditable(false);
-            LaanINFO.setMouseTransparent(true);
-            
-            Label saelger = new Label("Saelger:");
-            TextField vaelgsaelger = new TextField();
-            
-          //  biltype.getSelectionModel().selectedItemProperty().addListener( (v, oldvalue, newvalue )-> opdateryde);
-            
-            //Sætte text,buttons, label i et grid
-            //cells row, colomn, row, colom
-            GridPane.setHalignment(cpr, HPos.LEFT);
-            root.add(cpr, 0, 1);
-      
-            GridPane.setHalignment(cprinput, HPos.LEFT);
-            root.add(cprinput, 0, 2);
-            
-            GridPane.setHalignment(RKI, HPos.LEFT);
-            
-            root.add(RKI, 0, 3);
-            
-            root.add(RKIINFO, 0, 4, 2, 8);
-            
-            root.add(bil, 2, 1);
-            
-            root.add(biltype, 2, 2);
-            
-            root.add(hentRente, 2, 3);
-            
-            root.add(renten, 2, 4);
-            
-            root.add(ydelse, 3, 1);
-            
-            root.add(forsteYde, 3, 2);
-            
-            root.add(laanLaengde, 3, 3);
-            
-            root.add(laengdeLaan, 3, 4);
-            
-            root.add(LaaneInf, 2, 5);
-            
-            root.add(LaanINFO,2 ,6, 2,6 );
-            
-            root.add(saelger, 0, 12);
-            
-            root.add(vaelgsaelger, 0, 13);
-            
-            //sætter maks 10 tegn
-            cprinput.setOnKeyTyped(event ->{
-                int maxCharacters = 10;
-                if(cprinput.getText().length() > maxCharacters) event.consume();
-            });
-            
-            //Kun tal
-            cprinput.textProperty().addListener((observable, oldValue, newValue) -> {
-                if(!newValue.matches("[0-9]*")){
-                    cprinput.setText(oldValue);
-                }
-            });
-
-            
-            Scene tilbudscene = new Scene(root, 3000, 3000);
-            tilbudStage.setTitle("Ferrari laane tilbud");
-            tilbudStage.setScene(tilbudscene);
-            tilbudStage.show();
-        
-        
-        Screen screen = Screen.getPrimary();
-        Rectangle2D bounds = screen.getVisualBounds();
-
-        tilbudStage.setX(bounds.getMinX());
-        tilbudStage.setY(bounds.getMinY());
-        tilbudStage.setWidth(bounds.getWidth());
-        tilbudStage.setHeight(bounds.getHeight());
-    }
-    
-    public void laaneFormularsStage(Stage laaneformularStage) {
-        
-    	//lave et grid 
-    	GridPane gridp = new GridPane();
-        gridp.setPadding(new Insets(20));
-        gridp.setHgap(15);
-        gridp.setVgap(15);
-    //    gridp.setGridLinesVisible(true);
-        
-        // styre hver kolones størrelse i procent
-        ColumnConstraints column = new ColumnConstraints();
-        column.setPercentWidth(30);
-        gridp.getColumnConstraints().add(column);
-
-        column = new ColumnConstraints();
-        column.setPercentWidth(10);
-        gridp.getColumnConstraints().add(column);
-        
-        column = new ColumnConstraints();
-        column.setPercentWidth(30);
-        gridp.getColumnConstraints().add(column);
-        
-        column = new ColumnConstraints();
-        column.setPercentWidth(30);
-        gridp.getColumnConstraints().add(column);
-
-        
-        
-        
-        Label cpr = new Label("CPR-nummer");
-        TextField cprtext = new TextField();
-        
-        Label navn = new Label("Navn");
-        TextField navntext = new TextField();
-        
-        Label efternavn = new Label("Efternavn");
-        TextField efternavntext = new TextField();
-        
-        Label adresse = new Label("Adresse");
-        TextField adressetext = new TextField();
-        
-        Label by = new Label("By");
-        TextField bytext = new TextField();
-        
-        Label postnummer = new Label("Postnummer");
-        TextField postnummertext = new TextField();
-        
-        Label email = new Label("E-mail");
-        TextField emailtext = new TextField();
-        
-        Label tlf = new Label("Tlf:");
-        TextField tlftext = new TextField();
-        
-        Label saelger = new Label("Saelger");
-        TextField saelgertext = new TextField();
-        
-        Label bil = new Label("Bil");
-        
-        //combobox
-        final ComboBox<String> biltype = new ComboBox<String>();
-        biltype.getItems().addAll(
-            "Ferrari F50",
-            "Ferrari California",
-            "Ferrari 599",
-            "Ferrari F50 spider"
-        );
-        biltype.setPromptText("Vaelg bil");
-        
-        Label udbetaling = new Label("Udbetaling");
-        TextField udbetalingtext = new TextField();
-        
-        Label pris = new Label("Pris");
-        TextField pristext = new TextField();
-        
-        Label laengdelaan = new Label("Laengde paa laan");
-        TextField laengdelaantext = new TextField();
-        
-        Label kommentar = new Label("Kommentar");
-        TextArea kommentartext = new TextArea();
-        
-        Button opret = new Button("Opret");
-        
-        Button cancel = new Button("Cancel");
-        
-      //cells row, colomn, row, colom
-        gridp.add(tlf, 0, 0);
-        
-        gridp.add(tlftext, 0, 1);
-        
-        gridp.add(navn, 0, 2);
-        
-        gridp.add(navntext, 0, 3);
-        
-        gridp.add(efternavn, 0,4);
-        
-        gridp.add(efternavntext, 0, 5);
-        
-        gridp.add(adresse, 0, 6);
-        
-        gridp.add(adressetext, 0, 7);
-        
-        gridp.add(by, 0, 8);
-        
-        gridp.add(bytext, 0, 9);
-        
-        gridp.add(postnummer, 0, 10);
-        
-        gridp.add(postnummertext, 0, 11);
-        
-        gridp.add(email, 0, 12);
-        
-        gridp.add(emailtext, 0, 13);
-        
-        gridp.add(cpr, 0, 14);
-        
-        gridp.add(cprtext, 0, 15);
-        
-        gridp.add(saelger, 0, 16);
-        
-        gridp.add(saelgertext, 0, 17);
-        
-        gridp.add(bil, 2, 0);
-        
-        gridp.add(biltype, 2, 1);
-        
-        gridp.add(udbetaling, 3, 0);
-        
-        gridp.add(udbetalingtext, 3, 1);
-        
-        gridp.add(pris, 2, 2);
-        
-        gridp.add(pristext, 2, 3);
-        
-        gridp.add(laengdelaan, 3, 2);
-        
-        gridp.add(laengdelaantext, 3, 3);
-        
-        gridp.add(kommentar, 2, 4);
-        
-        gridp.add(kommentartext, 2, 6, 3,6);
-        
-        gridp.add(opret, 2, 12);
-        
-        gridp.add(cancel, 3, 12);
-        
-        //sætter maks 10 tegn i CPR
-        cprtext.setOnKeyTyped(event ->{
-            int maxCharacters = 10;
-            if(cprtext.getText().length() > maxCharacters) event.consume();
-        });
-        
-        //Kun tal i CPR
-        cprtext.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(!newValue.matches("[0-9]*")){
-                cprtext.setText(oldValue);
-            }
-        });
-        
-        //Kun tal i tlf
-        tlftext.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(!newValue.matches("[0-9]*")){
-                tlftext.setText(oldValue);
-            }
-        });
-        
-        //Kun tal i postnummer
-       postnummertext.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(!newValue.matches("[0-9]*")){
-                postnummertext.setText(oldValue);
-            }
-        });
-       
-       //sætter maks 4 tegn i CPR
-       postnummertext.setOnKeyTyped(event ->{
-           int maxCharacters = 4;
-           if(postnummertext.getText().length() > maxCharacters) event.consume();
-       });
-        
-        
-        Scene laaneformularscene = new Scene(gridp, 3000, 3000);
-        laaneformularStage.setTitle("Ferrari laane formular");
-        laaneformularStage.setScene(laaneformularscene);
-        laaneformularStage.show();
-    
-    
-    Screen screen = Screen.getPrimary();
-    Rectangle2D bounds = screen.getVisualBounds();
-
-    laaneformularStage.setX(bounds.getMinX());
-    laaneformularStage.setY(bounds.getMinY());
-    laaneformularStage.setWidth(bounds.getWidth());
-    laaneformularStage.setHeight(bounds.getHeight());
-    
-}
     public static void main(String[] args) {
         launch(args);
     }
