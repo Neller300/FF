@@ -350,7 +350,7 @@ public class MainMenu extends Application {
             
             Button opret3 = new Button("Opret");
             
-            Button cancel3 = new Button("Cancel");
+            Button cancel3 = new Button("Ryd alt");
             
           //cells row, colomn, row, colom
             grid3.add(tlf3, 0, 0);
@@ -456,16 +456,7 @@ public class MainMenu extends Application {
 			primaryStage.getIcons().add(anotherImage);
             
 
-        
-        
-        Screen screen = Screen.getPrimary();
-        Rectangle2D bounds = screen.getVisualBounds();
 
-        primaryStage.setX(bounds.getMinX());
-        primaryStage.setY(bounds.getMinY());
-        primaryStage.setWidth(bounds.getWidth());
-        primaryStage.setHeight(bounds.getHeight());
-        
         //lave event handlers der åbner den ønskede nye scene
         opretlaan.setOnAction(new EventHandler<ActionEvent>() {
            @Override
@@ -478,17 +469,57 @@ public class MainMenu extends Application {
         
         
         
-        
+        //lave event handlers der går tilbage til main menu
+        cancel3.setOnAction(new EventHandler<ActionEvent>() {
+           @Override
+           public void handle(ActionEvent event) {
+            	tlftext3.setText("");
+            	navntext3.setText("");
+            	efternavntext3.setText("");
+            	adressetext3.setText("");
+            	bytext3.setText("");
+            	postnummertext3.setText("");
+            	emailtext3.setText("");
+            	cprtext3.setText("");
+            	saelgertext3.setText("");
+            	udbetalingtext3.setText("");
+            	pristext3.setText("");
+            	kommentartext3.setText("");
+            	laengdelaantext3.setText("");
+        }
+});
         
         //lave event handlers der går tilbage til main menu
         back.setOnAction(new EventHandler<ActionEvent>() {
            @Override
            public void handle(ActionEvent event) {
             	primaryStage.setScene(mainmenuscene); 
-            	
-            
+            	tlftext3.setText("");
+            	navntext3.setText("");
+            	efternavntext3.setText("");
+            	adressetext3.setText("");
+            	bytext3.setText("");
+            	postnummertext3.setText("");
+            	emailtext3.setText("");
+            	cprtext3.setText("");
+            	saelgertext3.setText("");
+            	udbetalingtext3.setText("");
+            	pristext3.setText("");
+            	kommentartext3.setText("");
+            	laengdelaantext3.setText("");
         }
 });
+        
+        
+        
+        Screen screen = Screen.getPrimary();
+        Rectangle2D bounds = screen.getVisualBounds();
+
+        primaryStage.setX(bounds.getMinX());
+        primaryStage.setY(bounds.getMinY());
+        primaryStage.setWidth(bounds.getWidth());
+        primaryStage.setHeight(bounds.getHeight());
+        
     }
     
 
