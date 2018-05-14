@@ -1,7 +1,6 @@
 package view;
 
  
-import java.awt.Window;
 
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
@@ -21,7 +20,6 @@ public class GUITilbud extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Ferrari laanetilbud");
     
         	//lave et grid 
         	GridPane root = new GridPane();
