@@ -11,7 +11,7 @@ public class KundeKredit implements Runnable {
 			if (CPR.length() == 10) {
 				System.out.println(CreditRator.i().rate(CPR));
 			}
-
+ 
 			else {
 				throw new NumberFormatException();
 

@@ -1,6 +1,5 @@
 package logic;
 
-import com.ferrari.finances.dk.bank.*;
 
 public class Main {
 
@@ -8,8 +7,13 @@ public class Main {
 
 		String cpr = new String("0710951551");
 		KundeKredit kunde = new KundeKredit(cpr);
+		BankRente rente = new BankRente();
 		Thread kredit = new Thread(kunde);
+		Thread bank = new Thread(rente);
 		kredit.start();
+		bank.start();
+		
+		
 
 	}
 }
