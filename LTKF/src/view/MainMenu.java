@@ -3,8 +3,6 @@ package view;
  
 
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.*;
@@ -14,12 +12,11 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import logic.BankRente;
+
  
 public class MainMenu extends Application {
 	
-	//Scene scene, tilbudscene, laaneformularscene;
-	Scene laaneformularscene;
-
     
     @Override
     public void start(Stage primaryStage) {
@@ -234,7 +231,7 @@ public class MainMenu extends Application {
             
             grid2.add(vaelgsaelger2, 0, 13);
             
-            grid2.add(back, 0, 14);
+            grid2.add(back, 0,14);
             
             
             
@@ -510,6 +507,17 @@ public class MainMenu extends Application {
         }
 });
         
+        //lave event handlers der går tilbage til main menu
+//        hentRente2.setOnAction(new EventHandler<ActionEvent>() {
+//           @Override
+//           public void handle(ActionEvent event) {
+//        	   BankRente Bank = new BankRente();
+//        	   Thread rente = new Thread(Bank);
+//        	   rente.start();
+//        	   renten2.setText(""+ Bank.toDouble());
+//           }
+//        });
+//        
         
         
         Screen screen = Screen.getPrimary();
