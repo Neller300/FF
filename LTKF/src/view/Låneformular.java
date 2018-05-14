@@ -20,7 +20,6 @@ public class Låneformular extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Ferrari laanetilbud");
     
         	//lave et grid 
         	GridPane gridp = new GridPane();
