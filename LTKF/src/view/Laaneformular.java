@@ -15,7 +15,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
  
-public class Låneformular extends Application {
+public class Laaneformular extends Application {
 
     
     @Override
@@ -29,7 +29,7 @@ public class Låneformular extends Application {
             gridp.setVgap(15);
         //    gridp.setGridLinesVisible(true);
             
-            // styre hver kolones størrelse i procent
+            // styre hver kolones stï¿½rrelse i procent
             ColumnConstraints column = new ColumnConstraints();
             column.setPercentWidth(30);
             gridp.getColumnConstraints().add(column);
@@ -165,7 +165,7 @@ public class Låneformular extends Application {
             
             gridp.add(cancel, 3, 12);
             
-            //sætter maks 10 tegn i CPR
+            //sï¿½tter maks 10 tegn i CPR
             cprtext.setOnKeyTyped(event ->{
                 int maxCharacters = 10;
                 if(cprtext.getText().length() > maxCharacters) event.consume();
@@ -192,13 +192,13 @@ public class Låneformular extends Application {
                 }
             });
            
-           //sætter maks 4 tegn i CPR
+           //saetter maks 4 tegn i CPR
            postnummertext.setOnKeyTyped(event ->{
                int maxCharacters = 4;
                if(postnummertext.getText().length() > maxCharacters) event.consume();
            });
             
-            //ændre icon
+            //ï¿½ndre icon
             Image anotherImage = new Image("file:LTKF/src/download.jpg");
 			primaryStage.getIcons().add(anotherImage);
             
