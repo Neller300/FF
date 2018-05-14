@@ -7,7 +7,20 @@ public class KundeKredit implements Runnable {
 
 	@Override
 	public void run() {
-		System.out.println(CreditRator.i().rate(CPR));
+		try {
+			if (CPR.length() == 10) {
+				System.out.println(CreditRator.i().rate(CPR));
+			}
+
+			else {
+				throw new NumberFormatException();
+
+			}
+
+		} catch (NumberFormatException e) {
+			System.out.println("CPR har ikke  den rigtige format, der er kun: " + CPR.length()
+					+ " tal i dette CPR nummer, der kræves 10 tal.");
+		}
 	}
 
 	public KundeKredit(String CPR) {
