@@ -13,11 +13,14 @@ import javafx.scene.layout.*;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import logic.BankRente;
+import logic.LoanThread;
+import persistens.BankData;
 
  
 public class MainMenu extends Application {
 	
-    
+	TextField renten2 = new TextField();
+	
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Ferrari");
@@ -86,7 +89,7 @@ public class MainMenu extends Application {
             
             grid1.add(godkendtilbud, 1, 4);
             
-            //ændre knappens max height og width value. og derefter fylder knappen ud i den grid den er i
+            //ï¿½ndre knappens max height og width value. og derefter fylder knappen ud i den grid den er i
             opretlaan.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
             GridPane.setFillWidth(opretlaan, true);
             GridPane.setFillHeight(opretlaan, true);
@@ -122,7 +125,7 @@ public class MainMenu extends Application {
             grid2.setVgap(15);
         //    root.setGridLinesVisible(true);
             
-            // styre hver kolones størrelse i procent
+            // styre hver kolones stï¿½rrelse i procent
             ColumnConstraints column2 = new ColumnConstraints();
             column2.setPercentWidth(10);
             grid2.getColumnConstraints().add(column2);
@@ -168,9 +171,11 @@ public class MainMenu extends Application {
             biltype2.setPromptText("Vaelg bil");
             
             Button hentRente2 = new Button("Rente");
-            TextField renten2 = new TextField ();
             renten2.setEditable(false);
             renten2.setMouseTransparent(true);
+            
+            
+            
             
             Label ydelse2 = new Label("Foerste ydelse");
             TextField forsteYde2 = new TextField();
@@ -193,7 +198,7 @@ public class MainMenu extends Application {
             
           //  biltype.getSelectionModel().selectedItemProperty().addListener( (v, oldvalue, newvalue )-> opdateryde);
             
-            //Sætte text,buttons, label i et grid
+            //Sï¿½tte text,buttons, label i et grid
             //cells row, colomn, row, colom
             GridPane.setHalignment(cpr2, HPos.LEFT);
             grid2.add(cpr2, 0, 1);
@@ -231,11 +236,11 @@ public class MainMenu extends Application {
             
             grid2.add(vaelgsaelger2, 0, 13);
             
-            grid2.add(back, 0,14);
+            grid2.add(back, 0, 14);
             
             
             
-            //sætter maks 10 tegn
+            //sï¿½tter maks 10 tegn
             cprinput2.setOnKeyTyped(event ->{
                 int maxCharacters = 10;
                 if(cprinput2.getText().length() > maxCharacters) event.consume();
@@ -250,7 +255,7 @@ public class MainMenu extends Application {
 
             Scene tilbudscene = new Scene(grid2, 3000, 3000);
             
-            //lave event handlers der åbner den ønskede nye scene
+            //lave event handlers der ï¿½bner den ï¿½nskede nye scene
             lavtilbud.setOnAction(new EventHandler<ActionEvent>() {
                @Override
                public void handle(ActionEvent event) {
@@ -274,7 +279,7 @@ public class MainMenu extends Application {
             grid3.setVgap(15);
         //    gridp.setGridLinesVisible(true);
             
-            // styre hver kolones størrelse i procent
+            // styre hver kolones stï¿½rrelse i procent
             ColumnConstraints column3 = new ColumnConstraints();
             column3.setPercentWidth(30);
             grid3.getColumnConstraints().add(column3);
@@ -412,9 +417,9 @@ public class MainMenu extends Application {
             
             grid3.add(back, 0, 18);
             
-            //sætter maks 10 tegn i CPR
+            //sï¿½tter maks 10 tegn i CPR
             cprtext3.setOnKeyTyped(event ->{
-                int maxCharacters = 10;
+                int maxCharacters = 9;
                 if(cprtext3.getText().length() > maxCharacters) event.consume();
             });
             
@@ -439,22 +444,22 @@ public class MainMenu extends Application {
                 }
             });
            
-           //sætter maks 4 tegn i CPR
+           //sï¿½tter maks 4 tegn i CPR
            postnummertext3.setOnKeyTyped(event ->{
-               int maxCharacters = 4;
+               int maxCharacters = 3;
                if(postnummertext3.getText().length() > maxCharacters) event.consume();
            });
             
             
             Scene laaneformularscene = new Scene(grid3, 3000, 3000);
             
-            //ændre icon
+            //ï¿½ndre icon
             Image anotherImage = new Image("file:LTKF/src/download.jpg");
 			primaryStage.getIcons().add(anotherImage);
             
 
 
-        //lave event handlers der åbner den ønskede nye scene
+        //lave event handlers der ï¿½bner den ï¿½nskede nye scene
         opretlaan.setOnAction(new EventHandler<ActionEvent>() {
            @Override
            public void handle(ActionEvent event) {
@@ -466,7 +471,7 @@ public class MainMenu extends Application {
         
         
         
-        //lave event handlers der går tilbage til main menu
+        //lave event handlers der gï¿½r tilbage til main menu
         cancel3.setOnAction(new EventHandler<ActionEvent>() {
            @Override
            public void handle(ActionEvent event) {
@@ -486,7 +491,7 @@ public class MainMenu extends Application {
         }
 });
         
-        //lave event handlers der går tilbage til main menu
+        //lave event handlers der gï¿½r tilbage til main menu
         back.setOnAction(new EventHandler<ActionEvent>() {
            @Override
            public void handle(ActionEvent event) {
@@ -507,17 +512,24 @@ public class MainMenu extends Application {
         }
 });
         
-        //lave event handlers der går tilbage til main menu
-//        hentRente2.setOnAction(new EventHandler<ActionEvent>() {
-//           @Override
-//           public void handle(ActionEvent event) {
+        BankData data = new BankData(cpr2.getText(), 0, null);
+		LoanThread t = new LoanThread(data, renten2);
+//        lave event handlers der gï¿½r tilbage til main menu
+        hentRente2.setOnAction(new EventHandler<ActionEvent>() {
+           @Override
+           public void handle(ActionEvent event) {
 //        	   BankRente Bank = new BankRente();
 //        	   Thread rente = new Thread(Bank);
 //        	   rente.start();
 //        	   renten2.setText(""+ Bank.toDouble());
-//           }
-//        });
-//        
+        	   t.start();
+           }
+        });
+        
+        
+        
+		
+		
         
         
         Screen screen = Screen.getPrimary();
