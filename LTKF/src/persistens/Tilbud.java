@@ -1,4 +1,4 @@
-package logic;
+package persistens;
 
 public class Tilbud {
 	private String Navn;
@@ -8,8 +8,10 @@ public class Tilbud {
 	private String CPR;
 	private String By;
 	private double VoresRente;
+	private int LoanLength;
 
-	public Tilbud(String Navn, String Efternavn, String Addresse, int tlf, String CPR, String By, double VoresRente ) {
+	public Tilbud(String Navn, String Efternavn, String Addresse, int tlf, String CPR, String By, double VoresRente,
+			int LoanLength) {
 		this.Navn = Navn;
 		this.Efternavn = Efternavn;
 		this.Addresse = Addresse;
@@ -17,7 +19,7 @@ public class Tilbud {
 		this.CPR = CPR;
 		this.By = By;
 		this.VoresRente = VoresRente;
-		
+		this.LoanLength = LoanLength;
 
 	}
 
@@ -68,14 +70,21 @@ public class Tilbud {
 	public void setBy(String by) {
 		By = by;
 	}
-	
+
 	public double getVoresRente() {
 		return VoresRente;
 	}
 
-
 	public void setVoresRente(double voresRente) {
 		VoresRente = voresRente;
+	}
+
+	public int getLoanLength() {
+		return LoanLength;
+	}
+
+	public void setLoanLength(int loanLength) {
+		LoanLength = loanLength;
 	}
 
 }
