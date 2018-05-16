@@ -60,24 +60,24 @@ public class GUI extends Application {
 		row.setPercentHeight(20);
 		grid1.getRowConstraints().add(row);
 
-		Button opretlaan = new Button("Opret laaneformular");
-		opretlaan.setStyle("-fx-font: 30 arial;");
+		Button opretlån = new Button("Opret låneformular");
+		opretlån.setStyle("-fx-font: 30 arial;");
 
-		Button redigerlaan = new Button("Rediger laaneformular");
-		redigerlaan.setStyle("-fx-font: 30 arial;");
+		Button redigerlån = new Button("Rediger låneformular");
+		redigerlån.setStyle("-fx-font: 30 arial;");
 
-		Button lavtilbud = new Button("Udarbejd laanetilbud");
+		Button lavtilbud = new Button("Udarbejd lånetilbud");
 		lavtilbud.setStyle("-fx-font: 30 arial;");
 
-		Button redigertilbud = new Button("Rediger laanetilbud");
+		Button redigertilbud = new Button("Rediger lånetilbud");
 		redigertilbud.setStyle("-fx-font: 30 arial;");
 
-		Button godkendtilbud = new Button("Godkend laanetilbud");
+		Button godkendtilbud = new Button("Godkend lånetilbud");
 		godkendtilbud.setStyle("-fx-font: 30 arial;");
 
-		grid1.add(opretlaan, 1, 0);
+		grid1.add(opretlån, 1, 0);
 
-		grid1.add(redigerlaan, 1, 1);
+		grid1.add(redigerlån, 1, 1);
 
 		grid1.add(lavtilbud, 1, 2);
 
@@ -87,13 +87,13 @@ public class GUI extends Application {
 
 		// ï¿½ndre knappens max height og width value. og derefter fylder knappen ud i den
 		// grid den er i
-		opretlaan.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-		GridPane.setFillWidth(opretlaan, true);
-		GridPane.setFillHeight(opretlaan, true);
+		opretlån.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+		GridPane.setFillWidth(opretlån, true);
+		GridPane.setFillHeight(opretlån, true);
 
-		redigerlaan.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-		GridPane.setFillWidth(redigerlaan, true);
-		GridPane.setFillHeight(redigerlaan, true);
+		redigerlån.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+		GridPane.setFillWidth(redigerlån, true);
+		GridPane.setFillHeight(redigerlån, true);
 
 		lavtilbud.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 		GridPane.setFillWidth(lavtilbud, true);
@@ -156,27 +156,27 @@ public class GUI extends Application {
 		// combobox
 		final ComboBox<String> biltype2 = new ComboBox<String>();
 		biltype2.getItems().addAll("Ferrari F50", "Ferrari California", "Ferrari 599", "Ferrari F50 spider");
-		biltype2.setPromptText("Vaelg bil");
+		biltype2.setPromptText("Vælg bil");
 
 		Button hentRente2 = new Button("Rente");
 		renten2.setEditable(false);
 		renten2.setMouseTransparent(true);
 
-		Label ydelse2 = new Label("Foerste ydelse");
-		TextField forsteYde2 = new TextField();
-		forsteYde2.setEditable(false);
-		forsteYde2.setMouseTransparent(true);
+		Label ydelse2 = new Label("Første ydelse");
+		TextField førsteYde2 = new TextField();
+		førsteYde2.setEditable(false);
+		førsteYde2.setMouseTransparent(true);
 
-		Label laanLaengde2 = new Label("Laengde paa laan");
+		Label lånLængde2 = new Label("Længde på lån");
 		TextField laengdeLaan2 = new TextField();
 
-		Label LaaneInfo2 = new Label("Laane information");
-		TextArea LaanINFO2 = new TextArea();
-		LaanINFO2.setEditable(false);
-		LaanINFO2.setMouseTransparent(true);
+		Label låneInfo2 = new Label("Laane information");
+		TextArea lånINFO2 = new TextArea();
+		lånINFO2.setEditable(false);
+		lånINFO2.setMouseTransparent(true);
 
-		Label saelger2 = new Label("Saelger:");
-		TextField vaelgsaelger2 = new TextField();
+		Label sælger2 = new Label("Sælger:");
+		TextField vælgsælger2 = new TextField();
 
 		Button back = new Button("Tilbage");
 
@@ -207,19 +207,19 @@ public class GUI extends Application {
 
 		grid2.add(ydelse2, 3, 1);
 
-		grid2.add(forsteYde2, 3, 2);
+		grid2.add(førsteYde2, 3, 2);
 
-		grid2.add(laanLaengde2, 3, 3);
+		grid2.add(lånLængde2, 3, 3);
 
 		grid2.add(laengdeLaan2, 3, 4);
 
-		grid2.add(LaaneInfo2, 2, 5);
+		grid2.add(låneInfo2, 2, 5);
 
-		grid2.add(LaanINFO2, 2, 6, 2, 6);
+		grid2.add(lånINFO2, 2, 6, 2, 6);
 
-		grid2.add(saelger2, 0, 12);
+		grid2.add(sælger2, 0, 12);
 
-		grid2.add(vaelgsaelger2, 0, 13);
+		grid2.add(vælgsælger2, 0, 13);
 
 		grid2.add(back, 0, 14);
 
@@ -297,8 +297,8 @@ public class GUI extends Application {
 		Label tlf3 = new Label("Tlf:");
 		TextField tlftext3 = new TextField();
 
-		Label saelger3 = new Label("Saelger");
-		TextField saelgertext3 = new TextField();
+		Label sælger3 = new Label("Sælger");
+		TextField sælgertext3 = new TextField();
 
 		Label bil3 = new Label("Bil");
 
@@ -313,8 +313,8 @@ public class GUI extends Application {
 		Label pris3 = new Label("Pris");
 		TextField pristext3 = new TextField();
 
-		Label laengdelaan3 = new Label("Laengde paa laan");
-		TextField laengdelaantext3 = new TextField();
+		Label længdelån3 = new Label("Længde på lån");
+		TextField længdelåntext3 = new TextField();
 
 		Label kommentar3 = new Label("Kommentar");
 		TextArea kommentartext3 = new TextArea();
@@ -356,9 +356,9 @@ public class GUI extends Application {
 
 		grid3.add(cprtext3, 0, 15);
 
-		grid3.add(saelger3, 0, 16);
+		grid3.add(sælger3, 0, 16);
 
-		grid3.add(saelgertext3, 0, 17);
+		grid3.add(sælgertext3, 0, 17);
 
 		grid3.add(bil3, 2, 0);
 
@@ -372,9 +372,9 @@ public class GUI extends Application {
 
 		grid3.add(pristext3, 2, 3);
 
-		grid3.add(laengdelaan3, 3, 2);
+		grid3.add(længdelån3, 3, 2);
 
-		grid3.add(laengdelaantext3, 3, 3);
+		grid3.add(længdelåntext3, 3, 3);
 
 		grid3.add(kommentar3, 2, 4);
 
@@ -428,7 +428,7 @@ public class GUI extends Application {
 		primaryStage.getIcons().add(anotherImage);
 
 		// lave event handlers der ï¿½bner den ï¿½nskede nye scene
-		opretlaan.setOnAction(new EventHandler<ActionEvent>() {
+		opretlån.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				primaryStage.setScene(laaneformularscene);
@@ -448,11 +448,11 @@ public class GUI extends Application {
 				postnummertext3.setText("");
 				emailtext3.setText("");
 				cprtext3.setText("");
-				saelgertext3.setText("");
+				sælgertext3.setText("");
 				udbetalingtext3.setText("");
 				pristext3.setText("");
 				kommentartext3.setText("");
-				laengdelaantext3.setText("");
+				længdelåntext3.setText("");
 			}
 		});
 
@@ -469,11 +469,11 @@ public class GUI extends Application {
 				postnummertext3.setText("");
 				emailtext3.setText("");
 				cprtext3.setText("");
-				saelgertext3.setText("");
+				sælgertext3.setText("");
 				udbetalingtext3.setText("");
 				pristext3.setText("");
 				kommentartext3.setText("");
-				laengdelaantext3.setText("");
+				længdelåntext3.setText("");
 			}
 		});
 
