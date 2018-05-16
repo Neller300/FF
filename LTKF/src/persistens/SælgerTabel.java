@@ -1,13 +1,13 @@
 package persistens;
 
-public class SaelgerTabel implements HasAutoKey{
+public class SælgerTabel implements HasAutoKey{
 private int sælgerId;
 private String initialer;
 private int fastGrænse;
 
 
-public SaelgerTabel(int sealgerId, String initialer, int fastGraense) {
-	this.sælgerId=sealgerId;
+public SælgerTabel(int sælgerId, String initialer, int fastGraense) {
+	this.sælgerId=sælgerId;
 	this.initialer=initialer;
 	this.fastGrænse=fastGraense;
 }
@@ -15,5 +15,6 @@ public SaelgerTabel(int sealgerId, String initialer, int fastGraense) {
 public void setAutoKey(int key) {
   this.sælgerId = key;
 }
+
 
 }

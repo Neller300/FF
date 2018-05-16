@@ -1,6 +1,6 @@
 package persistens;
 
-public class LaaneformularTabel implements HasAutoKey{
+public class LåneformularTabel implements HasAutoKey{
 private int formularId;
 private int udbetaling;
 private int lånLængde;
@@ -8,13 +8,13 @@ private int bilId;
 private int tlfNr;
 private int sælgerId;
 
-public LaaneformularTabel(int formularId, int udbetaling, int laanlaengde, int bilId, int tlfNr, int saelgerId) {
+public LåneformularTabel(int formularId, int udbetaling, int lånlængde, int bilId, int tlfNr, int sælgerId) {
 	this.formularId=formularId;
 	this.udbetaling=udbetaling;
-	this.lånLængde=laanlaengde;
+	this.lånLængde=lånlængde;
 	this.bilId=bilId;
 	this.tlfNr=tlfNr;
-	this.sælgerId=saelgerId;
+	this.sælgerId=sælgerId;
 }
 
 @Override
