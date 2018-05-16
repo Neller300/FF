@@ -52,7 +52,8 @@ public class KundeTabel implements HasAutoKey {
 	public String getEmail() {
 		return email;
 	}
-
+	
+	@Override
 	public String toString() {
 		return "[Kunde: TlfNr=" + tlfNr + 
 			   ", Navn=" + navn + 
