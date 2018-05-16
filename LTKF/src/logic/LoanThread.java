@@ -7,6 +7,7 @@ import com.ferrari.finances.dk.rki.Rating;
 import javafx.application.Platform;
 import javafx.scene.control.TextField;
 import persistens.BankData;
+import java.text.DecimalFormat;
 
 public class LoanThread extends Thread {
 
@@ -104,13 +105,17 @@ public class LoanThread extends Thread {
 			} catch (Exception e) {
 				
 			}
+			
+			
 		
 		//Kører på GUI Tråd, så den er tilladt til at opdatere GUI.
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
+				DecimalFormat formattere = new DecimalFormat("#.##");
+				
 				if(kredit==Rating.A || kredit==Rating.B || kredit==Rating.C)
-				renteField.setText(String.valueOf(voresRente));
+					renteField.setText(String.valueOf(formattere.format(voresRente)));
 				
 				else {
 					renteField.setText(fejlBesked);
