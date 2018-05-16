@@ -16,6 +16,8 @@ public class LoanThread extends Thread {
 	private TextField renteField;
 	private double voresRente;
 
+	
+	//Laver referencer
 	public LoanThread(BankData data, TextField renteField) {
 		CPR = data.getCPR();
 		kredit = data.getRating();
@@ -24,6 +26,7 @@ public class LoanThread extends Thread {
 
 	}
 
+	//Starter tråden
 	@Override
 	public void run() {
 		try {
@@ -41,28 +44,57 @@ public class LoanThread extends Thread {
 					+ " tal i dette CPR nummer, der kræves 10 tal.");
 		}
 
-		
-
-		/*
-		 * Vi arbejder kun med kunder, der har kreditværdighed A, B eller C, og som ikke
-		 * tidligere har forvoldt problemer.  Som udgangspunkt benyttes bankens
-		 * rentesats plus et tillæg, der fastsættes ud fra kundens kreditværdighed: o
-		 * Hvis kundens kreditværdighed er A, bruges bankens rentesats +1 procentpoint.
-		 * o Hvis kundens kreditværdighed er B, bruges bankens rentesats +2
-		 * procentpoint. o Hvis kundens kreditværdighed er C, bruges bankens rentesats
-		 * +3 procentpoint.  Hvis udbetalingen er under 50 % tillægges +1 procentpoint.
-		 *  Hvis tilbagebetalingen planlægges over mere end 3 år tillægges + 1 procentpoint.
-		 */
 		rente = InterestRate.i().todaysRate();
+				
+		/*
+		Hvis udbetaling er mindre end 50% af bilens pris og tilbage betalings periode er over 36 mdr
+		if(Låneformular.udbetaling < (BilTabel.pris * 0.5) && Låneformular.lån_længde > 36){
+		 	if(kredit==Rating.A)
+				voresRente = rente + 3;
+			
+			if(kredit==Rating.B)
+				voresRente = rente + 4;
+				
+			if(kredit==Rating.C)
+				voresRente = rente + 5;
+				
+			if(kredit==Rating.D)
+				try {
+				throw new Exception("Kundens kredit værdi er for lav");
+			} catch (Exception e) {
+				
+			}				
+				
+		//hvis tilbagebetalings perioden er mere end 36 mdr eller hvis udbetalingen er mindre end 50% af bilens pris.
+		if(Låneformular.lån_længde > 36 || Låneformular.udbetaling < (Bil.pris * 0.5)){
+			if(kredit==Rating.A)
+				voresRente = rente + 2;
+			
+			if(kredit==Rating.B)
+				voresRente = rente + 3;
+				
+			if(kredit==Rating.C)
+				voresRente = rente + 4;
+			
+			if(kredit==Rating.D)
+				try {
+				throw new Exception("Kundens kredit værdi er for lav");
+			} catch (Exception e) {
+				
+			}
+			
 		
+		*/
+		
+		//Hvis bilens udbetaling er over 50% og tilbagebetalings perioden er mindre end 36 mdr.
 		if(kredit==Rating.A)
-			rente = rente + 1;
+			voresRente = rente + 1;
 		
 		if(kredit==Rating.B)
-			rente = rente + 2;
+			voresRente = rente + 2;
 		
 		if(kredit==Rating.C)
-			rente = rente + 3;
+			voresRente = rente + 3;
 		
 		if(kredit==Rating.D)
 			try {
@@ -71,10 +103,11 @@ public class LoanThread extends Thread {
 				
 			}
 		
+		//Kører på GUI Tråd, så den er tilladt til at opdatere GUI.
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				renteField.setText(String.valueOf(rente));
+				renteField.setText(String.valueOf(voresRente));
 			}
 		});
 
