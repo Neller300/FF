@@ -15,6 +15,7 @@ public class LoanThread extends Thread {
 	private double rente;
 	private TextField renteField;
 	private double voresRente;
+	private String fejlBesked;
 
 	
 	//Laver referencer
@@ -97,6 +98,7 @@ public class LoanThread extends Thread {
 			voresRente = rente + 3;
 		
 		if(kredit==Rating.D)
+			fejlBesked = "Kundens kredit er for lav";
 			try {
 				throw new Exception("Kundens kredit værdi er for lav");
 			} catch (Exception e) {
@@ -107,7 +109,12 @@ public class LoanThread extends Thread {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
+				if(kredit==Rating.A || kredit==Rating.B || kredit==Rating.C)
 				renteField.setText(String.valueOf(voresRente));
+				
+				else {
+					renteField.setText(fejlBesked);
+				}
 			}
 		});
 

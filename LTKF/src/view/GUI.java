@@ -60,24 +60,24 @@ public class GUI extends Application {
 		row.setPercentHeight(20);
 		grid1.getRowConstraints().add(row);
 
-		Button opretlån = new Button("Opret låneformular");
-		opretlån.setStyle("-fx-font: 30 arial;");
+		Button opretlÃ¥n = new Button("Opret lÃ¥neformular");
+		opretlÃ¥n.setStyle("-fx-font: 30 arial;");
 
-		Button redigerlån = new Button("Rediger låneformular");
-		redigerlån.setStyle("-fx-font: 30 arial;");
+		Button redigerlÃ¥n = new Button("Rediger lÃ¥neformular");
+		redigerlÃ¥n.setStyle("-fx-font: 30 arial;");
 
-		Button lavtilbud = new Button("Udarbejd lånetilbud");
+		Button lavtilbud = new Button("Udarbejd lÃ¥netilbud");
 		lavtilbud.setStyle("-fx-font: 30 arial;");
 
-		Button redigertilbud = new Button("Rediger lånetilbud");
+		Button redigertilbud = new Button("Rediger lÃ¥netilbud");
 		redigertilbud.setStyle("-fx-font: 30 arial;");
 
-		Button godkendtilbud = new Button("Godkend lånetilbud");
+		Button godkendtilbud = new Button("Godkend lÃ¥netilbud");
 		godkendtilbud.setStyle("-fx-font: 30 arial;");
 
-		grid1.add(opretlån, 1, 0);
+		grid1.add(opretlÃ¥n, 1, 0);
 
-		grid1.add(redigerlån, 1, 1);
+		grid1.add(redigerlÃ¥n, 1, 1);
 
 		grid1.add(lavtilbud, 1, 2);
 
@@ -87,13 +87,13 @@ public class GUI extends Application {
 
 		// ï¿½ndre knappens max height og width value. og derefter fylder knappen ud i den
 		// grid den er i
-		opretlån.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-		GridPane.setFillWidth(opretlån, true);
-		GridPane.setFillHeight(opretlån, true);
+		opretlÃ¥n.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+		GridPane.setFillWidth(opretlÃ¥n, true);
+		GridPane.setFillHeight(opretlÃ¥n, true);
 
-		redigerlån.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-		GridPane.setFillWidth(redigerlån, true);
-		GridPane.setFillHeight(redigerlån, true);
+		redigerlÃ¥n.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+		GridPane.setFillWidth(redigerlÃ¥n, true);
+		GridPane.setFillHeight(redigerlÃ¥n, true);
 
 		lavtilbud.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 		GridPane.setFillWidth(lavtilbud, true);
@@ -119,7 +119,7 @@ public class GUI extends Application {
 		grid2.setVgap(15);
 		// root.setGridLinesVisible(true);
 
-		// styre hver kolones stï¿½rrelse i procent
+		// styre hver kolones stÃ¸rrelse i procent
 		ColumnConstraints column2 = new ColumnConstraints();
 		column2.setPercentWidth(10);
 		grid2.getColumnConstraints().add(column2);
@@ -156,27 +156,27 @@ public class GUI extends Application {
 		// combobox
 		final ComboBox<String> biltype2 = new ComboBox<String>();
 		biltype2.getItems().addAll("Ferrari F50", "Ferrari California", "Ferrari 599", "Ferrari F50 spider");
-		biltype2.setPromptText("Vælg bil");
+		biltype2.setPromptText("VÃ¦lg bil");
 
 		Button hentRente2 = new Button("Rente");
 		renten2.setEditable(false);
 		renten2.setMouseTransparent(true);
 
-		Label ydelse2 = new Label("Første ydelse");
-		TextField førsteYde2 = new TextField();
-		førsteYde2.setEditable(false);
-		førsteYde2.setMouseTransparent(true);
+		Label ydelse2 = new Label("FÃ¸rste ydelse");
+		TextField fÃ¸rsteYde2 = new TextField();
+		fÃ¸rsteYde2.setEditable(false);
+		fÃ¸rsteYde2.setMouseTransparent(true);
 
-		Label lånLængde2 = new Label("Længde på lån");
+		Label lÃ¥nLÃ¦ngde2 = new Label("LÃ¦ngde pÃ¥ lÃ¥n");
 		TextField laengdeLaan2 = new TextField();
 
-		Label låneInfo2 = new Label("Laane information");
-		TextArea lånINFO2 = new TextArea();
-		lånINFO2.setEditable(false);
-		lånINFO2.setMouseTransparent(true);
+		Label lÃ¥neInfo2 = new Label("LÃ¥ne information");
+		TextArea lÃ¥nINFO2 = new TextArea();
+		lÃ¥nINFO2.setEditable(false);
+		lÃ¥nINFO2.setMouseTransparent(true);
 
-		Label sælger2 = new Label("Sælger:");
-		TextField vælgsælger2 = new TextField();
+		Label sÃ¦lger2 = new Label("SÃ¦lger:");
+		TextField vÃ¦lgsÃ¦lger2 = new TextField();
 
 		Button back = new Button("Tilbage");
 
@@ -207,19 +207,19 @@ public class GUI extends Application {
 
 		grid2.add(ydelse2, 3, 1);
 
-		grid2.add(førsteYde2, 3, 2);
+		grid2.add(fÃ¸rsteYde2, 3, 2);
 
-		grid2.add(lånLængde2, 3, 3);
+		grid2.add(lÃ¥nLÃ¦ngde2, 3, 3);
 
 		grid2.add(laengdeLaan2, 3, 4);
 
-		grid2.add(låneInfo2, 2, 5);
+		grid2.add(lÃ¥neInfo2, 2, 5);
 
-		grid2.add(lånINFO2, 2, 6, 2, 6);
+		grid2.add(lÃ¥nINFO2, 2, 6, 2, 6);
 
-		grid2.add(sælger2, 0, 12);
+		grid2.add(sÃ¦lger2, 0, 12);
 
-		grid2.add(vælgsælger2, 0, 13);
+		grid2.add(vÃ¦lgsÃ¦lger2, 0, 13);
 
 		grid2.add(back, 0, 14);
 
@@ -297,15 +297,15 @@ public class GUI extends Application {
 		Label tlf3 = new Label("Tlf:");
 		TextField tlftext3 = new TextField();
 
-		Label sælger3 = new Label("Sælger");
-		TextField sælgertext3 = new TextField();
+		Label sÃ¦lger3 = new Label("SÃ¦lger");
+		TextField sÃ¦lgertext3 = new TextField();
 
 		Label bil3 = new Label("Bil");
 
 		// combobox
 		final ComboBox<String> biltype3 = new ComboBox<String>();
 		biltype3.getItems().addAll("Ferrari F50", "Ferrari California", "Ferrari 599", "Ferrari F50 spider");
-		biltype3.setPromptText("Vaelg bil");
+		biltype3.setPromptText("VÃ¦lg bil");
 
 		Label udbetaling3 = new Label("Udbetaling");
 		TextField udbetalingtext3 = new TextField();
@@ -313,8 +313,8 @@ public class GUI extends Application {
 		Label pris3 = new Label("Pris");
 		TextField pristext3 = new TextField();
 
-		Label længdelån3 = new Label("Længde på lån");
-		TextField længdelåntext3 = new TextField();
+		Label lÃ¦ngdelÃ¥n3 = new Label("Lï¿½ngde pï¿½ lï¿½n");
+		TextField lÃ¦ngdelÃ¥ntext3 = new TextField();
 
 		Label kommentar3 = new Label("Kommentar");
 		TextArea kommentartext3 = new TextArea();
@@ -356,9 +356,9 @@ public class GUI extends Application {
 
 		grid3.add(cprtext3, 0, 15);
 
-		grid3.add(sælger3, 0, 16);
+		grid3.add(sÃ¦lger3, 0, 16);
 
-		grid3.add(sælgertext3, 0, 17);
+		grid3.add(sÃ¦lgertext3, 0, 17);
 
 		grid3.add(bil3, 2, 0);
 
@@ -372,9 +372,9 @@ public class GUI extends Application {
 
 		grid3.add(pristext3, 2, 3);
 
-		grid3.add(længdelån3, 3, 2);
+		grid3.add(lÃ¦ngdelÃ¥n3, 3, 2);
 
-		grid3.add(længdelåntext3, 3, 3);
+		grid3.add(lÃ¦ngdelÃ¥ntext3, 3, 3);
 
 		grid3.add(kommentar3, 2, 4);
 
@@ -427,8 +427,8 @@ public class GUI extends Application {
 		Image anotherImage = new Image("file:LTKF/src/download.jpg");
 		primaryStage.getIcons().add(anotherImage);
 
-		// lave event handlers der ï¿½bner den ï¿½nskede nye scene
-		opretlån.setOnAction(new EventHandler<ActionEvent>() {
+		// lave event handlers der Ã¥bner den Ã¸nskede nye scene
+		opretlÃ¥n.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				primaryStage.setScene(laaneformularscene);
@@ -436,7 +436,7 @@ public class GUI extends Application {
 			}
 		});
 
-		// lave event handlers der gï¿½r tilbage til main menu
+		// lave event handlers der gÃ¸r tilbage til main menu
 		cancel3.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -448,15 +448,15 @@ public class GUI extends Application {
 				postnummertext3.setText("");
 				emailtext3.setText("");
 				cprtext3.setText("");
-				sælgertext3.setText("");
+				sÃ¦lgertext3.setText("");
 				udbetalingtext3.setText("");
 				pristext3.setText("");
 				kommentartext3.setText("");
-				længdelåntext3.setText("");
+				lÃ¦ngdelÃ¥ntext3.setText("");
 			}
 		});
 
-		// lave event handlers der gï¿½r tilbage til main menu
+		// lave event handlers der gÃ¥r tilbage til main menu
 		back.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -469,16 +469,16 @@ public class GUI extends Application {
 				postnummertext3.setText("");
 				emailtext3.setText("");
 				cprtext3.setText("");
-				sælgertext3.setText("");
+				sÃ¦lgertext3.setText("");
 				udbetalingtext3.setText("");
 				pristext3.setText("");
 				kommentartext3.setText("");
-				længdelåntext3.setText("");
+				lÃ¦ngdelÃ¥ntext3.setText("");
 			}
 		});
 
 		
-		// lave event handlers der gï¿½r tilbage til main menu
+		// Udregner voresRente pÃ¥ GUi trÃ¥den sÃ¥ den kan opdatere renten2 textfield
 		hentRente2.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
