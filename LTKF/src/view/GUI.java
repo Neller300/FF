@@ -12,6 +12,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import logic.LoanThread;
 import persistens.BankData;
+import persistens.Datalag;
 
 public class GUI extends Application {
 
@@ -85,7 +86,7 @@ public class GUI extends Application {
 
 		grid1.add(godkendtilbud, 1, 4);
 
-		// �ndre knappens max height og width value. og derefter fylder knappen ud i den
+		// ï¿½ndre knappens max height og width value. og derefter fylder knappen ud i den
 		// grid den er i
 		opretlån.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 		GridPane.setFillWidth(opretlån, true);
@@ -119,7 +120,7 @@ public class GUI extends Application {
 		grid2.setVgap(15);
 		// root.setGridLinesVisible(true);
 
-		// styre hver kolones størrelse i procent
+		// styre hver kolones stï¿½rrelse i procent
 		ColumnConstraints column2 = new ColumnConstraints();
 		column2.setPercentWidth(10);
 		grid2.getColumnConstraints().add(column2);
@@ -179,11 +180,15 @@ public class GUI extends Application {
 		TextField vælgsælger2 = new TextField();
 
 		Button back = new Button("Tilbage");
+		
+		Button tilbage = new Button("Tilbage");
+		
+		Button hentKunde = new Button("Hent kunde");
 
 		// biltype.getSelectionModel().selectedItemProperty().addListener( (v, oldvalue,
 		// newvalue )-> opdateryde);
 
-		// S�tte text,buttons, label i et grid
+		// Sï¿½tte text,buttons, label i et grid
 		// cells row, colomn, row, colom
 		GridPane.setHalignment(cpr2, HPos.LEFT);
 		grid2.add(cpr2, 0, 1);
@@ -222,8 +227,14 @@ public class GUI extends Application {
 		grid2.add(vælgsælger2, 0, 13);
 
 		grid2.add(back, 0, 14);
+		
+		grid2.add(tilbage, 0, 14);
+		
+		
+		
+	
 
-		// s�tter maks 10 tegn
+		// sï¿½tter maks 10 tegn
 		cprinput2.setOnKeyTyped(event -> {
 			int maxCharacters = 10;
 			if (cprinput2.getText().length() > maxCharacters)
@@ -239,7 +250,7 @@ public class GUI extends Application {
 
 		Scene tilbudscene = new Scene(grid2, 3000, 3000);
 
-		// lave event handlers der �bner den �nskede nye scene
+		// lave event handlers der ï¿½bner den ï¿½nskede nye scene
 		lavtilbud.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -256,7 +267,7 @@ public class GUI extends Application {
 		grid3.setVgap(15);
 		// gridp.setGridLinesVisible(true);
 
-		// styre hver kolones st�rrelse i procent
+		// styre hver kolones stï¿½rrelse i procent
 		ColumnConstraints column3 = new ColumnConstraints();
 		column3.setPercentWidth(30);
 		grid3.getColumnConstraints().add(column3);
@@ -305,7 +316,7 @@ public class GUI extends Application {
 		// combobox
 		final ComboBox<String> biltype3 = new ComboBox<String>();
 		biltype3.getItems().addAll("Ferrari F50", "Ferrari California", "Ferrari 599", "Ferrari F50 spider");
-		biltype3.setPromptText("Vælg bil");
+		biltype3.setPromptText("Vaelg bil");
 
 		Label udbetaling3 = new Label("Udbetaling");
 		TextField udbetalingtext3 = new TextField();
@@ -313,7 +324,7 @@ public class GUI extends Application {
 		Label pris3 = new Label("Pris");
 		TextField pristext3 = new TextField();
 
-		Label længdelån3 = new Label("L�ngde p� l�n");
+		Label længdelån3 = new Label("Længde på lån");
 		TextField længdelåntext3 = new TextField();
 
 		Label kommentar3 = new Label("Kommentar");
@@ -340,13 +351,13 @@ public class GUI extends Application {
 
 		grid3.add(adressetext3, 0, 7);
 
-		grid3.add(by3, 0, 8);
+		grid3.add(by3, 0, 10);
 
-		grid3.add(bytext3, 0, 9);
+		grid3.add(bytext3, 0, 11);
 
-		grid3.add(postnummer3, 0, 10);
+		grid3.add(postnummer3, 0, 8);
 
-		grid3.add(postnummertext3, 0, 11);
+		grid3.add(postnummertext3, 0, 9);
 
 		grid3.add(email3, 0, 12);
 
@@ -385,9 +396,20 @@ public class GUI extends Application {
 		grid3.add(cancel3, 3, 12);
 
 		grid3.add(back, 0, 18);
+		
+		grid3.add(hentKunde, 1, 1);
+		
+		
 
-		// s�tter maks 10 tegn i CPR
+		// sï¿½tter maks 10 tegn i CPR
 		cprtext3.setOnKeyTyped(event -> {
+			int maxCharacters = 9;
+			if (cprtext3.getText().length() > maxCharacters)
+				event.consume();
+		});
+		
+		// sï¿½tter maks 10 tegn i CPR
+		cprinput2.setOnKeyTyped(event -> {
 			int maxCharacters = 9;
 			if (cprtext3.getText().length() > maxCharacters)
 				event.consume();
@@ -414,7 +436,7 @@ public class GUI extends Application {
 			}
 		});
 
-		// s�tter maks 4 tegn i CPR
+		// sï¿½tter maks 4 tegn i CPR
 		postnummertext3.setOnKeyTyped(event -> {
 			int maxCharacters = 3;
 			if (postnummertext3.getText().length() > maxCharacters)
@@ -423,11 +445,11 @@ public class GUI extends Application {
 
 		Scene laaneformularscene = new Scene(grid3, 3000, 3000);
 
-		// �ndre icon
+		// ï¿½ndre icon
 		Image anotherImage = new Image("file:LTKF/src/download.jpg");
 		primaryStage.getIcons().add(anotherImage);
 
-		// lave event handlers der åbner den ønskede nye scene
+		// lave event handlers der ï¿½bner den ï¿½nskede nye scene
 		opretlån.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -436,7 +458,7 @@ public class GUI extends Application {
 			}
 		});
 
-		// lave event handlers der gør tilbage til main menu
+		// lave event handlers der gï¿½r tilbage til main menu
 		cancel3.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -456,7 +478,7 @@ public class GUI extends Application {
 			}
 		});
 
-		// lave event handlers der går tilbage til main menu
+		// lave event handlers der gï¿½r tilbage til main menu
 		back.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -476,9 +498,30 @@ public class GUI extends Application {
 				længdelåntext3.setText("");
 			}
 		});
+		
+		// lave event handlers der gï¿½r tilbage til main menu
+				tilbage.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent event) {
+						primaryStage.setScene(mainmenuscene);
+						tlftext3.setText("");
+						navntext3.setText("");
+						efternavntext3.setText("");
+						adressetext3.setText("");
+						bytext3.setText("");
+						postnummertext3.setText("");
+						emailtext3.setText("");
+						cprtext3.setText("");
+						sælgertext3.setText("");
+						udbetalingtext3.setText("");
+						pristext3.setText("");
+						kommentartext3.setText("");
+						længdelåntext3.setText("");
+					}
+				});
 
 		
-		// Udregner voresRente på GUi tråden så den kan opdatere renten2 textfield
+		// lave event handlers der gï¿½r tilbage til main menu
 		hentRente2.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -490,6 +533,20 @@ public class GUI extends Application {
 				// renten2.setText(""+ Bank.toDouble());
 				t.start();
 				System.out.println(cprinput2.getText().toString());
+			}
+		});
+		
+		
+		
+		// lave event handlers der ï¿½bner den ï¿½nskede nye scene
+		hentKunde.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				Datalag test = new Datalag();
+				test.openConnection();
+				navntext3.setText(test.getNavn(Integer.parseInt(tlftext3.getText())));
+				efternavntext3.setText(test.getEfterNavn(Integer.parseInt(tlftext3.getText())));
+				
 			}
 		});
 

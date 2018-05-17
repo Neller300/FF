@@ -28,6 +28,7 @@ public int getBilPris() {
 	return bilPris;
 }
 
+@Override
 public String toString() {
 	return "[Bil: BilId=" + bilId + 
 		   ", Bilnavn=" + bilNavn + 

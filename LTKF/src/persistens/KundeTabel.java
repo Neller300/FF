@@ -4,18 +4,18 @@ public class KundeTabel implements HasAutoKey {
 	private int tlfNr;
 	private String navn;
 	private String efternavn;
-	private String addresse;
-	private String byen;
+	private String cprNr;
+	private String adresse;
 	private int postnummer;
 	private String email;
 
-	public KundeTabel(int tlfNr, String navn, String efternavn, String addresse, String byen, int postnummer,
+	public KundeTabel(int tlfNr, String navn, String efternavn,String cprNr, String adresse, int postnummer,
 			String email) {
 		this.tlfNr = tlfNr;
 		this.navn = navn;
 		this.efternavn = efternavn;
-		this.addresse = addresse;
-		this.byen = byen;
+		this.cprNr = cprNr;
+		this.adresse = adresse;
 		this.postnummer = postnummer;
 		this.email = email;
 	}
@@ -36,14 +36,15 @@ public class KundeTabel implements HasAutoKey {
 	public String getEfternavn() {
 		return efternavn;
 	}
-
-	public String getAddresse() {
-		return addresse;
+	
+	public String getCprNr() {
+		return cprNr;
 	}
 
-	public String getByen() {
-		return byen;
+	public String getAdresse() {
+		return adresse;
 	}
+
 
 	public int getPostNummer() {
 		return postnummer;
@@ -58,8 +59,8 @@ public class KundeTabel implements HasAutoKey {
 		return "[Kunde: TlfNr=" + tlfNr + 
 			   ", Navn=" + navn + 
 			   ", Efternavn=" + efternavn + 
-			   ", Addresse=" + addresse + 
-			   ", By=" + byen + 
+			   ", cpr_nr=" + cprNr +
+			   ", Adresse=" + adresse +  
 			   ", Postnummer=" + postnummer + 
 			   ", Email=" + email + "]";
 	}
