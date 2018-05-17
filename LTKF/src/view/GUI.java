@@ -544,9 +544,11 @@ public class GUI extends Application {
 			public void handle(ActionEvent event) {
 				Datalag test = new Datalag();
 				test.openConnection();
-				navntext3.setText(test.getNavn(Integer.parseInt(tlftext3.getText())));
-				efternavntext3.setText(test.getEfterNavn(Integer.parseInt(tlftext3.getText())));
 				
+				navntext3.setText(test.getNavn(Integer.parseInt(tlftext3.getText())));
+				efternavntext3.setText(test.getEfternavn(Integer.parseInt(tlftext3.getText())));
+				adressetext3.setText(test.getAdresse(Integer.parseInt(tlftext3.getText())));
+				cprtext3.setText(test.getCpr(Integer.parseInt(tlftext3.getText())));
 			}
 		});
 

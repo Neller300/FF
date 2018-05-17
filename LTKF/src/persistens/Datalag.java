@@ -50,6 +50,32 @@ public class Datalag {
 			System.exit(1);
 		}
 	}
+	
+	public String getEfternavn(int tlfNr) {
+		try {
+		String kk = "SELECT efternavn FROM kunde WHERE tlf_nr=" + tlfNr + ";";
+		System.out.println(kk);
+		
+		Statement statement = connection.createStatement();
+		ResultSet resultSet = statement.executeQuery(kk);
+		
+		
+		
+		if(resultSet.next()) {
+			efternavn = resultSet.getString("efternavn");
+			statement.close();
+			return efternavn;
+			
+		}
+			
+		else 
+			return null;
+		}
+		catch(SQLException e) {
+			return null;
+		}
+	}
+	
 	public String getNavn(int tlfNr) {
 		try {
 		String k = "SELECT navn FROM kunde WHERE tlf_nr=" + tlfNr + ";";
@@ -61,8 +87,56 @@ public class Datalag {
 		
 		
 		if(resultSet.next()) {
-			navn = resultSet.getString(1);
-//			statement.close();
+			navn = resultSet.getString("navn");
+			statement.close();
+			return navn;
+			
+		}
+			
+		else 
+			return null;
+		}
+		catch(SQLException e) {
+			return null;
+		}
+	}
+	public String getCpr(int tlfNr) {
+		try {
+		String k = "SELECT cpr_nr FROM kunde WHERE tlf_nr=" + tlfNr + ";";
+		System.out.println(k);
+		
+		Statement statement = connection.createStatement();
+		ResultSet resultSet = statement.executeQuery(k);
+		
+		
+		
+		if(resultSet.next()) {
+			navn = resultSet.getString("cpr_nr");
+			statement.close();
+			return navn;
+			
+		}
+			
+		else 
+			return null;
+		}
+		catch(SQLException e) {
+			return null;
+		}
+	}
+	public String getAdresse(int tlfNr) {
+		try {
+		String k = "SELECT adresse FROM kunde WHERE tlf_nr=" + tlfNr + ";";
+		System.out.println(k);
+		
+		Statement statement = connection.createStatement();
+		ResultSet resultSet = statement.executeQuery(k);
+		
+		
+		
+		if(resultSet.next()) {
+			navn = resultSet.getString("adresse");
+			statement.close();
 			return navn;
 			
 		}
@@ -75,30 +149,8 @@ public class Datalag {
 		}
 	}
 	
-	public String getEfterNavn(int tlfNr) {
-		try {
-		String k = "SELECT efternavn FROM kunde WHERE tlf_nr=" + tlfNr + ";";
-		System.out.println(k);
-		
-		Statement statement = connection.createStatement();
-		ResultSet resultSet = statement.executeQuery(k);
-		
-		
-		
-		if(resultSet.next()) {
-			efternavn = resultSet.getString(2);
-//			statement.close();
-			return efternavn;
-			
-		}
-			
-		else 
-			return null;
-		}
-		catch(SQLException e) {
-			return null;
-		}
-	}
+	
+	
 	
 	
 }
