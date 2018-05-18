@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.*;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Screen;
@@ -543,12 +544,26 @@ public class GUI extends Application {
 			@Override
 			public void handle(ActionEvent event) {
 				Datalag test = new Datalag();
+				int tlfparse = Integer.parseInt(tlftext3.getText());
 				test.openConnection();
 				
-				navntext3.setText(test.getNavn(Integer.parseInt(tlftext3.getText())));
-				efternavntext3.setText(test.getEfternavn(Integer.parseInt(tlftext3.getText())));
-				adressetext3.setText(test.getAdresse(Integer.parseInt(tlftext3.getText())));
-				cprtext3.setText(test.getCpr(Integer.parseInt(tlftext3.getText())));
+				if(tlfparse != test.getTlfnr(tlfparse)) {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Telefon nummer eksisterer ikke!");
+					alert.setHeaderText(null);
+					alert.setContentText("Kunde er ikke oprettet");
+
+					alert.showAndWait();
+				}
+				else {
+				navntext3.setText(test.getNavn(tlfparse));
+				efternavntext3.setText(test.getEfternavn(tlfparse));
+				adressetext3.setText(test.getAdresse(tlfparse));
+				cprtext3.setText(test.getCpr(tlfparse));
+				postnummertext3.setText(test.getPostnummer(tlfparse));
+				bytext3.setText(test.getByen(tlfparse));
+				emailtext3.setText(test.getEmail(tlfparse));
+			}
 			}
 		});
 

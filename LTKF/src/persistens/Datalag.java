@@ -6,10 +6,14 @@ import persistens.*;
 
 public class Datalag {
 	private Connection connection;
+	private int tlfnr;
 	private String navn;
 	private String efternavn;
+	private String cprnr;
 	private String adresse;
 	private int postnummer;
+	private String byen;
+	private String email;
 
 	public void openConnection() {
 		try {
@@ -48,6 +52,31 @@ public class Datalag {
 
 			System.out.println("Kunne ikke oprette forbindelse til database");
 			System.exit(1);
+		}
+	}
+	
+	public int getTlfnr(int tlfNr) {
+		try {
+		String kk = "SELECT tlf_nr FROM kunde WHERE tlf_nr=" + tlfNr + ";";
+		System.out.println(kk);
+		
+		Statement statement = connection.createStatement();
+		ResultSet resultSet = statement.executeQuery(kk);
+		
+		
+		
+		if(resultSet.next()) {
+			tlfnr = resultSet.getInt("tlf_nr");
+			statement.close();
+			return tlfnr;
+			
+		}
+			
+		else 
+			return 0;
+		}
+		catch(SQLException e) {
+			return 0;
 		}
 	}
 	
@@ -111,9 +140,9 @@ public class Datalag {
 		
 		
 		if(resultSet.next()) {
-			navn = resultSet.getString("cpr_nr");
+			cprnr = resultSet.getString("cpr_nr");
 			statement.close();
-			return navn;
+			return cprnr;
 			
 		}
 			
@@ -135,9 +164,9 @@ public class Datalag {
 		
 		
 		if(resultSet.next()) {
-			navn = resultSet.getString("adresse");
+			adresse = resultSet.getString("adresse");
 			statement.close();
-			return navn;
+			return adresse;
 			
 		}
 			
@@ -149,7 +178,79 @@ public class Datalag {
 		}
 	}
 	
+	public String getPostnummer(int tlfNr) {
+		try {
+		String k = "SELECT post_nummer FROM kunde WHERE tlf_nr=" + tlfNr + ";";
+		System.out.println(k);
+		
+		Statement statement = connection.createStatement();
+		ResultSet resultSet = statement.executeQuery(k);
+		
+		
+		
+		if(resultSet.next()) {
+			postnummer = resultSet.getInt("post_nummer");
+			statement.close();
+			return String.valueOf(postnummer);
+			
+		}
+			
+		else 
+			return null;
+		}
+		catch(SQLException e) {
+			return null;
+		}
+	}
 	
+	public String getByen(int tlfNr) {
+		try {
+		String k = "SELECT byen FROM postnummer JOIN kunde ON postnummer.nr=kunde.post_nummer WHERE tlf_nr=" + tlfNr + ";";
+		System.out.println(k);
+		
+		Statement statement = connection.createStatement();
+		ResultSet resultSet = statement.executeQuery(k);
+		
+		
+		
+		if(resultSet.next()) {
+			byen = resultSet.getString("byen");
+			statement.close();
+			return byen;
+			
+		}
+			
+		else 
+			return null;
+		}
+		catch(SQLException e) {
+			return null;
+		}
+	}
+	public String getEmail(int tlfNr) {
+		try {
+		String k = "SELECT email FROM kunde WHERE tlf_nr=" + tlfNr + ";";
+		System.out.println(k);
+		
+		Statement statement = connection.createStatement();
+		ResultSet resultSet = statement.executeQuery(k);
+		
+		
+		
+		if(resultSet.next()) {
+			email = resultSet.getString("email");
+			statement.close();
+			return email;
+			}
+			
+		else 
+			return null;
+		}
+		catch(SQLException e) {
+			return null;
+		}
+		
+	}
 	
 	
 	
