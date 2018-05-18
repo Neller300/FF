@@ -62,7 +62,32 @@ public class Datalag {
 		}
 	}
 	
-	
+	public ObservableList<String> getAlleBiler() {
+		ArrayList<String> biler = new ArrayList<String>();
+		
+		try {
+		String kk = "SELECT bil_navn FROM bil;";
+		System.out.println(kk);
+		
+		Statement statement = connection.createStatement();
+		ResultSet resultSet = statement.executeQuery(kk);
+		ObservableList<String> observableBil = null;
+		
+		
+		
+		while(resultSet.next()) { 
+			String bilnavn = resultSet.getString("bil_navn");
+			biler.add(bilnavn);
+			observableBil = FXCollections.observableArrayList(biler);
+			
+		}
+		return observableBil;
+		}
+		catch(SQLException e) {
+			return null;
+		}
+
+	}
 	
 	public int getTlfnr(int tlfNr) {
 		try {

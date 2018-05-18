@@ -318,8 +318,10 @@ public class GUI extends Application {
 
 		 //combobox
 		final ComboBox<String> biltype3 = new ComboBox<String>();
-		biltype3.getItems().addAll("Ferrari F50", "Ferrari California", "Ferrari 599", "Ferrari F50 spider");
-		biltype3.setPromptText("Vælg bil");
+		Datalag test = new Datalag();
+		test.openConnection();
+		biltype3.setItems(test.getAlleBiler());
+		biltype3.setPromptText("Vælg bil"); 
 
 		Label udbetaling3 = new Label("Udbetaling");
 		TextField udbetalingtext3 = new TextField();
