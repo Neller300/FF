@@ -2,6 +2,11 @@ package persistens;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.ComboBox;
 import persistens.*;
 
 public class Datalag {
@@ -14,6 +19,8 @@ public class Datalag {
 	private int postnummer;
 	private String byen;
 	private String email;
+	
+
 
 	public void openConnection() {
 		try {
@@ -54,6 +61,8 @@ public class Datalag {
 			System.exit(1);
 		}
 	}
+	
+	
 	
 	public int getTlfnr(int tlfNr) {
 		try {
@@ -177,7 +186,7 @@ public class Datalag {
 			return null;
 		}
 	}
-	
+
 	public String getPostnummer(int tlfNr) {
 		try {
 		String k = "SELECT post_nummer FROM kunde WHERE tlf_nr=" + tlfNr + ";";
@@ -202,7 +211,7 @@ public class Datalag {
 			return null;
 		}
 	}
-	
+
 	public String getByen(int tlfNr) {
 		try {
 		String k = "SELECT byen FROM postnummer JOIN kunde ON postnummer.nr=kunde.post_nummer WHERE tlf_nr=" + tlfNr + ";";

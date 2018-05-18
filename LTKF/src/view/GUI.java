@@ -1,6 +1,7 @@
 package view;
 
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.*;
@@ -18,7 +19,8 @@ import persistens.Datalag;
 public class GUI extends Application {
 
 	TextField renten2 = new TextField();
-
+	
+	
 	@Override
 	public void start(Stage primaryStage) {
 		primaryStage.setTitle("Ferrari");
@@ -314,10 +316,10 @@ public class GUI extends Application {
 
 		Label bil3 = new Label("Bil");
 
-		// combobox
+		 //combobox
 		final ComboBox<String> biltype3 = new ComboBox<String>();
 		biltype3.getItems().addAll("Ferrari F50", "Ferrari California", "Ferrari 599", "Ferrari F50 spider");
-		biltype3.setPromptText("Vaelg bil");
+		biltype3.setPromptText("Vælg bil");
 
 		Label udbetaling3 = new Label("Udbetaling");
 		TextField udbetalingtext3 = new TextField();
@@ -537,16 +539,23 @@ public class GUI extends Application {
 			}
 		});
 		
-		
-		
 		// lave event handlers der ï¿½bner den ï¿½nskede nye scene
 		hentKunde.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				Datalag test = new Datalag();
-				int tlfparse = Integer.parseInt(tlftext3.getText());
 				test.openConnection();
 				
+				if(tlftext3.getText().isEmpty() || tlftext3.getText() == "") {
+						Alert alert = new Alert(AlertType.INFORMATION);
+						alert.setTitle("Telefon nummer mangler!");
+						alert.setHeaderText(null);
+						alert.setContentText("Mangler indhold");
+
+						alert.showAndWait();
+					}
+				try{
+				int tlfparse = Integer.parseInt(tlftext3.getText());
 				if(tlfparse != test.getTlfnr(tlfparse)) {
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Telefon nummer eksisterer ikke!");
@@ -556,14 +565,19 @@ public class GUI extends Application {
 					alert.showAndWait();
 				}
 				else {
-				navntext3.setText(test.getNavn(tlfparse));
-				efternavntext3.setText(test.getEfternavn(tlfparse));
-				adressetext3.setText(test.getAdresse(tlfparse));
-				cprtext3.setText(test.getCpr(tlfparse));
-				postnummertext3.setText(test.getPostnummer(tlfparse));
-				bytext3.setText(test.getByen(tlfparse));
-				emailtext3.setText(test.getEmail(tlfparse));
-			}
+					navntext3.setText(test.getNavn(tlfparse));
+					efternavntext3.setText(test.getEfternavn(tlfparse));
+					adressetext3.setText(test.getAdresse(tlfparse));
+					cprtext3.setText(test.getCpr(tlfparse));
+					postnummertext3.setText(test.getPostnummer(tlfparse));
+					bytext3.setText(test.getByen(tlfparse));
+					emailtext3.setText(test.getEmail(tlfparse));
+				}
+				}
+				catch(NumberFormatException nfe) {
+					
+				}
+				
 			}
 		});
 
@@ -576,7 +590,8 @@ public class GUI extends Application {
 		primaryStage.setHeight(bounds.getHeight());
 
 	}
-
+	
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
