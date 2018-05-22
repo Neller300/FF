@@ -11,14 +11,16 @@ import persistens.*;
 
 public class Datalag {
 	private Connection connection;
-	private int tlfnr;
-	private String navn;
-	private String efternavn;
-	private String cprnr;
-	private String adresse;
-	private int postnummer;
-	private String byen;
-	private String email;
+	private static Datalag inst = null;
+	
+	
+	public static Datalag i() {
+		if(inst == null) 
+			inst = new Datalag();
+			
+		return inst;
+		
+	}
 	
 
 
@@ -100,7 +102,7 @@ public class Datalag {
 		
 		
 		if(resultSet.next()) {
-			tlfnr = resultSet.getInt("tlf_nr");
+			int tlfnr = resultSet.getInt("tlf_nr");
 			statement.close();
 			return tlfnr;
 			
@@ -114,9 +116,10 @@ public class Datalag {
 		}
 	}
 	
-	public String getEfternavn(int tlfNr) {
+	public KundeTabel findKunde(int tlfNr) {
+		KundeTabel kunde = new KundeTabel();
 		try {
-		String kk = "SELECT efternavn FROM kunde WHERE tlf_nr=" + tlfNr + ";";
+		String kk = "SELECT * FROM kunde WHERE tlf_nr=" + tlfNr + ";";
 		System.out.println(kk);
 		
 		Statement statement = connection.createStatement();
@@ -125,9 +128,23 @@ public class Datalag {
 		
 		
 		if(resultSet.next()) {
-			efternavn = resultSet.getString("efternavn");
-			statement.close();
-			return efternavn;
+			int tlfnr = resultSet.getInt("tlf_nr");
+			String navn = resultSet.getString("navn");
+			String efternavn = resultSet.getString("efternavn");
+			String cpr = resultSet.getString("cpr");
+			String adresse = resultSet.getString("adresse");
+			int postnr = resultSet.getInt("post_nummer");
+			String email = resultSet.getString("email");
+			
+			kunde.setTlfNr(tlfnr);
+			kunde.setNavn(navn);
+			kunde.setEfternavn(efternavn);
+			kunde.setCprNr(cpr);
+			kunde.setAdresse(adresse);
+			kunde.setPostnummer(postnr);
+			kunde.setEmail(email);
+			
+			return kunde;
 			
 		}
 			
@@ -150,7 +167,7 @@ public class Datalag {
 		
 		
 		if(resultSet.next()) {
-			navn = resultSet.getString("navn");
+			String navn = resultSet.getString("navn");
 			statement.close();
 			return navn;
 			

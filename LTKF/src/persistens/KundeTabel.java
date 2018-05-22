@@ -9,7 +9,7 @@ public class KundeTabel implements HasAutoKey {
 	private int postnummer;
 	private String email;
 
-	public KundeTabel(int tlfNr, String navn, String efternavn,String cprNr, String adresse, int postnummer,
+	public KundeTabel(int tlfNr, String navn, String efternavn, String cprNr, String adresse, int postnummer,
 			String email) {
 		this.tlfNr = tlfNr;
 		this.navn = navn;
@@ -17,6 +17,38 @@ public class KundeTabel implements HasAutoKey {
 		this.cprNr = cprNr;
 		this.adresse = adresse;
 		this.postnummer = postnummer;
+		this.email = email;
+	}
+	
+	public KundeTabel() {
+		
+	}
+
+	public void setTlfNr(int tlfNr) {
+		this.tlfNr = tlfNr;
+	}
+
+	public void setNavn(String navn) {
+		this.navn = navn;
+	}
+
+	public void setEfternavn(String efternavn) {
+		this.efternavn = efternavn;
+	}
+
+	public void setCprNr(String cprNr) {
+		this.cprNr = cprNr;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+
+	public void setPostnummer(int postnummer) {
+		this.postnummer = postnummer;
+	}
+
+	public void setEmail(String email) {
 		this.email = email;
 	}
 

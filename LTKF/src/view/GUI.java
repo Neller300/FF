@@ -321,7 +321,7 @@ public class GUI extends Application {
 		Datalag test = new Datalag();
 		test.openConnection();
 		biltype3.setItems(test.getAlleBiler());
-		biltype3.setPromptText("Vælg bil"); 
+		biltype3.setPromptText("Vælg bil");
 
 		Label udbetaling3 = new Label("Udbetaling");
 		TextField udbetalingtext3 = new TextField();
@@ -545,8 +545,8 @@ public class GUI extends Application {
 		hentKunde.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				Datalag test = new Datalag();
-				test.openConnection();
+				Datalag.i().
+				
 				
 				if(tlftext3.getText().isEmpty() || tlftext3.getText() == "") {
 						Alert alert = new Alert(AlertType.INFORMATION);
