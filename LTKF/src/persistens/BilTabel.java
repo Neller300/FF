@@ -8,7 +8,11 @@ private int bilPris;
 public BilTabel(int bilId, String bilNavn, int bilPris) {
 	this.bilId=bilId;
 	this.bilNavn=bilNavn;
-	this.bilPris=bilPris;
+	this.bilPris=bilPris; 
+}
+
+public BilTabel() {
+	
 }
 
 @Override
@@ -33,5 +37,17 @@ public String toString() {
 	return "[Bil: BilId=" + bilId + 
 		   ", Bilnavn=" + bilNavn + 
 		   ", Bilpris=" + bilPris + "]";
+}
+
+public void setBilId(int bilId) {
+	this.bilId = bilId;
+}
+
+public void setBilNavn(String bilNavn) {
+	this.bilNavn = bilNavn;
+}
+
+public void setBilPris(int bilPris) {
+	this.bilPris = bilPris;
 }
 }

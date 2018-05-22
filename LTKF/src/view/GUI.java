@@ -321,9 +321,10 @@ public class GUI extends Application {
 
 		 //combobox
 		final ComboBox<String> biltype3 = new ComboBox<String>();
-		Datalag test = new Datalag();
-		test.openConnection();
-		biltype3.setItems(test.getAlleBiler());
+//		Datalag test = new Datalag();
+//		test.openConnection();
+//		biltype3.setItems(test.getAlleBiler());
+		biltype3.setItems(controller.getAlleBiler());
 		biltype3.setPromptText("Vælg bil");
 
 		Label udbetaling3 = new Label("Udbetaling");
@@ -566,8 +567,8 @@ public class GUI extends Application {
 					adressetext3.setText(controller.getKunde(tlfparse).getAdresse());
 					cprtext3.setText(controller.getKunde(tlfparse).getCprNr());
 					postnummertext3.setText(String.valueOf(controller.getKunde(tlfparse).getPostNummer()));
-					bytext3.setText(test.getByen(tlfparse));
-					emailtext3.setText(controller.getKunde(tlfparse).getEmail());
+					bytext3.setText(controller.getByen(tlfparse));
+					emailtext3.setText(controller.getKunde(tlfparse).getEmail()); 
 				}
 				}
 				catch(NumberFormatException nfe) {

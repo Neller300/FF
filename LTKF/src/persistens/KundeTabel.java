@@ -16,7 +16,7 @@ public class KundeTabel implements HasAutoKey {
 		this.efternavn = efternavn;
 		this.cprNr = cprNr;
 		this.adresse = adresse;
-		this.postnummer = postnummer;
+		this.postnummer = postnummer; 
 		this.email = email;
 	}
 	
