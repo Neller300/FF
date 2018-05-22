@@ -1,7 +1,6 @@
 package view;
 
 import javafx.application.Application;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.*;
@@ -13,9 +12,6 @@ import javafx.scene.layout.*;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import logic.FFController;
-import logic.LoanThread;
-import persistens.BankData;
-import persistens.Datalag;
 
 public class GUI extends Application {
 
@@ -70,27 +66,15 @@ public class GUI extends Application {
 		Button opretlån = new Button("Opret låneformular");
 		opretlån.setStyle("-fx-font: 30 arial;");
 
-		Button redigerlån = new Button("Rediger låneformular");
-		redigerlån.setStyle("-fx-font: 30 arial;");
-
 		Button lavtilbud = new Button("Udarbejd lånetilbud");
 		lavtilbud.setStyle("-fx-font: 30 arial;");
-
-		Button redigertilbud = new Button("Rediger lånetilbud");
-		redigertilbud.setStyle("-fx-font: 30 arial;");
 
 		Button godkendtilbud = new Button("Godkend lånetilbud");
 		godkendtilbud.setStyle("-fx-font: 30 arial;");
 
 		grid1.add(opretlån, 1, 0);
-
-		grid1.add(redigerlån, 1, 1);
-
-		grid1.add(lavtilbud, 1, 2);
-
-		grid1.add(redigertilbud, 1, 3);
-
-		grid1.add(godkendtilbud, 1, 4);
+		grid1.add(lavtilbud, 1, 1);
+		grid1.add(godkendtilbud, 1, 2);
 
 		// ï¿½ndre knappens max height og width value. og derefter fylder knappen ud i den
 		// grid den er i
@@ -98,17 +82,9 @@ public class GUI extends Application {
 		GridPane.setFillWidth(opretlån, true);
 		GridPane.setFillHeight(opretlån, true);
 
-		redigerlån.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-		GridPane.setFillWidth(redigerlån, true);
-		GridPane.setFillHeight(redigerlån, true);
-
 		lavtilbud.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 		GridPane.setFillWidth(lavtilbud, true);
 		GridPane.setFillHeight(lavtilbud, true);
-
-		redigertilbud.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-		GridPane.setFillWidth(redigertilbud, true);
-		GridPane.setFillHeight(redigertilbud, true);
 
 		godkendtilbud.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 		GridPane.setFillWidth(godkendtilbud, true);

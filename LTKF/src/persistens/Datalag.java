@@ -2,12 +2,11 @@ package persistens;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
+
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ComboBox;
-import persistens.*;
+
 
 public class Datalag {
 	private Connection connection;
