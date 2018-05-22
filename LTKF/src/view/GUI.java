@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import logic.FFController;
 import logic.LoanThread;
 import persistens.BankData;
 import persistens.Datalag;
@@ -19,10 +20,12 @@ import persistens.Datalag;
 public class GUI extends Application {
 
 	TextField renten2 = new TextField();
+	FFController controller;
 	
 	
 	@Override
 	public void start(Stage primaryStage) {
+		FFController controller = new FFController();
 		primaryStage.setTitle("Ferrari");
 
 		// lave et grid
@@ -530,13 +533,7 @@ public class GUI extends Application {
 		hentRente2.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				BankData data = new BankData(cprinput2.getText().toString(), 0, null);
-				LoanThread t = new LoanThread(data, renten2);
-				// BankRente Bank = new BankRente();
-				// Thread rente = new Thread(Bank);
-				// rente.start();
-				// renten2.setText(""+ Bank.toDouble());
-				t.start();
+				controller.getRente(cprinput2, renten2);
 				System.out.println(cprinput2.getText().toString());
 			}
 		});
@@ -544,10 +541,7 @@ public class GUI extends Application {
 		// lave event handlers der ï¿½bner den ï¿½nskede nye scene
 		hentKunde.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
-			public void handle(ActionEvent event) {
-				Datalag.i().
-				
-				
+			public void handle(ActionEvent event) {								
 				if(tlftext3.getText().isEmpty() || tlftext3.getText() == "") {
 						Alert alert = new Alert(AlertType.INFORMATION);
 						alert.setTitle("Telefon nummer mangler!");
@@ -558,7 +552,7 @@ public class GUI extends Application {
 					}
 				try{
 				int tlfparse = Integer.parseInt(tlftext3.getText());
-				if(tlfparse != test.getTlfnr(tlfparse)) {
+				if(tlfparse != controller.getKunde(tlfparse).getTlfNr()) {
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Telefon nummer eksisterer ikke!");
 					alert.setHeaderText(null);
@@ -567,13 +561,13 @@ public class GUI extends Application {
 					alert.showAndWait();
 				}
 				else {
-					navntext3.setText(test.getNavn(tlfparse));
-					efternavntext3.setText(test.getEfternavn(tlfparse));
-					adressetext3.setText(test.getAdresse(tlfparse));
-					cprtext3.setText(test.getCpr(tlfparse));
-					postnummertext3.setText(test.getPostnummer(tlfparse));
+					navntext3.setText(controller.getKunde(tlfparse).getNavn());
+					efternavntext3.setText(controller.getKunde(tlfparse).getEfternavn());
+					adressetext3.setText(controller.getKunde(tlfparse).getAdresse());
+					cprtext3.setText(controller.getKunde(tlfparse).getCprNr());
+					postnummertext3.setText(String.valueOf(controller.getKunde(tlfparse).getPostNummer()));
 					bytext3.setText(test.getByen(tlfparse));
-					emailtext3.setText(test.getEmail(tlfparse));
+					emailtext3.setText(controller.getKunde(tlfparse).getEmail());
 				}
 				}
 				catch(NumberFormatException nfe) {

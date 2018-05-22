@@ -5,6 +5,8 @@ import com.ferrari.finances.dk.rki.CreditRator;
 import com.ferrari.finances.dk.rki.Rating;
 
 import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import persistens.BankData;
 import java.text.DecimalFormat;
@@ -17,10 +19,11 @@ public class LoanThread extends Thread {
 	private TextField renteField;
 	private double voresRente;
 	private String fejlBesked;
+	
 
 	
 	//Laver referencer
-	public LoanThread(BankData data, TextField renteField) {
+	public LoanThread(BankData data, TextField renteField) {  
 		CPR = data.getCPR();
 		kredit = data.getRating();
 		rente = data.getRente();
@@ -92,19 +95,29 @@ public class LoanThread extends Thread {
 		if(kredit==Rating.A)
 			voresRente = rente + 1;
 		
-		if(kredit==Rating.B)
+		else if(kredit==Rating.B)
 			voresRente = rente + 2;
 		
-		if(kredit==Rating.C)
+		else if(kredit==Rating.C)
 			voresRente = rente + 3;
 		
-		if(kredit==Rating.D)
+		else if(kredit==Rating.D)
 			fejlBesked = "Kundens kredit er for lav";
 			try {
 				throw new Exception("Kundens kredit værdi er for lav");
 			} catch (Exception e) {
 				
 			}
+			
+		//if(Låneformular.udbetaling >36){
+		//	voresRente += 1 ;
+		//}
+			
+		/*
+		 * if(Låneformular.udbetaling < (Bil.pris * 0.5){
+		 * voresRente+= 1;
+		 * }
+		 */
 			
 			
 		
@@ -118,7 +131,12 @@ public class LoanThread extends Thread {
 					renteField.setText(String.valueOf(formattere.format(voresRente)));
 				
 				else {
-					renteField.setText(fejlBesked);
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Information Dialog");
+					alert.setHeaderText(null);
+					alert.setContentText(fejlBesked);
+
+					alert.showAndWait();
 				}
 			}
 		});

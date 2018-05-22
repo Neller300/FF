@@ -156,152 +156,152 @@ public class Datalag {
 		}
 	}
 	
-	public String getNavn(int tlfNr) {
-		try {
-		String k = "SELECT navn FROM kunde WHERE tlf_nr=" + tlfNr + ";";
-		System.out.println(k);
-		
-		Statement statement = connection.createStatement();
-		ResultSet resultSet = statement.executeQuery(k);
-		
-		
-		
-		if(resultSet.next()) {
-			String navn = resultSet.getString("navn");
-			statement.close();
-			return navn;
-			
-		}
-			
-		else 
-			return null;
-		}
-		catch(SQLException e) {
-			return null;
-		}
-	}
-	public String getCpr(int tlfNr) {
-		try {
-		String k = "SELECT cpr_nr FROM kunde WHERE tlf_nr=" + tlfNr + ";";
-		System.out.println(k);
-		
-		Statement statement = connection.createStatement();
-		ResultSet resultSet = statement.executeQuery(k);
-		
-		
-		
-		if(resultSet.next()) {
-			cprnr = resultSet.getString("cpr_nr");
-			statement.close();
-			return cprnr;
-			
-		}
-			
-		else 
-			return null;
-		}
-		catch(SQLException e) {
-			return null;
-		}
-	}
-	public String getAdresse(int tlfNr) {
-		try {
-		String k = "SELECT adresse FROM kunde WHERE tlf_nr=" + tlfNr + ";";
-		System.out.println(k);
-		
-		Statement statement = connection.createStatement();
-		ResultSet resultSet = statement.executeQuery(k);
-		
-		
-		
-		if(resultSet.next()) {
-			adresse = resultSet.getString("adresse");
-			statement.close();
-			return adresse;
-			
-		}
-			
-		else 
-			return null;
-		}
-		catch(SQLException e) {
-			return null;
-		}
-	}
-
-	public String getPostnummer(int tlfNr) {
-		try {
-		String k = "SELECT post_nummer FROM kunde WHERE tlf_nr=" + tlfNr + ";";
-		System.out.println(k);
-		
-		Statement statement = connection.createStatement();
-		ResultSet resultSet = statement.executeQuery(k);
-		
-		
-		
-		if(resultSet.next()) {
-			postnummer = resultSet.getInt("post_nummer");
-			statement.close();
-			return String.valueOf(postnummer);
-			
-		}
-			
-		else 
-			return null;
-		}
-		catch(SQLException e) {
-			return null;
-		}
-	}
-
-	public String getByen(int tlfNr) {
-		try {
-		String k = "SELECT byen FROM postnummer JOIN kunde ON postnummer.nr=kunde.post_nummer WHERE tlf_nr=" + tlfNr + ";";
-		System.out.println(k);
-		
-		Statement statement = connection.createStatement();
-		ResultSet resultSet = statement.executeQuery(k);
-		
-		
-		
-		if(resultSet.next()) {
-			byen = resultSet.getString("byen");
-			statement.close();
-			return byen;
-			
-		}
-			
-		else 
-			return null;
-		}
-		catch(SQLException e) {
-			return null;
-		}
-	}
-	public String getEmail(int tlfNr) {
-		try {
-		String k = "SELECT email FROM kunde WHERE tlf_nr=" + tlfNr + ";";
-		System.out.println(k);
-		
-		Statement statement = connection.createStatement();
-		ResultSet resultSet = statement.executeQuery(k);
-		
-		
-		
-		if(resultSet.next()) {
-			email = resultSet.getString("email");
-			statement.close();
-			return email;
-			}
-			
-		else 
-			return null;
-		}
-		catch(SQLException e) {
-			return null;
-		}
-		
-	}
+//	public String getNavn(int tlfNr) {
+//		try {
+//		String k = "SELECT navn FROM kunde WHERE tlf_nr=" + tlfNr + ";";
+//		System.out.println(k);
+//		
+//		Statement statement = connection.createStatement();
+//		ResultSet resultSet = statement.executeQuery(k);
+//		
+//		
+//		
+//		if(resultSet.next()) {
+//			String navn = resultSet.getString("navn");
+//			statement.close();
+//			return navn;
+//			
+//		}
+//			
+//		else 
+//			return null;
+//		}
+//		catch(SQLException e) {
+//			return null;
+//		}
+//	}
+//	public String getCpr(int tlfNr) {
+//		try {
+//		String k = "SELECT cpr_nr FROM kunde WHERE tlf_nr=" + tlfNr + ";";
+//		System.out.println(k);
+//		
+//		Statement statement = connection.createStatement();
+//		ResultSet resultSet = statement.executeQuery(k);
+//		
+//		
+//		
+//		if(resultSet.next()) {
+//			cprnr = resultSet.getString("cpr_nr");
+//			statement.close();
+//			return cprnr;
+//			
+//		}
+//			
+//		else 
+//			return null;
+//		}
+//		catch(SQLException e) {
+//			return null;
+//		}
+//	}
+//	public String getAdresse(int tlfNr) {
+//		try {
+//		String k = "SELECT adresse FROM kunde WHERE tlf_nr=" + tlfNr + ";";
+//		System.out.println(k);
+//		
+//		Statement statement = connection.createStatement();
+//		ResultSet resultSet = statement.executeQuery(k);
+//		
+//		
+//		
+//		if(resultSet.next()) {
+//			adresse = resultSet.getString("adresse");
+//			statement.close();
+//			return adresse;
+//			
+//		}
+//			
+//		else 
+//			return null;
+//		}
+//		catch(SQLException e) {
+//			return null;
+//		}
+//	}
+//
+//	public String getPostnummer(int tlfNr) {
+//		try {
+//		String k = "SELECT post_nummer FROM kunde WHERE tlf_nr=" + tlfNr + ";";
+//		System.out.println(k);
+//		
+//		Statement statement = connection.createStatement();
+//		ResultSet resultSet = statement.executeQuery(k);
+//		
+//		
+//		
+//		if(resultSet.next()) {
+//			postnummer = resultSet.getInt("post_nummer");
+//			statement.close();
+//			return String.valueOf(postnummer);
+//			
+//		}
+//			
+//		else 
+//			return null;
+//		}
+//		catch(SQLException e) {
+//			return null;
+//		}
+//	}
+//
+//	public String getByen(int tlfNr) {
+//		try {
+//		String k = "SELECT byen FROM postnummer JOIN kunde ON postnummer.nr=kunde.post_nummer WHERE tlf_nr=" + tlfNr + ";";
+//		System.out.println(k);
+//		
+//		Statement statement = connection.createStatement();
+//		ResultSet resultSet = statement.executeQuery(k);
+//		
+//		
+//		
+//		if(resultSet.next()) {
+//			byen = resultSet.getString("byen");
+//			statement.close();
+//			return byen;
+//			
+//		}
+//			
+//		else 
+//			return null;
+//		}
+//		catch(SQLException e) {
+//			return null;
+//		}
+//	}
+//	public String getEmail(int tlfNr) {
+//		try {
+//		String k = "SELECT email FROM kunde WHERE tlf_nr=" + tlfNr + ";";
+//		System.out.println(k);
+//		
+//		Statement statement = connection.createStatement();
+//		ResultSet resultSet = statement.executeQuery(k);
+//		
+//		
+//		
+//		if(resultSet.next()) {
+//			email = resultSet.getString("email");
+//			statement.close();
+//			return email;
+//			}
+//			
+//		else 
+//			return null;
+//		}
+//		catch(SQLException e) {
+//			return null;
+//		}
+//		
+//	}
 	
 	
 	
