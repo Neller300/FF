@@ -7,6 +7,8 @@ import persistens.Datalag;
 import persistens.KundeTabel;
 
 public class FFController {
+	
+	KundeTabel kunde;
 		
 	public FFController() {
 		Datalag.i().openConnection();
@@ -23,8 +25,9 @@ public class FFController {
 		
 	}
 	
-	public void getRente(TextField cpr, TextField rente) {
-		BankData data = new BankData(cpr.getText(), 0, null);
+	public void getRente(TextField tlf, TextField rente) {
+		KundeTabel kunde = Datalag.i().findKunde(Integer.parseInt(tlf.getText()));
+		BankData data = new BankData(kunde.getCprNr(), 0, null);
 		LoanThread t = new LoanThread(data, rente);
 		t.start();
 	}

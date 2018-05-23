@@ -2,7 +2,10 @@ package persistens;
 
 import com.ferrari.finances.dk.rki.*;
 
+import logic.FFController;
+
 public class BankData {
+	
 
 	private String CPR;
 	private double rente;

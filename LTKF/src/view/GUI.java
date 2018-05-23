@@ -72,9 +72,9 @@ public class GUI extends Application {
 		Button godkendtilbud = new Button("Godkend lånetilbud");
 		godkendtilbud.setStyle("-fx-font: 30 arial;");
 
-		grid1.add(opretlån, 1, 0);
-		grid1.add(lavtilbud, 1, 1);
-		grid1.add(godkendtilbud, 1, 2);
+		grid1.add(opretlån, 1, 1);
+		grid1.add(lavtilbud, 1, 2);
+		grid1.add(godkendtilbud, 1, 3);
 
 		// ï¿½ndre knappens max height og width value. og derefter fylder knappen ud i den
 		// grid den er i
@@ -124,8 +124,8 @@ public class GUI extends Application {
 		// Put on cell (0,0), span 2 column, 1 row.
 		grid2.add(labelTitle, 0, 0, 2, 1);
 
-		Label cpr2 = new Label("CPR-nummer:");
-		TextField cprinput2 = new TextField();
+		Label tlfnr2 = new Label("Telefon nummer:");
+		TextField tlfinput2 = new TextField();
 		// cprinput.setMaxWidth(200);
 
 		Label RKI2 = new Label("Info fra RKI:");
@@ -138,7 +138,7 @@ public class GUI extends Application {
 
 		// combobox
 		final ComboBox<String> biltype2 = new ComboBox<String>();
-		biltype2.getItems().addAll("Ferrari F50", "Ferrari California", "Ferrari 599", "Ferrari F50 spider");
+		biltype2.setItems(controller.getAlleBiler());
 		biltype2.setPromptText("Vælg bil");
 
 		Button hentRente2 = new Button("Rente");
@@ -172,11 +172,11 @@ public class GUI extends Application {
 
 		// Sï¿½tte text,buttons, label i et grid
 		// cells row, colomn, row, colom
-		GridPane.setHalignment(cpr2, HPos.LEFT);
-		grid2.add(cpr2, 0, 1);
+		GridPane.setHalignment(tlfnr2, HPos.LEFT);
+		grid2.add(tlfnr2, 0, 1);
 
-		GridPane.setHalignment(cprinput2, HPos.LEFT);
-		grid2.add(cprinput2, 0, 2);
+		GridPane.setHalignment(tlfinput2, HPos.LEFT);
+		grid2.add(tlfinput2, 0, 2);
 
 		GridPane.setHalignment(RKI2, HPos.LEFT);
 
@@ -217,16 +217,16 @@ public class GUI extends Application {
 	
 
 		// sï¿½tter maks 10 tegn
-		cprinput2.setOnKeyTyped(event -> {
+		tlfinput2.setOnKeyTyped(event -> {
 			int maxCharacters = 10;
-			if (cprinput2.getText().length() > maxCharacters)
+			if (tlfinput2.getText().length() > maxCharacters)
 				event.consume();
 		});
 
 		// Kun tal
-		cprinput2.textProperty().addListener((observable, oldValue, newValue) -> {
+		tlfinput2.textProperty().addListener((observable, oldValue, newValue) -> {
 			if (!newValue.matches("[0-9]*")) {
-				cprinput2.setText(oldValue);
+				tlfinput2.setText(oldValue);
 			}
 		});
 
@@ -297,9 +297,6 @@ public class GUI extends Application {
 
 		 //combobox
 		final ComboBox<String> biltype3 = new ComboBox<String>();
-//		Datalag test = new Datalag();
-//		test.openConnection();
-//		biltype3.setItems(test.getAlleBiler());
 		biltype3.setItems(controller.getAlleBiler());
 		biltype3.setPromptText("Vælg bil");
 
@@ -394,7 +391,7 @@ public class GUI extends Application {
 		});
 		
 		// sï¿½tter maks 10 tegn i CPR
-		cprinput2.setOnKeyTyped(event -> {
+		tlfinput2.setOnKeyTyped(event -> {
 			int maxCharacters = 9;
 			if (cprtext3.getText().length() > maxCharacters)
 				event.consume();
@@ -429,12 +426,29 @@ public class GUI extends Application {
 		});
 
 		Scene laaneformularscene = new Scene(grid3, 3000, 3000);
+		
+		GridPane grid4 = new GridPane();
+		grid4.setPadding(new Insets(20));
+		grid4.setHgap(15);
+		grid4.setVgap(15);
+		
+		
+		
+		Scene godkendelsesSide = new Scene(grid4, 3000, 3000);
 
-		// ï¿½ndre icon
+		// ændre icon
 		Image anotherImage = new Image("file:LTKF/src/download.jpg");
 		primaryStage.getIcons().add(anotherImage);
 
-		// lave event handlers der ï¿½bner den ï¿½nskede nye scene
+		// lave event handlers der åbner den ønskede nye scene
+		godkendtilbud.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				primaryStage.setScene(godkendelsesSide);
+
+			}
+		});
+		
 		opretlån.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -463,7 +477,7 @@ public class GUI extends Application {
 			}
 		});
 
-		// lave event handlers der gï¿½r tilbage til main menu
+		// lave event handlers der går tilbage til main menu
 		back.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -510,8 +524,8 @@ public class GUI extends Application {
 		hentRente2.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				controller.getRente(cprinput2, renten2);
-				System.out.println(cprinput2.getText().toString());
+				controller.getRente(tlfinput2, renten2);
+				System.out.println(tlfinput2.getText().toString());
 			}
 		});
 		
