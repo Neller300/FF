@@ -42,9 +42,34 @@ public int getTlfNr() {
 	return tlfNr;
 }
 
-public int getSælgerId() {
+public int getSælgerId() { 
 	return sælgerId;
 }
+
+public void setFormularId(int formularId) {
+	this.formularId = formularId;
+}
+
+public void setUdbetaling(int udbetaling) {
+	this.udbetaling = udbetaling;
+}
+
+public void setLånLængde(int lånLængde) {
+	this.lånLængde = lånLængde;
+}
+
+public void setBilId(int bilId) {
+	this.bilId = bilId;
+}
+
+public void setTlfNr(int tlfNr) {
+	this.tlfNr = tlfNr;
+}
+
+public void setSælgerId(int sælgerId) {
+	this.sælgerId = sælgerId;
+}
+
 
 @Override
 public String toString() {

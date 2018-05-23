@@ -21,12 +21,6 @@ import persistens.BilTabel;
 
 
 public class GUI extends Application {
-
-	private StringProperty tempBil=new SimpleStringProperty();
-	public String getTempBil() {return tempBil.get();};
-	public void setTempBil(String value) {tempBil.set(value);};
-	public StringProperty getTempBilProperty() {return tempBil;};
-	
 	TextField renten2 = new TextField();
 	FFController controller;
 	
@@ -148,10 +142,8 @@ public class GUI extends Application {
 
 		Label bil2 = new Label("Bil");
 
-		// combobox
-		final ComboBox<BilTabel> biltype2 = new ComboBox<BilTabel>();
-		biltype2.setItems(controller.getAlleBiler());
-		biltype2.setPromptText("Vælg bil");
+		TextField biltype2 = new TextField();
+		biltype2.setEditable(false);
 
 		Button hentRente2 = new Button("Rente");
 		renten2.setEditable(false);
@@ -244,7 +236,7 @@ public class GUI extends Application {
 
 		Scene tilbudscene = new Scene(grid2, 3000, 3000);
 
-		// lave event handlers der ï¿½bner den ï¿½nskede nye scene
+		// lave event handlers der åbner den ønskede nye scene
 		lavtilbud.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -374,15 +366,7 @@ public class GUI extends Application {
 		
 		
 		biltype3.getSelectionModel().selectedItemProperty().addListener((Observable, oldValue, newValue) -> {
-			
-				
 				pristext3.setText(newValue.getBilPris());
-				setTempBil(newValue.getBilNavn());
-				biltype3.promptTextProperty().bind(getTempBilProperty());
-				
-				setTempBil(newValue.getBilNavn());
-								
-			
 		});
 
 		// cells row, colomn, row, colom
@@ -634,6 +618,21 @@ public class GUI extends Application {
 					
 				}
 				
+			}
+		});
+		
+		opret3.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				int tlfparse = Integer.parseInt(tlftext3.getText());
+				
+				if(tlfparse != controller.getKunde(tlfparse).getTlfNr()) {
+					System.out.println("Jeg er ikke oprettet, men det er jeg om lidt.");
+				controller.opretKunde(Integer.parseInt(tlftext3.getText()), navntext3.getText(), efternavntext3.getText(), cprtext3.getText(), adressetext3.getText(), Integer.parseInt(postnummertext3.getText()), emailtext3.getText());
+				}
+				
+				controller.opretLåneformular(Integer.parseInt(udbetalingtext3.getText()), Integer.parseInt(længdelåntext3.getText()), biltype3.getSelectionModel().getSelectedItem().getBilId(), Integer.parseInt(tlftext3.getText()), Integer.parseInt(sælgertext3.getText()));  
+						 
 			}
 		});
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import persistens.BankData;
 import persistens.BilTabel;
@@ -53,6 +54,15 @@ public class FFController {
 	
 	public ObservableList<BilTabel> getAlleBiler(){
 		return Datalag.i().getAlleBiler();
+	}
+	
+	public void opretKunde(int tlfNr, String navn, String efternavn, String cprNr, String adresse, int postnummer, String email) {
+		Datalag.i().opretKunde(tlfNr, navn, efternavn, cprNr, adresse, postnummer, email);
+	}
+	
+	public void opretLåneformular(int udbetaling, int længde, int bilid, int tlf, int sælger ) {
+		Datalag.i().opretLåneformular(udbetaling, længde, bilid, tlf, sælger);
+		
 	}
 
 }
