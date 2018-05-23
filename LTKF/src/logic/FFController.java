@@ -1,14 +1,19 @@
 package logic;
 
+import java.util.ArrayList;
+
 import javafx.collections.ObservableList;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import persistens.BankData;
+import persistens.BilTabel;
 import persistens.Datalag;
 import persistens.KundeTabel;
 
 public class FFController {
 	
 	KundeTabel kunde;
+	
 		
 	public FFController() {
 		Datalag.i().openConnection();
@@ -36,7 +41,17 @@ public class FFController {
 		 return Datalag.i().getByen(tlfNr);		
 	}
 	
-	public ObservableList<String> getAlleBiler(){
+	public String getBilPris(ComboBox<BilTabel> biltype3) {
+		try {
+			System.out.println();
+		 return Datalag.i().getBilPris(biltype3.getSelectionModel().getSelectedIndex());
+		}
+		catch(ArrayIndexOutOfBoundsException | NullPointerException e) {
+			return null; 
+		}
+	}
+	
+	public ObservableList<BilTabel> getAlleBiler(){
 		return Datalag.i().getAlleBiler();
 	}
 

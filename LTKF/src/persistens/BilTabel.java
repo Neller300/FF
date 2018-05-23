@@ -3,9 +3,9 @@ package persistens;
 public class BilTabel implements HasAutoKey {
 private int bilId;
 private String bilNavn;
-private int bilPris;
+private String bilPris;
 
-public BilTabel(int bilId, String bilNavn, int bilPris) {
+public BilTabel(int bilId, String bilNavn, String bilPris) {
 	this.bilId=bilId;
 	this.bilNavn=bilNavn;
 	this.bilPris=bilPris; 
@@ -28,7 +28,7 @@ public String getBilNavn() {
 	return bilNavn;
 }
 
-public int getBilPris() {
+public String getBilPris() {
 	return bilPris;
 }
 
@@ -47,7 +47,7 @@ public void setBilNavn(String bilNavn) {
 	this.bilNavn = bilNavn;
 }
 
-public void setBilPris(int bilPris) {
-	this.bilPris = bilPris;
+public void setBilPris(String bilPris2) {
+	this.bilPris = bilPris2;
 }
 }

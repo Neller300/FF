@@ -1,6 +1,9 @@
 package view;
 
 import javafx.application.Application;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.*;
@@ -11,10 +14,19 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import logic.FFController;
+import persistens.BilTabel;
+
+
 
 public class GUI extends Application {
 
+	private StringProperty tempBil=new SimpleStringProperty();
+	public String getTempBil() {return tempBil.get();};
+	public void setTempBil(String value) {tempBil.set(value);};
+	public StringProperty getTempBilProperty() {return tempBil;};
+	
 	TextField renten2 = new TextField();
 	FFController controller;
 	
@@ -137,7 +149,7 @@ public class GUI extends Application {
 		Label bil2 = new Label("Bil");
 
 		// combobox
-		final ComboBox<String> biltype2 = new ComboBox<String>();
+		final ComboBox<BilTabel> biltype2 = new ComboBox<BilTabel>();
 		biltype2.setItems(controller.getAlleBiler());
 		biltype2.setPromptText("Vælg bil");
 
@@ -296,16 +308,57 @@ public class GUI extends Application {
 		Label bil3 = new Label("Bil");
 
 		 //combobox
-		final ComboBox<String> biltype3 = new ComboBox<String>();
+		final ComboBox<BilTabel> biltype3 = new ComboBox<BilTabel>();
 		biltype3.setItems(controller.getAlleBiler());
 		biltype3.setPromptText("Vælg bil");
+
+	    final ListCell<BilTabel> customCell = new ListCell<BilTabel>() {
+	        @Override
+	        protected void updateItem(BilTabel item, boolean empty) {
+	            super.updateItem(item, empty);
+	            if(item!= null){
+                    setText(item.getBilNavn());
+                    
+                }else{
+                    setText(null);
+                }
+	        }
+	    };
+	    biltype3.setButtonCell(customCell);
+		
+		biltype3.setCellFactory(new Callback<ListView<BilTabel>,ListCell<BilTabel>>(){
+			 
+            @Override
+            public ListCell<BilTabel> call(ListView<BilTabel> p) {
+                 
+                final ListCell<BilTabel> cell = new ListCell<BilTabel>(){
+ 
+                    @Override
+                    protected void updateItem(BilTabel t, boolean bln) {
+                        super.updateItem(t, bln);
+                         
+                        if(t != null){
+                            setText(t.getBilNavn());
+                            
+                        }else{
+                            setText(null);
+                        }
+                    }
+  
+                };
+                 
+                return cell;
+            }
+        });
 
 		Label udbetaling3 = new Label("Udbetaling");
 		TextField udbetalingtext3 = new TextField();
 
 		Label pris3 = new Label("Pris");
 		TextField pristext3 = new TextField();
-
+		
+		
+		
 		Label længdelån3 = new Label("Længde på lån");
 		TextField længdelåntext3 = new TextField();
 
@@ -315,6 +368,22 @@ public class GUI extends Application {
 		Button opret3 = new Button("Opret");
 
 		Button cancel3 = new Button("Ryd alt");
+		
+		
+		
+		
+		
+		biltype3.getSelectionModel().selectedItemProperty().addListener((Observable, oldValue, newValue) -> {
+			
+				
+				pristext3.setText(newValue.getBilPris());
+				setTempBil(newValue.getBilNavn());
+				biltype3.promptTextProperty().bind(getTempBilProperty());
+				
+				setTempBil(newValue.getBilNavn());
+								
+			
+		});
 
 		// cells row, colomn, row, colom
 		grid3.add(tlf3, 0, 0);

@@ -63,22 +63,29 @@ public class Datalag {
 		}
 	}
 	
-	public ObservableList<String> getAlleBiler() {
-		ArrayList<String> biler = new ArrayList<String>();
+	public ObservableList<BilTabel> getAlleBiler() {
+		ArrayList<BilTabel> biler = new ArrayList<BilTabel>();
+		
 		
 		try {
-		String kk = "SELECT bil_navn FROM bil;";
+		String kk = "SELECT * FROM bil;";
 		System.out.println(kk);
 		
 		Statement statement = connection.createStatement();
 		ResultSet resultSet = statement.executeQuery(kk);
-		ObservableList<String> observableBil = null;
+		ObservableList<BilTabel> observableBil = null;
 		
 		
 		
 		while(resultSet.next()) { 
+			BilTabel bil = new BilTabel();
+			int bilid = resultSet.getInt("bil_id");
 			String bilnavn = resultSet.getString("bil_navn");
-			biler.add(bilnavn);
+			String bilPris = resultSet.getString("bil_pris");
+			bil.setBilId(bilid);
+			bil.setBilNavn(bilnavn);
+			bil.setBilPris(bilPris);
+			biler.add(bil);
 			observableBil = FXCollections.observableArrayList(biler);
 			
 		}
@@ -180,6 +187,32 @@ public class Datalag {
 		catch(SQLException e) {
 			return null;
 		}
+	}
+	
+	public String getBilPris(int index) {
+		ArrayList<String> finalBilPris = new ArrayList<String>();
+		try {
+			String k = "SELECT bil_pris FROM bil;";
+			System.out.println(k);
+			
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(k);
+			
+			
+			
+			while(resultSet.next()) {
+				String bilPris = resultSet.getString("bil_pris");
+				statement.close();
+				finalBilPris.add(bilPris);
+				return finalBilPris.get(index); 
+				
+			}
+			return null;	
+			
+			}
+			catch(SQLException e) {
+				return null;
+			}
 	}
 //	public String getEmail(int tlfNr) {
 //		try {
