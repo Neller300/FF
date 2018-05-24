@@ -145,12 +145,12 @@ public class Datalag {
 
 			else
 			kunde.setTlfNr(0);
-			kunde.setNavn(null);
-			kunde.setEfternavn(null);
-			kunde.setCprNr(null);
-			kunde.setAdresse(null);
+			kunde.setNavn("");
+			kunde.setEfternavn("");
+			kunde.setCprNr("");
+			kunde.setAdresse("");
 			kunde.setPostnummer(0);
-			kunde.setEmail(null);
+			kunde.setEmail("");
 				return kunde;
 		} catch (SQLException e) {
 			return null;
