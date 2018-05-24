@@ -83,7 +83,7 @@ public class GUI extends Application {
 
 		grid1.add(opretlån, 1, 0);
 		grid1.add(lavtilbud, 1, 1);
-		grid1.add(færdigtilbud, 0, 2);
+		grid1.add(færdigtilbud, 1, 2);
 		grid1.add(godkendtilbud, 1, 3);
 
 		// ï¿½ndre knappens max height og width value. og derefter fylder knappen ud i den
@@ -364,6 +364,9 @@ public class GUI extends Application {
 
 		Label kommentar3 = new Label("Kommentar");
 		TextArea kommentartext3 = new TextArea();
+		
+		TextField lånbeløb = new TextField();
+		lånbeløb.setPromptText("Låne beløb");
 
 		Button opret3 = new Button("Opret");
 
@@ -431,6 +434,8 @@ public class GUI extends Application {
 		grid3.add(længdelåntext3, 3, 3);
 
 		grid3.add(kommentar3, 2, 4);
+		
+		grid3.add(lånbeløb, 3, 4);
 
 		grid3.add(kommentartext3, 2, 6, 3, 6);
 
