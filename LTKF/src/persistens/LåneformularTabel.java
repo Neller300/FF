@@ -1,3 +1,4 @@
+//Skrevet af Niels Erik og Patrick
 package persistens;
 
 public class LåneformularTabel implements HasAutoKey{
@@ -7,19 +8,25 @@ private int lånLængde;
 private int bilId;
 private int tlfNr;
 private int sælgerId;
+private int lånBeløb;
 
-public LåneformularTabel(int formularId, int udbetaling, int lånlængde, int bilId, int tlfNr, int sælgerId) {
+public LåneformularTabel(int formularId, int udbetaling, int lånlængde, int bilId, int tlfNr, int sælgerId, int lånBeløb) {
 	this.formularId=formularId;
 	this.udbetaling=udbetaling;
 	this.lånLængde=lånlængde;
 	this.bilId=bilId;
 	this.tlfNr=tlfNr;
 	this.sælgerId=sælgerId;
+	this.setLånBeløb(lånBeløb);
+}
+
+public LåneformularTabel() {
+	
 }
 
 @Override
 public void setAutoKey(int key) {
-  this.tlfNr = key;
+  this.formularId = key;
 }
 
 public int getFormularId() {
@@ -46,6 +53,10 @@ public int getSælgerId() {
 	return sælgerId;
 }
 
+public int getLånBeløb() {
+	return lånBeløb;
+}
+
 public void setFormularId(int formularId) {
 	this.formularId = formularId;
 }
@@ -70,6 +81,9 @@ public void setSælgerId(int sælgerId) {
 	this.sælgerId = sælgerId;
 }
 
+public void setLånBeløb(int lånBeløb) {
+	this.lånBeløb = lånBeløb;
+}
 
 @Override
 public String toString() {

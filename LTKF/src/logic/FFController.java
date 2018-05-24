@@ -1,15 +1,14 @@
+//Skrevet af Niels Erik og Patrick
 package logic;
-
-import java.util.ArrayList;
 
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import persistens.BankData;
 import persistens.BilTabel;
 import persistens.Datalag;
 import persistens.KundeTabel;
+import persistens.LåneformularTabel;
 
 public class FFController {
 	
@@ -63,6 +62,20 @@ public class FFController {
 	public void opretLåneformular(int udbetaling, int længde, int bilid, int tlf, int sælger ) {
 		Datalag.i().opretLåneformular(udbetaling, længde, bilid, tlf, sælger);
 		
+	}
+	
+	public LåneformularTabel getFormular(int tlf) {
+		return Datalag.i().getLåneformular(tlf);
+	}
+	
+	public double udregnMåndeligRente(double rente) {
+		UdarbejdTilbud t = new UdarbejdTilbud();
+		return t.udregnMåndeligRente(rente);
+	}
+	
+	public double udregnAfdrag(double bilPris, double måndeligRente, int antalMåneder) {
+		UdarbejdTilbud t = new UdarbejdTilbud();
+		return t.udregnAfdrag(bilPris, måndeligRente, antalMåneder);
 	}
 
 }

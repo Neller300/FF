@@ -1,3 +1,4 @@
+//Skrevet af Niels Erik og Patrick
 package persistens;
 
 import java.sql.*;
@@ -5,9 +6,7 @@ import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+
 
 public class Datalag {
 	private Connection connection;
@@ -239,8 +238,41 @@ public class Datalag {
 		catch(SQLException e) {
 			
 	}
-	
-	
-	
 }
+	public LåneformularTabel getLåneformular(int tlf) {
+		LåneformularTabel låneformular = new LåneformularTabel();
+		try {
+			String k = "SELECT * FROM låneformular WHERE tlf = " + tlf + ";";
+			
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(k);
+			
+			if(resultSet.next()) {
+				int formularId = resultSet.getInt("formular_id");
+				int udbetaling = resultSet.getInt("udbetaling");
+				int lånLængde = resultSet.getInt("lån_længde");
+				int bilId = resultSet.getInt("bilid");
+				int tlfNr = resultSet.getInt("tlf_nr");
+				int sælgerId = resultSet.getInt("sælger_id");
+				int lånBeløb = resultSet.getInt("lån_beløb");
+				
+				låneformular.setFormularId(formularId);
+				låneformular.setUdbetaling(udbetaling);
+				låneformular.setLånLængde(lånLængde);
+				låneformular.setBilId(bilId);
+				låneformular.setTlfNr(tlfNr);
+				låneformular.setSælgerId(sælgerId);
+				låneformular.setLånBeløb(lånBeløb);
+				
+				return låneformular;
+			}
+			
+		}
+		
+		
+		catch(SQLException e) {
+			
+		}
+		return låneformular;
+	}
 }

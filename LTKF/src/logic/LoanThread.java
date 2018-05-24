@@ -1,3 +1,4 @@
+//Skrevet af Niels Erik og Jonas
 package logic;
 
 import com.ferrari.finances.dk.bank.InterestRate;

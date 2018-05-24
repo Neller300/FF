@@ -1,3 +1,4 @@
+//Skrevet af Patrick og Niels Erik
 package persistens;
 
 public class KundeTabel implements HasAutoKey {

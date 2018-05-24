@@ -1,3 +1,4 @@
+//Skrevet af Patrick
 package persistens;
 
 public class BilTabel implements HasAutoKey {

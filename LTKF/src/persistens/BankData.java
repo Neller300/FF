@@ -1,3 +1,4 @@
+//Skrevet af Niels Erik
 package persistens;
 
 import com.ferrari.finances.dk.rki.*;

@@ -1,3 +1,4 @@
+//Skrevet af Patrick
 package persistens;
 
 public interface HasAutoKey {

@@ -1,3 +1,4 @@
+//Skrevet af Patrick
 package persistens;
 
 import java.util.Observable;

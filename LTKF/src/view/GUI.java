@@ -1,9 +1,7 @@
+//Skrevet af Daniel, Patrick, Niels Erik og Jonas
 package view;
 
 import javafx.application.Application;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -170,6 +168,14 @@ public class GUI extends Application {
 		TextArea lånINFO2 = new TextArea();
 		lånINFO2.setEditable(false);
 		lånINFO2.setMouseTransparent(true);
+		//Sætter info for lånet i textArea.
+		lånINFO2.setText("Den Måndelig rente er " + String.valueOf(controller.udregnMåndeligRente(Double.parseDouble(renten2.getText()))) + "/n" +
+						"ÅOP er " + String.valueOf(
+								controller.udregnAfdrag(controller.getFormular(Integer.parseInt(tlfinput2.getText())).getLånBeløb(), 
+								controller.udregnMåndeligRente(Double.parseDouble(renten2.getText())), 
+								Integer.parseInt(laengdeLaan2.getText()))));
+
+
 
 		Label sælger2 = new Label("Sælger:");
 		TextField vælgsælger2 = new TextField();
