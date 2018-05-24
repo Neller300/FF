@@ -164,6 +164,7 @@ public class GUI extends Application {
 
 		Label lånLængde2 = new Label("Længde på lån");
 		TextField laengdeLaan2 = new TextField();
+		laengdeLaan2.setEditable(false);
 
 		Label låneInfo2 = new Label("Låne information");
 		TextArea lånINFO2 = new TextArea();
@@ -176,6 +177,8 @@ public class GUI extends Application {
 		Button back = new Button("Tilbage");
 		
 		Button tilbage = new Button("Tilbage");
+		
+		Button tilbage1 = new Button("Tilbage");
 		
 		Button hentKunde = new Button("Hent kunde");
 
@@ -220,9 +223,9 @@ public class GUI extends Application {
 
 		grid2.add(vælgsælger2, 0, 13);
 
-		grid2.add(back, 0, 14);
+		grid2.add(tilbage1, 0, 14);
 		
-		grid2.add(tilbage, 0, 14);
+		grid2.add(back, 0, 14);
 		
 		
 		
@@ -367,10 +370,12 @@ public class GUI extends Application {
 		
 		TextField lånbeløb = new TextField();
 		lånbeløb.setPromptText("Låne beløb");
-
+		lånbeløb.setEditable(false);
+		
 		Button opret3 = new Button("Opret");
 
 		Button cancel3 = new Button("Ryd alt");
+		
 		
 		
 		
@@ -446,6 +451,8 @@ public class GUI extends Application {
 		grid3.add(back, 0, 18);
 		
 		grid3.add(hentKunde, 1, 1);
+		
+		grid3.add(tilbage1, 0, 18);
 		
 		
 
@@ -566,6 +573,27 @@ public class GUI extends Application {
 		
 		// lave event handlers der gï¿½r tilbage til main menu
 				tilbage.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent event) {
+						primaryStage.setScene(mainmenuscene);
+						tlftext3.setText("");
+						navntext3.setText("");
+						efternavntext3.setText("");
+						adressetext3.setText("");
+						bytext3.setText("");
+						postnummertext3.setText("");
+						emailtext3.setText("");
+						cprtext3.setText("");
+						sælgertext3.setText("");
+						udbetalingtext3.setText("");
+						pristext3.setText("");
+						kommentartext3.setText("");
+						længdelåntext3.setText("");
+					}
+				});
+				
+				// lave event handlers der gï¿½r tilbage til main menu
+				tilbage1.setOnAction(new EventHandler<ActionEvent>() {
 					@Override
 					public void handle(ActionEvent event) {
 						primaryStage.setScene(mainmenuscene);
