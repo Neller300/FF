@@ -163,17 +163,20 @@ public class GUI extends Application {
 		Label lånLængde2 = new Label("Længde på lån");
 		TextField laengdeLaan2 = new TextField();
 		laengdeLaan2.setEditable(false);
-
+		
+		String måndeligRente = String.valueOf(controller.udregnMåndeligRente(Double.parseDouble(renten2.getText())));
+		String ÅOP = String.valueOf(
+					 controller.udregnAfdrag(controller.getFormular(Integer.parseInt(tlfinput2.getText())).getLånBeløb(), 
+					 controller.udregnMåndeligRente(Double.parseDouble(renten2.getText())), 
+					 Integer.parseInt(laengdeLaan2.getText())));
+		
 		Label låneInfo2 = new Label("Låne information");
 		TextArea lånINFO2 = new TextArea();
 		lånINFO2.setEditable(false);
 		lånINFO2.setMouseTransparent(true);
 		//Sætter info for lånet i textArea.
-		lånINFO2.setText("Den Måndelig rente er " + String.valueOf(controller.udregnMåndeligRente(Double.parseDouble(renten2.getText()))) + "/n" +
-						"ÅOP er " + String.valueOf(
-								controller.udregnAfdrag(controller.getFormular(Integer.parseInt(tlfinput2.getText())).getLånBeløb(), 
-								controller.udregnMåndeligRente(Double.parseDouble(renten2.getText())), 
-								Integer.parseInt(laengdeLaan2.getText()))));
+		lånINFO2.setText("Den Måndelig rente er " + måndeligRente + "/n" +
+						"ÅOP er " + ÅOP);
 
 
 
