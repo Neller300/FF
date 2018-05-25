@@ -164,21 +164,11 @@ public class GUI extends Application {
 		TextField laengdeLaan2 = new TextField();
 		laengdeLaan2.setEditable(false);
 		
-		String måndeligRente = String.valueOf(controller.udregnMåndeligRente(Double.parseDouble(renten2.getText())));
-		String ÅOP = String.valueOf(
-					 controller.udregnAfdrag(controller.getFormular(Integer.parseInt(tlfinput2.getText())).getLånBeløb(), 
-					 controller.udregnMåndeligRente(Double.parseDouble(renten2.getText())), 
-					 Integer.parseInt(laengdeLaan2.getText())));
-		
 		Label låneInfo2 = new Label("Låne information");
 		TextArea lånINFO2 = new TextArea();
 		lånINFO2.setEditable(false);
 		lånINFO2.setMouseTransparent(true);
 		//Sætter info for lånet i textArea.
-		lånINFO2.setText("Den Måndelig rente er " + måndeligRente + "/n" +
-						"ÅOP er " + ÅOP);
-
-
 
 		Label sælger2 = new Label("Sælger:");
 		TextField vælgsælger2 = new TextField();
@@ -385,11 +375,6 @@ public class GUI extends Application {
 
 		Button cancel3 = new Button("Ryd alt");
 		
-		
-		
-		
-		
-		
 		biltype3.getSelectionModel().selectedItemProperty().addListener((Observable, oldValue, newValue) -> {
 				pristext3.setText(newValue.getBilPris());
 		});
@@ -497,6 +482,19 @@ public class GUI extends Application {
 		postnummertext3.textProperty().addListener((observable, oldValue, newValue) -> {
 			if (!newValue.matches("[0-9]*")) {
 				postnummertext3.setText(oldValue);
+			}
+		});
+		
+		renten2.textProperty().addListener((observable, oldValue, newValue) -> {
+			if(!renten2.getText().isEmpty()) {
+				String måndeligRente = String.valueOf(controller.udregnMåndeligRente(Double.parseDouble(renten2.getText())));
+				String ÅOP = String.valueOf(
+							 controller.udregnAfdrag(controller.getFormular(Integer.parseInt(tlfinput2.getText())).getLånBeløb(), 
+							 controller.udregnMåndeligRente(Double.parseDouble(renten2.getText())), 
+							 Integer.parseInt(laengdeLaan2.getText())));
+				
+				lånINFO2.setText("Den Måndelig rente er " + måndeligRente + "/n" +
+						"ÅOP er " + ÅOP);
 			}
 		});
 
