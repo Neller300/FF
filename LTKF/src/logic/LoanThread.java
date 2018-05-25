@@ -10,7 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import persistens.BankData;
-import java.text.DecimalFormat;
+
 
 public class LoanThread extends Thread {
 
@@ -20,21 +20,24 @@ public class LoanThread extends Thread {
 	private TextField renteField;
 	private double voresRente;
 	private String fejlBesked;
+	private TextField tlfnr;
 	
 
 	
 	//Laver referencer
-	public LoanThread(BankData data, TextField renteField) {  
+	public LoanThread(BankData data, TextField renteField, TextField tlfnr) {  
 		CPR = data.getCPR();
 		kredit = data.getRating();
 		rente = data.getRente();
 		this.renteField = renteField;
+		this.tlfnr = tlfnr;
 
 	}
 
 	//Starter tråden
 	@Override
 	public void run() {
+		FFController controller = new FFController();
 		try {
 			if (CPR.length()  == 10) {
 				kredit = CreditRator.i().rate(CPR);
@@ -52,47 +55,7 @@ public class LoanThread extends Thread {
 
 		rente = InterestRate.i().todaysRate();
 				
-		/*
-		Hvis udbetaling er mindre end 50% af bilens pris og tilbage betalings periode er over 36 mdr
-		if(Låneformular.udbetaling < (BilTabel.pris * 0.5) && Låneformular.lån_længde > 36){
-		 	if(kredit==Rating.A)
-				voresRente = rente + 3;
-			
-			if(kredit==Rating.B)
-				voresRente = rente + 4;
-				
-			if(kredit==Rating.C)
-				voresRente = rente + 5;
-				
-			if(kredit==Rating.D)
-				try {
-				throw new Exception("Kundens kredit værdi er for lav");
-			} catch (Exception e) {
-				
-			}				
-				
-		//hvis tilbagebetalings perioden er mere end 36 mdr eller hvis udbetalingen er mindre end 50% af bilens pris.
-		if(Låneformular.lån_længde > 36 || Låneformular.udbetaling < (Bil.pris * 0.5)){
-			if(kredit==Rating.A)
-				voresRente = rente + 2;
-			
-			if(kredit==Rating.B)
-				voresRente = rente + 3;
-				
-			if(kredit==Rating.C)
-				voresRente = rente + 4;
-			
-			if(kredit==Rating.D)
-				try {
-				throw new Exception("Kundens kredit værdi er for lav");
-			} catch (Exception e) {
-				
-			}
-			
 		
-		*/
-		
-		//Hvis bilens udbetaling er over 50% og tilbagebetalings perioden er mindre end 36 mdr.
 		if(kredit==Rating.A)
 			voresRente = rente + 1;
 		
@@ -110,15 +73,15 @@ public class LoanThread extends Thread {
 				
 			}
 			
-		//if(Låneformular.udbetaling >36){
-		//	voresRente += 1 ;
-		//}
+		if(controller.getFormular(Integer.parseInt(tlfnr.getText())).getLånLængde() >36){
+			voresRente += 1 ;
+		}
 			
-		/*
-		 * if(Låneformular.udbetaling < (Bil.pris * 0.5){
-		 * voresRente+= 1;
-		 * }
-		 */
+		
+		  if(controller.getFormular(Integer.parseInt(tlfnr.getText())).getUdbetaling() < (controller.bilPrisFraLåneFormular(Integer.parseInt(tlfnr.getText())) * 0.5)){
+		  voresRente+= 1;
+		  }
+		 
 			
 			
 		
@@ -126,10 +89,10 @@ public class LoanThread extends Thread {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				DecimalFormat formattere = new DecimalFormat("#.##");
-				
+//				DecimalFormat formattere = new DecimalFormat("#.##");
+				 
 				if(kredit==Rating.A || kredit==Rating.B || kredit==Rating.C)
-					renteField.setText(String.valueOf(formattere.format(voresRente)));
+					renteField.setText(String.valueOf(voresRente));
 				
 				else {
 					Alert alert = new Alert(AlertType.INFORMATION);

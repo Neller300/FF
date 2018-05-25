@@ -1,6 +1,8 @@
 //Skrevet af Daniel, Patrick, Niels Erik og Jonas
 package view;
 
+import java.text.DecimalFormat;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -154,6 +156,11 @@ public class GUI extends Application {
 		Button hentRente2 = new Button("Rente");
 		renten2.setEditable(false);
 		renten2.setMouseTransparent(true);
+		
+		Label lånbeløb2 = new Label("Lånebeløb");
+		TextField lånbeløbtext2 = new TextField();
+		lånbeløbtext2.setEditable(false);
+		lånbeløbtext2.setMouseTransparent(true);
 
 		Label ydelse2 = new Label("Første ydelse");
 		TextField førsteYde2 = new TextField();
@@ -179,7 +186,12 @@ public class GUI extends Application {
 		
 		Button tilbage1 = new Button("Tilbage");
 		
+		Button tilbage2 = new Button("Tilbage");
+		
 		Button hentKunde = new Button("Hent kunde");
+		
+		Button hentKunde1 = new Button("Hent kunde");
+
 
 		// biltype.getSelectionModel().selectedItemProperty().addListener( (v, oldvalue,
 		// newvalue )-> opdateryde);
@@ -191,6 +203,10 @@ public class GUI extends Application {
 
 		GridPane.setHalignment(tlfinput2, HPos.LEFT);
 		grid2.add(tlfinput2, 0, 2);
+		
+		grid2.add(hentKunde, 1, 2);
+		
+		grid2.add(hentKunde1, 1, 2);
 
 		GridPane.setHalignment(RKI2, HPos.LEFT);
 
@@ -205,6 +221,10 @@ public class GUI extends Application {
 		grid2.add(hentRente2, 2, 3);
 
 		grid2.add(renten2, 2, 4);
+		
+		grid2.add(lånbeløb2, 2, 5);
+		
+		grid2.add(lånbeløbtext2, 2, 6);
 
 		grid2.add(ydelse2, 3, 1);
 
@@ -213,18 +233,18 @@ public class GUI extends Application {
 		grid2.add(lånLængde2, 3, 3);
 
 		grid2.add(laengdeLaan2, 3, 4);
+		
+		grid2.add(låneInfo2, 2, 7);
 
-		grid2.add(låneInfo2, 2, 5);
-
-		grid2.add(lånINFO2, 2, 6, 2, 6);
+		grid2.add(lånINFO2, 2, 8, 2, 8);
 
 		grid2.add(sælger2, 0, 12);
 
 		grid2.add(vælgsælger2, 0, 13);
 
-		grid2.add(tilbage1, 0, 14);
-		
 		grid2.add(back, 0, 14);
+		
+		grid2.add(tilbage2, 0, 14);
 		
 		
 		
@@ -442,8 +462,6 @@ public class GUI extends Application {
 
 		grid3.add(cancel3, 3, 12);
 
-		grid3.add(back, 0, 18);
-		
 		grid3.add(hentKunde, 1, 1);
 		
 		grid3.add(tilbage1, 0, 18);
@@ -485,16 +503,44 @@ public class GUI extends Application {
 			}
 		});
 		
+		pristext3.textProperty().addListener((observable, oldValue, newValue) -> {
+			try {
+			if(!udbetalingtext3.getText().isEmpty()) {
+//				DecimalFormat formattere = new DecimalFormat("#.##");
+				lånbeløb.setText(String.valueOf(Double.parseDouble(pristext3.getText()) - Double.parseDouble(udbetalingtext3.getText())));
+		}
+			else {
+				lånbeløb.setText("");
+			}}
+			catch(NumberFormatException nfe) {
+				
+			}
+		});
+		
+		udbetalingtext3.textProperty().addListener((observable, oldValue, newValue) -> {
+			try {
+			if(!pristext3.getText().isEmpty()) {
+//				DecimalFormat formattere = new DecimalFormat("#.##");
+				lånbeløb.setText(String.valueOf(Double.parseDouble(pristext3.getText()) - Double.parseDouble(udbetalingtext3.getText())));
+		}
+			else {
+				lånbeløb.setText("");
+			}}
+			catch(NumberFormatException nfe) {
+				
+			}
+		});
+		
 		renten2.textProperty().addListener((observable, oldValue, newValue) -> {
 			if(!renten2.getText().isEmpty()) {
-				String måndeligRente = String.valueOf(controller.udregnMåndeligRente(Double.parseDouble(renten2.getText())));
-				String ÅOP = String.valueOf(
+				String måndeligRente = String.valueOf(controller.udregnMånedligRente(Double.parseDouble(renten2.getText())));
+				String afdrag = String.valueOf(
 							 controller.udregnAfdrag(controller.getFormular(Integer.parseInt(tlfinput2.getText())).getLånBeløb(), 
-							 controller.udregnMåndeligRente(Double.parseDouble(renten2.getText())), 
-							 Integer.parseInt(laengdeLaan2.getText())));
+							 controller.udregnMånedligRente(Double.parseDouble(renten2.getText())), 
+							 controller.getFormular(Integer.parseInt(tlfinput2.getText())).getLånLængde()));
 				
-				lånINFO2.setText("Den Måndelig rente er " + måndeligRente + "/n" +
-						"ÅOP er " + ÅOP);
+				lånINFO2.setText("Den Måndelig rente er " + måndeligRente + "\n" +
+						"Måndelige Afdrag er " + afdrag);
 			}
 		});
 
@@ -600,6 +646,28 @@ public class GUI extends Application {
 				});
 				
 				// lave event handlers der gï¿½r tilbage til main menu
+				tilbage2.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent event) {
+						primaryStage.setScene(mainmenuscene);
+						tlftext3.setText("");
+						navntext3.setText("");
+						efternavntext3.setText("");
+						adressetext3.setText("");
+						bytext3.setText("");
+						postnummertext3.setText("");
+						emailtext3.setText("");
+						cprtext3.setText("");
+						sælgertext3.setText("");
+						udbetalingtext3.setText("");
+						pristext3.setText("");
+						kommentartext3.setText("");
+						længdelåntext3.setText("");
+					}
+				});
+				
+				
+				// lave event handlers der gï¿½r tilbage til main menu
 				tilbage1.setOnAction(new EventHandler<ActionEvent>() {
 					@Override
 					public void handle(ActionEvent event) {
@@ -627,6 +695,45 @@ public class GUI extends Application {
 			public void handle(ActionEvent event) {
 				controller.getRente(tlfinput2, renten2);
 				System.out.println(tlfinput2.getText().toString());
+			}
+		});
+		
+		hentKunde1.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				if(tlfinput2.getText().isEmpty() || tlfinput2.getText() == "") {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Telefon nummer mangler!");
+					alert.setHeaderText(null);
+					alert.setContentText("Mangler indhold");
+
+					alert.showAndWait();
+				}
+				try {
+					int tlfparse = Integer.parseInt(tlfinput2.getText());
+					if(tlfparse != controller.getFormular(tlfparse).getTlfNr()) {
+						Alert alert = new Alert(AlertType.INFORMATION);
+						alert.setTitle("Ingen låneanmodning");
+						alert.setHeaderText(null);
+						alert.setContentText("Ingen låneanmodning associeret med dette telefon nummer!");
+
+						alert.showAndWait();
+					}
+					else {
+					 biltype2.setText(controller.bilNavnFraLåneFormular(controller.getFormular(tlfparse).getBilId()));
+					 lånbeløbtext2.setText(String.valueOf(controller.getFormular(tlfparse).getLånBeløb()));
+					 laengdeLaan2.setText(String.valueOf(controller.getFormular(tlfparse).getLånLængde()));
+					 vælgsælger2.setText(String.valueOf(controller.getFormular(tlfparse).getSælgerId()));
+					 førsteYde2.setText(String.valueOf(controller.getFormular(tlfparse).getUdbetaling()));
+					 
+						
+					}
+					
+				}
+				catch(NumberFormatException nfe) {
+					
+				}
+				
 			}
 		});
 		
@@ -679,7 +786,7 @@ public class GUI extends Application {
 				controller.opretKunde(Integer.parseInt(tlftext3.getText()), navntext3.getText(), efternavntext3.getText(), cprtext3.getText(), adressetext3.getText(), Integer.parseInt(postnummertext3.getText()), emailtext3.getText());
 				}
 				
-				controller.opretLåneformular(Integer.parseInt(udbetalingtext3.getText()), Integer.parseInt(længdelåntext3.getText()), biltype3.getSelectionModel().getSelectedItem().getBilId(), Integer.parseInt(tlftext3.getText()), Integer.parseInt(sælgertext3.getText()));  
+				controller.opretLåneformular(Integer.parseInt(udbetalingtext3.getText()), Integer.parseInt(længdelåntext3.getText()), Double.parseDouble(lånbeløb.getText()), biltype3.getSelectionModel().getSelectedItem().getBilId(), Integer.parseInt(tlftext3.getText()), Integer.parseInt(sælgertext3.getText()));  
 						 
 			}
 		});

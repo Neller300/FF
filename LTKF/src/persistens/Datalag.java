@@ -219,7 +219,7 @@ public class Datalag {
 		
 	}
 	
-	public void opretLåneformular(int udbetaling, int længde, int bilid, int tlf, int sælger) {
+	public void opretLåneformular(int udbetaling, int længde, double lånbeløb, int bilid, int tlf, int sælger) {
 		try {
 			
 			
@@ -227,6 +227,7 @@ public class Datalag {
 			
 			String k = "INSERT INTO låneformular VALUES(" + udbetaling + "," 
 														  + længde + "," 
+														  + lånbeløb + ","													  
 														  + bilid + "," 
 														  + tlf + "," 
 														  + sælger 
@@ -239,11 +240,48 @@ public class Datalag {
 			
 	}
 }
+	
+	public String bilNavnFraLåneFormular(int bilId) {
+		try {
+			String k = "SELECT bil_navn FROM bil JOIN låneformular ON bil.bil_id=låneformular.bil_id WHERE låneformular.bil_id=" + bilId + ";";
+			
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(k);
+			
+			if(resultSet.next()) {
+				String bilNavn = resultSet.getString("bil_navn");
+				return bilNavn;
+			}}
+			catch(SQLException e) {
+				
+			}
+		return null;
+		
+	}
+	
+	public double bilPrisFraLåneFormular(int tlf) {
+		try {
+			String k = "SELECT bil_pris FROM bil JOIN låneformular ON bil.bil_id=låneformular.bil_id WHERE låneformular.tlf_nr=" + tlf + ";";
+			
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(k);
+			
+			if(resultSet.next()) {
+				double bilPris = resultSet.getDouble("bil_pris");
+				return bilPris;
+			}}
+			catch(SQLException e) {
+				
+			}
+		return 0;
+		
+	}
+	
 	public LåneformularTabel getLåneformular(int tlf) {
 		LåneformularTabel låneformular = new LåneformularTabel();
 		try {
-			String k = "SELECT * FROM låneformular WHERE tlf = " + tlf + ";";
-			
+			String k = "SELECT * FROM låneformular WHERE tlf_nr = " + tlf + ";";
+			System.out.println(k);
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(k);
 			
@@ -251,18 +289,20 @@ public class Datalag {
 				int formularId = resultSet.getInt("formular_id");
 				int udbetaling = resultSet.getInt("udbetaling");
 				int lånLængde = resultSet.getInt("lån_længde");
-				int bilId = resultSet.getInt("bilid");
+				int lånBeløb = resultSet.getInt("lån_beløb");
+				int bilId = resultSet.getInt("bil_id");
 				int tlfNr = resultSet.getInt("tlf_nr");
 				int sælgerId = resultSet.getInt("sælger_id");
-				int lånBeløb = resultSet.getInt("lån_beløb");
+				
 				
 				låneformular.setFormularId(formularId);
 				låneformular.setUdbetaling(udbetaling);
 				låneformular.setLånLængde(lånLængde);
+				låneformular.setLånBeløb(lånBeløb);
 				låneformular.setBilId(bilId);
 				låneformular.setTlfNr(tlfNr);
 				låneformular.setSælgerId(sælgerId);
-				låneformular.setLånBeløb(lånBeløb);
+				
 				
 				return låneformular;
 			}

@@ -10,14 +10,14 @@ private int tlfNr;
 private int sælgerId;
 private int lånBeløb;
 
-public LåneformularTabel(int formularId, int udbetaling, int lånlængde, int bilId, int tlfNr, int sælgerId, int lånBeløb) {
+public LåneformularTabel(int formularId, int udbetaling, int lånlængde, int lånbeløb, int bilId, int tlfNr, int sælgerId) {
 	this.formularId=formularId;
 	this.udbetaling=udbetaling;
 	this.lånLængde=lånlængde;
+	this.lånBeløb=lånbeløb;
 	this.bilId=bilId;
 	this.tlfNr=tlfNr;
 	this.sælgerId=sælgerId;
-	this.setLånBeløb(lånBeløb);
 }
 
 public LåneformularTabel() {
