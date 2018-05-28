@@ -68,6 +68,7 @@ public class GUI extends Application {
 		row = new RowConstraints();
 		row.setPercentHeight(25);
 		grid1.getRowConstraints().add(row);
+		
 
 		Button opretlån = new Button("Opret låneformular");
 		opretlån.setStyle("-fx-font: 30 arial;");
