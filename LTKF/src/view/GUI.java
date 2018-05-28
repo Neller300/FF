@@ -78,7 +78,7 @@ public class GUI extends Application {
 		Button godkendtilbud = new Button("Godkend lånetilbud");
 		godkendtilbud.setStyle("-fx-font: 30 arial;");
 		
-		Button færdigtilbud = new Button("Godkend lånetilbud");
+		Button færdigtilbud = new Button("Færdig lånetilbud");
 		færdigtilbud.setStyle("-fx-font: 30 arial;");
 
 		grid1.add(opretlån, 1, 0);

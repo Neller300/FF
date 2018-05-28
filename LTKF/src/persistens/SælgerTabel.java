@@ -3,7 +3,7 @@ package persistens;
 
 import java.util.Observable;
 
-public class SælgerTabel extends Observable implements HasAutoKey {
+public class SælgerTabel implements HasAutoKey {
 	private int sælgerId;
 	private String initialer;
 	private int fastGrænse;

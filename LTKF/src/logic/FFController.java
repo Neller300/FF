@@ -12,7 +12,7 @@ import persistens.LåneformularTabel;
 
 public class FFController {
 	
-	KundeTabel kunde;
+	
 	
 		
 	public FFController() {
