@@ -189,7 +189,6 @@ public class Datalag {
 			ResultSet resultSet = statement.executeQuery(k);
 			
 			
-			
 			while(resultSet.next()) {
 				String bilPris = resultSet.getString("bil_pris");
 				statement.close();
@@ -221,10 +220,6 @@ public class Datalag {
 	
 	public void opretLåneformular(int udbetaling, int længde, double lånbeløb, int bilid, int tlf, int sælger) {
 		try {
-			
-			
-			
-			
 			String k = "INSERT INTO låneformular VALUES(" + udbetaling + "," 
 														  + længde + "," 
 														  + lånbeløb + ","													  
@@ -238,8 +233,8 @@ public class Datalag {
 		}
 		catch(SQLException e) {
 			
+		}
 	}
-}
 	
 	public String bilNavnFraLåneFormular(int bilId) {
 		try {
@@ -309,10 +304,47 @@ public class Datalag {
 			
 		}
 		
-		
 		catch(SQLException e) {
 			
 		}
 		return låneformular;
+	}
+	
+	public void opretTilbud(double rente, boolean godkendt, int formularId) {
+		try {
+			String k = "INSERT INTO tilbud VALUES(" + rente + "," 
+														  + godkendt + "," 
+														  + formularId 
+														  + ");";  
+			Statement statement = connection.createStatement();
+			statement.executeUpdate(k);
+			System.out.println(k);
+		}
+		catch(SQLException e) {
+			
+		}
+	}
+	
+	public int getSalgsGrænseSælger(int id) {
+		SælgerTabel sælger = new SælgerTabel();
+		try {
+			String k = "SELECT * FROM sælger WHERE id=" + id +";";
+			
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(k);
+			
+			if(resultSet.next()) {
+				int fastGrænse = resultSet.getInt("fast_grænse");
+				
+				sælger.setFastGrænse(fastGrænse);
+				return sælger.getFastGrænse();
+			}
+			
+		}
+		catch(SQLException e) {
+			
+		}
+		return sælger.getFastGrænse();
+		
 	}
 }

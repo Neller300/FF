@@ -85,5 +85,12 @@ public class FFController {
 	public double bilPrisFraLåneFormular(int tlf) {
 		return Datalag.i().bilPrisFraLåneFormular(tlf);
 	}
+	
+	public void opretTilbud(double rente, boolean godkendt, int formularId) {
+		Datalag.i().opretTilbud(rente, godkendt, formularId);
+	}
 
+	public int getSalgsGrænseSælger(int id) {
+		return Datalag.i().getSalgsGrænseSælger(id);
+	}
 }

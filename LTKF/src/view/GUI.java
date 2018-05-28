@@ -177,9 +177,20 @@ public class GUI extends Application {
 		lånINFO2.setEditable(false);
 		lånINFO2.setMouseTransparent(true);
 		//Sætter info for lånet i textArea.
-
+		
+		TextField mdrAfdrag = new TextField();
+		mdrAfdrag.setEditable(false);
+		
+		TextField mdrRente = new TextField();
+		mdrRente.setEditable(false);
+		
 		Label sælger2 = new Label("Sælger:");
 		TextField vælgsælger2 = new TextField();
+		
+		Label labelMdrAfdrag = new Label("Måndelig afdrag:");
+		
+		Label labelMdrRente = new Label("Måndelig Rente:");
+		
 
 		Button back = new Button("Tilbage");
 		
@@ -192,6 +203,8 @@ public class GUI extends Application {
 		Button hentKunde = new Button("Hent kunde");
 		
 		Button hentKunde1 = new Button("Hent kunde");
+		
+		Button opretTilbud = new Button("Opret Tilbud");
 
 
 		// biltype.getSelectionModel().selectedItemProperty().addListener( (v, oldvalue,
@@ -236,16 +249,24 @@ public class GUI extends Application {
 		grid2.add(laengdeLaan2, 3, 4);
 		
 		grid2.add(låneInfo2, 2, 7);
+		
+		grid2.add(labelMdrAfdrag, 2, 8);
+		
+		grid2.add(labelMdrRente, 3, 8);
 
-		grid2.add(lånINFO2, 2, 8, 2, 8);
+		//grid2.add(lånINFO2, 2, 8, 2, 8);
+
+		grid2.add(mdrAfdrag, 2, 9 );
+		
+		grid2.add(mdrRente, 3, 9);
 
 		grid2.add(sælger2, 0, 12);
 
 		grid2.add(vælgsælger2, 0, 13);
 
-		grid2.add(back, 0, 14);
-		
 		grid2.add(tilbage2, 0, 14);
+		
+		grid2.add(opretTilbud, 2, 10);
 		
 		
 		
@@ -417,13 +438,13 @@ public class GUI extends Application {
 
 		grid3.add(adressetext3, 0, 7);
 
-		grid3.add(by3, 0, 10);
-
-		grid3.add(bytext3, 0, 11);
-
 		grid3.add(postnummer3, 0, 8);
 
 		grid3.add(postnummertext3, 0, 9);
+		
+		grid3.add(by3, 0, 10);
+
+		grid3.add(bytext3, 0, 11);
 
 		grid3.add(email3, 0, 12);
 
@@ -783,14 +804,33 @@ public class GUI extends Application {
 				int tlfparse = Integer.parseInt(tlftext3.getText());
 				
 				if(tlfparse != controller.getKunde(tlfparse).getTlfNr()) {
-					System.out.println("Jeg er ikke oprettet, men det er jeg om lidt.");
+					
+					System.out.println("Kunde eksistere ikke, opretter kunde.");
 				controller.opretKunde(Integer.parseInt(tlftext3.getText()), navntext3.getText(), efternavntext3.getText(), cprtext3.getText(), adressetext3.getText(), Integer.parseInt(postnummertext3.getText()), emailtext3.getText());
 				}
-				
+
 				controller.opretLåneformular(Integer.parseInt(udbetalingtext3.getText()), Integer.parseInt(længdelåntext3.getText()), Double.parseDouble(lånbeløb.getText()), biltype3.getSelectionModel().getSelectedItem().getBilId(), Integer.parseInt(tlftext3.getText()), Integer.parseInt(sælgertext3.getText()));  
-						 
+				
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Låneformular oprettet");
+				alert.setHeaderText(null);
+				alert.setContentText("Låneformular er oprettet." + "\n" + "Hvis kunde ikke var oprettet, så er kunden blevet oprettet.");
+				alert.showAndWait();
+				
+				primaryStage.setScene(mainmenuscene); 
 			}
 		});
+		
+		opretTilbud.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event) {
+				if(!mdrAfdrag.getText().isEmpty() && !mdrRente.getText().isEmpty()) {
+					 controller.opretTilbud(Double.parseDouble(renten2.getText()), controller.bilPrisFraLåneFormular(Integer.parseInt(tlfinput2.getText()))<controller.getSalgsGrænseSælger(Integer.parseInt(vælgsælger2.getText())), controller.getFormular(Integer.parseInt(tlfinput2.getText())).getFormularId());
+					
+				}
+			}
+		});
+		
 
 		//Tableview1 scene
 				// lave et grid

@@ -15,6 +15,10 @@ public class Tilbud implements HasAutoKey {
 
 	}
 	
+	public Tilbud() {
+		
+	}
+
 	@Override
 	public void setAutoKey(int key) {
 		this.tilbudId=key;
