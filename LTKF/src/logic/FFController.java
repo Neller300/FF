@@ -19,6 +19,7 @@ public class FFController {
 		Datalag.i().openConnection();
 	}
 	
+	
 	public KundeTabel getKunde(int tlfNr) {
 		KundeTabel kunde = Datalag.i().findKunde(tlfNr);
 		if(kunde.getNavn() == null) {
@@ -93,5 +94,4 @@ public class FFController {
 	public int getSalgsGrænseSælger(int id) {
 		return Datalag.i().getSalgsGrænseSælger(id);
 	}
-
 }

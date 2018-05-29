@@ -31,7 +31,6 @@ public class LoanThread extends Thread {
 		rente = data.getRente();
 		this.renteField = renteField;
 		this.tlfnr = tlfnr;
-
 	}
 
 	//Starter tråden
@@ -49,8 +48,17 @@ public class LoanThread extends Thread {
 			}
 
 		} catch (NumberFormatException e) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("CPR har den forkerte format");
+			alert.setHeaderText(null);
+			alert.setContentText("CPR har ikke  den rigtige format, der er kun: " + CPR.length()
+			+ " tal i dette CPR nummer, der kræves 10 tal.");
+
+			alert.showAndWait();
+			/*
 			System.out.println("CPR har ikke  den rigtige format, der er kun: " + CPR.length()
 					+ " tal i dette CPR nummer, der kræves 10 tal.");
+			*/
 		}
 
 		rente = InterestRate.i().todaysRate();

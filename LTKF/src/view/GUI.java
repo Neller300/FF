@@ -809,7 +809,8 @@ public class GUI extends Application {
 					System.out.println("Kunde eksistere ikke, opretter kunde.");
 				controller.opretKunde(Integer.parseInt(tlftext3.getText()), navntext3.getText(), efternavntext3.getText(), cprtext3.getText(), adressetext3.getText(), Integer.parseInt(postnummertext3.getText()), emailtext3.getText());
 				}
-
+				
+				if(controller.getKunde(tlfparse).getTlfNr() != controller.getFormular(tlfparse).getTlfNr()) {
 				controller.opretLåneformular(Integer.parseInt(udbetalingtext3.getText()), Integer.parseInt(længdelåntext3.getText()), Double.parseDouble(lånbeløb.getText()), biltype3.getSelectionModel().getSelectedItem().getBilId(), Integer.parseInt(tlftext3.getText()), Integer.parseInt(sælgertext3.getText()));  
 				
 				Alert alert = new Alert(AlertType.INFORMATION);
@@ -817,6 +818,14 @@ public class GUI extends Application {
 				alert.setHeaderText(null);
 				alert.setContentText("Låneformular er oprettet." + "\n" + "Hvis kunde ikke var oprettet, så er kunden blevet oprettet.");
 				alert.showAndWait();
+				}
+				else {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Låneformular er ikke oprettet");
+					alert.setHeaderText(null);
+					alert.setContentText("Låneformular er ikke oprettet." + "\n" + "Kunden har allerede en aktiv låneformular");
+					alert.showAndWait();
+				}
 				
 				primaryStage.setScene(mainmenuscene); 
 			}
@@ -827,7 +836,22 @@ public class GUI extends Application {
 			public void handle(ActionEvent event) {
 				if(!mdrAfdrag.getText().isEmpty() && !mdrRente.getText().isEmpty()) {
 					 controller.opretTilbud(Double.parseDouble(renten2.getText()), controller.bilPrisFraLåneFormular(Integer.parseInt(tlfinput2.getText()))<controller.getSalgsGrænseSælger(Integer.parseInt(vælgsælger2.getText())), controller.getFormular(Integer.parseInt(tlfinput2.getText())).getFormularId());
+					 Alert alert = new Alert(AlertType.INFORMATION);
+						alert.setTitle("Tilbud er oprettet");
+						alert.setHeaderText(null);
+						alert.setContentText("Tilbud er oprettet.");
+						alert.showAndWait();
+						
+						primaryStage.setScene(mainmenuscene);
+				}
+				else {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Tilbud er ikke oprettet");
+					alert.setHeaderText(null);
+					alert.setContentText("Tilbud er ikke oprettet");
+					alert.showAndWait();
 					
+					primaryStage.setScene(mainmenuscene);
 				}
 			}
 		});
