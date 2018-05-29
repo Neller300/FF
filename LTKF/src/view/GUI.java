@@ -555,14 +555,15 @@ public class GUI extends Application {
 		
 		renten2.textProperty().addListener((observable, oldValue, newValue) -> {
 			if(!renten2.getText().isEmpty()) {
-				String måndeligRente = String.valueOf(controller.udregnMånedligRente(Double.parseDouble(renten2.getText())));
+				String månedligRente = String.valueOf(controller.udregnMånedligRente(Double.parseDouble(renten2.getText())));
 				String afdrag = String.valueOf(
 							 controller.udregnAfdrag(controller.getFormular(Integer.parseInt(tlfinput2.getText())).getLånBeløb(), 
 							 controller.udregnMånedligRente(Double.parseDouble(renten2.getText())), 
 							 controller.getFormular(Integer.parseInt(tlfinput2.getText())).getLånLængde()));
 				
-				lånINFO2.setText("Den Måndelig rente er " + måndeligRente + "\n" +
-						"Måndelige Afdrag er " + afdrag);
+				mdrRente.setText(månedligRente);
+				mdrAfdrag.setText(afdrag);
+				 
 			}
 		});
 

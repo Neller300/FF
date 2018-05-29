@@ -73,9 +73,9 @@ public class FFController {
 		return t.udregnMånedligRente(rente);
 	}
 	
-	public double udregnAfdrag(double bilPris, double måndeligRente, int antalMåneder) {
+	public double udregnAfdrag(double bilPris, double månedligRente, int antalMåneder) {
 		UdarbejdTilbud t = new UdarbejdTilbud();
-		return t.udregnAfdrag(bilPris, måndeligRente, antalMåneder);
+		return t.udregnAfdrag(bilPris, månedligRente, antalMåneder);
 	}
 	
 	public String bilNavnFraLåneFormular(int bilId) {
@@ -93,4 +93,5 @@ public class FFController {
 	public int getSalgsGrænseSælger(int id) {
 		return Datalag.i().getSalgsGrænseSælger(id);
 	}
+
 }

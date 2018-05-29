@@ -1,19 +1,18 @@
 //Skrevet af Patrick
 package persistens;
 
+import java.util.Observable;
 
 public class SælgerTabel implements HasAutoKey {
 	private int sælgerId;
 	private String initialer;
 	private int fastGrænse;
-	
 
 	public SælgerTabel(int sælgerId, String initialer, int fastGrænse) {
 		this.sælgerId = sælgerId;
 		this.initialer = initialer;
 		this.fastGrænse = fastGrænse;
 	}
-
 	public SælgerTabel() {
 
 	}
@@ -46,7 +45,7 @@ public class SælgerTabel implements HasAutoKey {
 	public void setFastGrænse(int fastGrænse) {
 		this.fastGrænse = fastGrænse;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "[Sælger: SælgerId=" + sælgerId + 
