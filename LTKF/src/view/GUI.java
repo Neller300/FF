@@ -212,17 +212,13 @@ public class GUI extends Application {
 
 		// Sï¿½tte text,buttons, label i et grid
 		// cells row, colomn, row, colom
-		GridPane.setHalignment(tlfnr2, HPos.LEFT);
 		grid2.add(tlfnr2, 0, 1);
 
-		GridPane.setHalignment(tlfinput2, HPos.LEFT);
 		grid2.add(tlfinput2, 0, 2);
 		
 		grid2.add(hentKunde, 1, 2);
 		
 		grid2.add(hentKunde1, 1, 2);
-
-		GridPane.setHalignment(RKI2, HPos.LEFT);
 
 		grid2.add(RKI2, 0, 3);
 
@@ -673,19 +669,16 @@ public class GUI extends Application {
 					@Override
 					public void handle(ActionEvent event) {
 						primaryStage.setScene(mainmenuscene);
-						tlftext3.setText("");
-						navntext3.setText("");
-						efternavntext3.setText("");
-						adressetext3.setText("");
-						bytext3.setText("");
-						postnummertext3.setText("");
-						emailtext3.setText("");
-						cprtext3.setText("");
-						sælgertext3.setText("");
-						udbetalingtext3.setText("");
-						pristext3.setText("");
-						kommentartext3.setText("");
-						længdelåntext3.setText("");
+						tlfinput2.setText("");
+						biltype2.setText("");
+						renten2.setText("");
+						lånbeløbtext2.setText("");
+						førsteYde2.setText("");
+						laengdeLaan2.setText("");
+						lånINFO2.setText("");
+						mdrAfdrag.setText("");
+						mdrRente.setText("");
+						vælgsælger2.setText("");
 					}
 				});
 				
@@ -878,7 +871,7 @@ public class GUI extends Application {
 					}
 				});
 				
-				TableView<KundeTabel> færdigtabel;
+//				TableView<KundeTabel> færdigtabel;
 				    
 				    
 				 
