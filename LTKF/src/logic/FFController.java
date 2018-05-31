@@ -48,7 +48,7 @@ public class FFController {
 		 return Datalag.i().getBilPris(biltype3.getSelectionModel().getSelectedIndex());
 		}
 		catch(ArrayIndexOutOfBoundsException | NullPointerException e) {
-			return null; 
+			return e.getMessage();
 		}
 	}
 	
@@ -74,9 +74,9 @@ public class FFController {
 		return t.udregnMånedligRente(rente);
 	}
 	
-	public double udregnAfdrag(double bilPris, double månedligRente, int antalMåneder) {
+	public double udregnAfdrag(double lånBeløb, double månedligRente, int antalMåneder) {
 		UdarbejdTilbud t = new UdarbejdTilbud();
-		return t.udregnAfdrag(bilPris, månedligRente, antalMåneder);
+		return t.udregnAfdrag(lånBeløb, månedligRente, antalMåneder);
 	}
 	
 	public String bilNavnFraLåneFormular(int bilId) {
@@ -87,8 +87,8 @@ public class FFController {
 		return Datalag.i().bilPrisFraLåneFormular(tlf);
 	}
 	
-	public void opretTilbud(double rente, boolean godkendt, int formularId) {
-		Datalag.i().opretTilbud(rente, godkendt, formularId);
+	public void opretTilbud(double rente, boolean godkendt, double afdrag, int formularId) {
+		Datalag.i().opretTilbud(rente, godkendt, afdrag, formularId);
 	}
 
 	public int getSalgsGrænseSælger(int id) {

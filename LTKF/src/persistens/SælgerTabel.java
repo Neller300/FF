@@ -1,7 +1,6 @@
 //Skrevet af Patrick
 package persistens;
 
-import java.util.Observable;
 
 public class SælgerTabel implements HasAutoKey {
 	private int sælgerId;

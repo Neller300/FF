@@ -554,7 +554,7 @@ public class GUI extends Application {
 				String månedligRente = String.valueOf(controller.udregnMånedligRente(Double.parseDouble(renten2.getText())));
 				String afdrag = String.valueOf(
 							 controller.udregnAfdrag(controller.getFormular(Integer.parseInt(tlfinput2.getText())).getLånBeløb(), 
-							 controller.udregnMånedligRente(Double.parseDouble(renten2.getText())), 
+							 Double.parseDouble(månedligRente), 
 							 controller.getFormular(Integer.parseInt(tlfinput2.getText())).getLånLængde()));
 				
 				mdrRente.setText(månedligRente);
@@ -828,7 +828,11 @@ public class GUI extends Application {
 			@Override
 			public void handle(ActionEvent event) {
 				if(!mdrAfdrag.getText().isEmpty() && !mdrRente.getText().isEmpty()) {
-					 controller.opretTilbud(Double.parseDouble(renten2.getText()), controller.bilPrisFraLåneFormular(Integer.parseInt(tlfinput2.getText()))<controller.getSalgsGrænseSælger(Integer.parseInt(vælgsælger2.getText())), controller.getFormular(Integer.parseInt(tlfinput2.getText())).getFormularId());
+					 controller.opretTilbud(Double.parseDouble(mdrRente.getText()),
+							 				controller.bilPrisFraLåneFormular(Integer.parseInt(tlfinput2.getText()))<controller.getSalgsGrænseSælger(Integer.parseInt(vælgsælger2.getText())),
+							 			    Double.parseDouble(mdrAfdrag.getText()),
+							 				controller.getFormular(Integer.parseInt(tlfinput2.getText())).getFormularId());
+					 
 					 Alert alert = new Alert(AlertType.INFORMATION);
 						alert.setTitle("Tilbud er oprettet");
 						alert.setHeaderText(null);

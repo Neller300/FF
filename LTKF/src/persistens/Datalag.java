@@ -310,10 +310,11 @@ public class Datalag {
 		return låneformular;
 	}
 	
-	public void opretTilbud(double rente, boolean godkendt, int formularId) {
+	public void opretTilbud(double rente, boolean godkendt, double afdrag, int formularId) {
 		try {
 			String k = "INSERT INTO tilbud VALUES(" + rente + "," 
-														  + godkendt + "," 
+														  + godkendt + ","
+														  + afdrag + ","
 														  + formularId 
 														  + ");";  
 			Statement statement = connection.createStatement();

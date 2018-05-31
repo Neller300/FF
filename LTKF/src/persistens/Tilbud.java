@@ -6,15 +6,17 @@ public class Tilbud implements HasAutoKey {
 	private double rente;
 	private boolean godkendt;
 	private int formularId;
+	private double afdrag;
 
-	public Tilbud(int tilbudId, double rente, boolean godkendt, int formularId) {
+	public Tilbud(int tilbudId, double rente, boolean godkendt, double afdrag, int formularId) {
 		this.tilbudId=tilbudId;
 		this.rente=rente;
 		this.godkendt=godkendt;
+		this.afdrag=afdrag;
 		this.formularId=formularId;
 
 	}
-	
+
 	public Tilbud() {
 		
 	}
@@ -23,6 +25,14 @@ public class Tilbud implements HasAutoKey {
 	public void setAutoKey(int key) {
 		this.tilbudId=key;
 		
+	}
+	
+	public double getAfdrag() {
+		return afdrag;
+	}
+
+	public void setAfdrag(double afdrag) {
+		this.afdrag = afdrag;
 	}
 
 	public int getTilbudId() {
