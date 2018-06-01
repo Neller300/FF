@@ -4,7 +4,6 @@ package logic;
 import com.ferrari.finances.dk.bank.InterestRate;
 import com.ferrari.finances.dk.rki.CreditRator;
 import com.ferrari.finances.dk.rki.Rating;
-
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -22,9 +21,7 @@ public class LoanThread extends Thread {
 	private String fejlBesked;
 	private TextField tlfnr;
 	
-
 	
-	//Laver referencer
 	public LoanThread(BankData data, TextField renteField, TextField tlfnr) {  
 		CPR = data.getCPR();
 		kredit = data.getRating();

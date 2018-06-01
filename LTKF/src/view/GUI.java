@@ -1,18 +1,13 @@
 //Skrevet af Daniel, Patrick, Niels Erik og Jonas
 package view;
 
-import java.text.DecimalFormat;
-
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.*;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Screen;
@@ -20,14 +15,10 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import logic.FFController;
 import persistens.BilTabel;
-import persistens.KundeTabel;
 
 
 
 public class GUI extends Application {
-	TextField renten2 = new TextField();
-	FFController controller;
-	
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -87,7 +78,7 @@ public class GUI extends Application {
 		grid1.add(færdigtilbud, 1, 2);
 		grid1.add(godkendtilbud, 1, 3);
 
-		// ï¿½ndre knappens max height og width value. og derefter fylder knappen ud i den
+		// ændre knappens max height og width value. og derefter fylder knappen ud i den
 		// grid den er i
 		opretlån.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 		GridPane.setFillWidth(opretlån, true);
@@ -117,7 +108,7 @@ public class GUI extends Application {
 		grid2.setVgap(15);
 		// root.setGridLinesVisible(true);
 
-		// styre hver kolones stï¿½rrelse i procent
+		// styre hver kolones størrelse i procent
 		ColumnConstraints column2 = new ColumnConstraints();
 		column2.setPercentWidth(10);
 		grid2.getColumnConstraints().add(column2);
@@ -155,6 +146,7 @@ public class GUI extends Application {
 		biltype2.setEditable(false);
 
 		Button hentRente2 = new Button("Rente");
+		TextField renten2 = new TextField();
 		renten2.setEditable(false);
 		renten2.setMouseTransparent(true);
 		
@@ -210,7 +202,7 @@ public class GUI extends Application {
 		// biltype.getSelectionModel().selectedItemProperty().addListener( (v, oldvalue,
 		// newvalue )-> opdateryde);
 
-		// Sï¿½tte text,buttons, label i et grid
+		// Sætte text,buttons, label i et grid
 		// cells row, colomn, row, colom
 		grid2.add(tlfnr2, 0, 1);
 
@@ -264,11 +256,8 @@ public class GUI extends Application {
 		
 		grid2.add(opretTilbud, 2, 10);
 		
-		
-		
-	
 
-		// sï¿½tter maks 10 tegn
+		// sætter maks 10 tegn
 		tlfinput2.setOnKeyTyped(event -> {
 			int maxCharacters = 10;
 			if (tlfinput2.getText().length() > maxCharacters)
@@ -828,9 +817,10 @@ public class GUI extends Application {
 			@Override
 			public void handle(ActionEvent event) {
 				if(!mdrAfdrag.getText().isEmpty() && !mdrRente.getText().isEmpty()) {
+					 boolean overTreÅr = controller.bilPrisFraLåneFormular(Integer.parseInt(tlfinput2.getText()))>controller.getSalgsGrænseSælger(Integer.parseInt(vælgsælger2.getText()));
 					 controller.opretTilbud(Double.parseDouble(mdrRente.getText()),
-							 				controller.bilPrisFraLåneFormular(Integer.parseInt(tlfinput2.getText()))<controller.getSalgsGrænseSælger(Integer.parseInt(vælgsælger2.getText())),
-							 			    Double.parseDouble(mdrAfdrag.getText()),
+							 				overTreÅr,
+							 				Double.parseDouble(mdrAfdrag.getText()),
 							 				controller.getFormular(Integer.parseInt(tlfinput2.getText())).getFormularId());
 					 
 					 Alert alert = new Alert(AlertType.INFORMATION);
@@ -861,7 +851,6 @@ public class GUI extends Application {
 				grid5.setPadding(new Insets(20));
 				grid5.setHgap(15);
 				grid5.setVgap(15);
-//				grid4.setGridLinesVisible(true);
 				grid5.add(back, 0, 1);
 				
 				Scene færdigtilbudSide = new Scene(grid5, 3000, 3000);
@@ -875,75 +864,68 @@ public class GUI extends Application {
 					}
 				});
 				
-//				TableView<KundeTabel> færdigtabel;
-				    
-				    
-				 
-				 
-				 
-				 
+				/* for arbejde til at kunne se færdige tilbud
+				TableView<KundeTabel> færdigtabel;
 				
-//				//navn column
-//				TableColumn<KundeTabel, Integer> tlfcolumn = new TableColumn<>("Tlf:");
-//				tlfcolumn.setCellValueFactory(new PropertyValueFactory<>("tlfNr"));
-//				
-//				//navn column
-//				TableColumn<KundeTabel, String> navncolumn = new TableColumn<>("Navn");
-//				navncolumn.setCellValueFactory(new PropertyValueFactory<KundeTabel,String>("navn"));
-//				
-//				//navn column
-//				TableColumn<KundeTabel, String> efternavncolumn = new TableColumn<>("Efternavn");
-//				efternavncolumn.setCellValueFactory(new PropertyValueFactory<>("efternavn"));
+				//navn column
+				TableColumn<KundeTabel, Integer> tlfcolumn = new TableColumn<>("Tlf:");
+				tlfcolumn.setCellValueFactory(new PropertyValueFactory<>("tlfNr"));
+				
+				//navn column
+				TableColumn<KundeTabel, String> navncolumn = new TableColumn<>("Navn");
+				navncolumn.setCellValueFactory(new PropertyValueFactory<KundeTabel,String>("navn"));
+				
+				//navn column
+				TableColumn<KundeTabel, String> efternavncolumn = new TableColumn<>("Efternavn");
+				efternavncolumn.setCellValueFactory(new PropertyValueFactory<>("efternavn"));
 
-//				TableColumn<KundeTabel, Boolean> actioncolumn = new TableColumn<>("Tjek tilbud");
-//				actioncolumn.setCellValueFactory(new PropertyValueFactory<>("godkend"));
-//				actioncolumn.setSortable(false);
+				TableColumn<KundeTabel, Boolean> actioncolumn = new TableColumn<>("Tjek tilbud");
+				actioncolumn.setCellValueFactory(new PropertyValueFactory<>("godkend"));
+				actioncolumn.setSortable(false);
+			
+				actioncolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<KundeTabel, Boolean>, ObservableValue<Boolean>>() {
+				      @Override public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<KundeTabel, Boolean> features) {
+				        return new SimpleBooleanProperty(features.getValue() != null);
+				      }
+				    });
 				
-//				actioncolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<KundeTabel, Boolean>, ObservableValue<Boolean>>() {
-//				      @Override public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<KundeTabel, Boolean> features) {
-//				        return new SimpleBooleanProperty(features.getValue() != null);
-//				      }
-//				    });
+				  actioncolumn.setCellFactory(new Callback<TableColumn<KundeTabel, Boolean>, TableCell<KundeTabel, Boolean>>() {
+				      @Override public TableCell<KundeTabel, Boolean> call(TableColumn<KundeTabel, Boolean> personBooleanTableColumn) {
+				        return new AddPersonCell(grid4, tabel);
+				      }
+				    });
 				
-//				  actioncolumn.setCellFactory(new Callback<TableColumn<KundeTabel, Boolean>, TableCell<KundeTabel, Boolean>>() {
-//				      @Override public TableCell<KundeTabel, Boolean> call(TableColumn<KundeTabel, Boolean> personBooleanTableColumn) {
-//				        return new AddPersonCell(grid4, tabel);
-//				      }
-//				    });
+				//navn column
+				TableColumn<KundeTabel, String> adressecolumn = new TableColumn<>("Adresse");
+				adressecolumn.setCellValueFactory(new PropertyValueFactory<>("adresse"));
 				
-//				//navn column
-//				TableColumn<KundeTabel, String> adressecolumn = new TableColumn<>("Adresse");
-//				adressecolumn.setCellValueFactory(new PropertyValueFactory<>("adresse"));
-			//	
-//				//navn column
-//				TableColumn<KundeTabel, String> bycolumn = new TableColumn<>("By");
-//				bycolumn.setCellValueFactory(new PropertyValueFactory<>(test.getByen()));
-			//	
-//				//navn column
-//				TableColumn<KundeTabel, Integer> postcolumn = new TableColumn<>("Postnummer");
-//				postcolumn.setCellValueFactory(new PropertyValueFactory<>("postNummer"));
-			//	
-//				//navn column
-//				TableColumn<KundeTabel, Integer> emailcolumn = new TableColumn<>("E-mail");
-//				emailcolumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-//				
-//				færdigtabel = new TableView<KundeTabel>();
-//				færdigtabel.setItems(getKundeTabel());
-//				færdigtabel.getColumns().addAll(tlfcolumn, navncolumn,efternavncolumn);
-//				
-//				grid5.getChildren().addAll(færdigtabel);
+				//navn column
+				TableColumn<KundeTabel, String> bycolumn = new TableColumn<>("By");
+				bycolumn.setCellValueFactory(new PropertyValueFactory<>(test.getByen()));
+				
+				//navn column
+				TableColumn<KundeTabel, Integer> postcolumn = new TableColumn<>("Postnummer");
+				postcolumn.setCellValueFactory(new PropertyValueFactory<>("postNummer"));
+				
+				//navn column
+				TableColumn<KundeTabel, Integer> emailcolumn = new TableColumn<>("E-mail");
+				emailcolumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+				
+				færdigtabel = new TableView<KundeTabel>();
+				færdigtabel.setItems(getKundeTabel());
+				færdigtabel.getColumns().addAll(tlfcolumn, navncolumn,efternavncolumn);
+				
+				grid5.getChildren().addAll(færdigtabel);
 				
 				
 
-//			KundeTabel test = new KundeTabel(22905618, "Daniel", "Jensen", "Algade65", "Spjald", 6971, "danielsj96@gmail.com");
-//			private ObservableList<KundeTabel> getKundeTabel() {
-//			ObservableList<KundeTabel> KundeTabel = FXCollections.observableArrayList();
-//			KundeTabel.add(test);
-//			return KundeTabel;
-//			}
-				
-				
-
+			KundeTabel test = new KundeTabel(22905618, "Daniel", "Jensen", "Algade65", "Spjald", 6971, "danielsj96@gmail.com");
+			private ObservableList<KundeTabel> getKundeTabel() {
+			ObservableList<KundeTabel> KundeTabel = FXCollections.observableArrayList();
+			KundeTabel.add(test);
+			return KundeTabel;
+			}
+	*/			
 				
 				//Tableview2 scene
 						// lave et grid
@@ -952,7 +934,6 @@ public class GUI extends Application {
 						gridTabel.setPadding(new Insets(20));
 						gridTabel.setHgap(15);
 						gridTabel.setVgap(15);
-//						grid4.setGridLinesVisible(true);
 						gridTabel.add(tilbage, 0, 1);
 						
 						Scene godkendelsesScene = new Scene(gridTabel, 3000, 3000);
@@ -966,14 +947,10 @@ public class GUI extends Application {
 							}
 						});
 						
-						TableView<KundeTabel> tabel;
-						    
-						    
-						 
-						 
-						 
-						 
 						
+						/* For arbejde til at kunne godkende lån
+						TableView<KundeTabel> tabel;
+						 
 						//navn column
 						TableColumn<KundeTabel, Integer> tlfcolumn = new TableColumn<>("Tlf:");
 						tlfcolumn.setCellValueFactory(new PropertyValueFactory<>("tlfNr"));
@@ -986,47 +963,44 @@ public class GUI extends Application {
 						TableColumn<KundeTabel, String> efternavncolumn = new TableColumn<>("Efternavn");
 						efternavncolumn.setCellValueFactory(new PropertyValueFactory<>("efternavn"));
 					
-//						TableColumn<KundeTabel, Boolean> actioncolumn = new TableColumn<>("Tjek tilbud");
-//						actioncolumn.setCellValueFactory(new PropertyValueFactory<>("godkend"));
-//						actioncolumn.setSortable(false);
+						TableColumn<KundeTabel, Boolean> actioncolumn = new TableColumn<>("Tjek tilbud");
+						actioncolumn.setCellValueFactory(new PropertyValueFactory<>("godkend"));
+						actioncolumn.setSortable(false);
 						
-//						actioncolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<KundeTabel, Boolean>, ObservableValue<Boolean>>() {
-//						      @Override public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<KundeTabel, Boolean> features) {
-//						        return new SimpleBooleanProperty(features.getValue() != null);
-//						      }
-//						    });
+						actioncolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<KundeTabel, Boolean>, ObservableValue<Boolean>>() {
+						      @Override public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<KundeTabel, Boolean> features) {
+						        return new SimpleBooleanProperty(features.getValue() != null);
+						      }
+						    });
 						
-//						  actioncolumn.setCellFactory(new Callback<TableColumn<KundeTabel, Boolean>, TableCell<KundeTabel, Boolean>>() {
-//						      @Override public TableCell<KundeTabel, Boolean> call(TableColumn<KundeTabel, Boolean> personBooleanTableColumn) {
-//						        return new AddPersonCell(grid4, tabel);
-//						      }
-//						    });
+						  actioncolumn.setCellFactory(new Callback<TableColumn<KundeTabel, Boolean>, TableCell<KundeTabel, Boolean>>() {
+						      @Override public TableCell<KundeTabel, Boolean> call(TableColumn<KundeTabel, Boolean> personBooleanTableColumn) {
+						        return new AddPersonCell(grid4, tabel);
+						      }
+						    });
 						
-//						//navn column
-//						TableColumn<KundeTabel, String> adressecolumn = new TableColumn<>("Adresse");
-//						adressecolumn.setCellValueFactory(new PropertyValueFactory<>("adresse"));
-//						
-//						//navn column
-//						TableColumn<KundeTabel, String> bycolumn = new TableColumn<>("By");
-//						bycolumn.setCellValueFactory(new PropertyValueFactory<>(test.getByen()));
-//						
-//						//navn column
-//						TableColumn<KundeTabel, Integer> postcolumn = new TableColumn<>("Postnummer");
-//						postcolumn.setCellValueFactory(new PropertyValueFactory<>("postNummer"));
-//						
-//						//navn column
-//						TableColumn<KundeTabel, Integer> emailcolumn = new TableColumn<>("E-mail");
-//						emailcolumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+						//navn column
+						TableColumn<KundeTabel, String> adressecolumn = new TableColumn<>("Adresse");
+						adressecolumn.setCellValueFactory(new PropertyValueFactory<>("adresse"));
+						
+						//navn column
+						TableColumn<KundeTabel, String> bycolumn = new TableColumn<>("By");
+						bycolumn.setCellValueFactory(new PropertyValueFactory<>(test.getByen()));
+						
+						//navn column
+						TableColumn<KundeTabel, Integer> postcolumn = new TableColumn<>("Postnummer");
+						postcolumn.setCellValueFactory(new PropertyValueFactory<>("postNummer"));
+						
+						//navn column
+						TableColumn<KundeTabel, Integer> emailcolumn = new TableColumn<>("E-mail");
+						emailcolumn.setCellValueFactory(new PropertyValueFactory<>("email"));
 						
 						tabel = new TableView<KundeTabel>();
 						tabel.setItems(getKundeTabel());
 						tabel.getColumns().addAll(tlfcolumn, navncolumn,efternavncolumn);
 						
 						gridTabel.getChildren().addAll(tabel);
-						
-						
-						
-						
+						*/
 						
 						Screen screen = Screen.getPrimary();
 						Rectangle2D bounds = screen.getVisualBounds();
@@ -1038,19 +1012,6 @@ public class GUI extends Application {
 
 					}
 			
-			
-			
-
-			
-			KundeTabel test = new KundeTabel(22905618, "Daniel", "Jensen", "Algade65", "Spjald", 6971, "danielsj96@gmail.com");
-			private ObservableList<KundeTabel> getKundeTabel() {
-				ObservableList<KundeTabel> KundeTabel = FXCollections.observableArrayList();
-				KundeTabel.add(test);
-				return KundeTabel;
-			}
-			
-			
-	
 	public static void main(String[] args) {
 		launch(args);
 	}
